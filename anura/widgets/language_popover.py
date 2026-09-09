@@ -4,6 +4,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from gettext import gettext as _
+from gettext import ngettext
 from typing import ClassVar
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
@@ -116,7 +118,21 @@ class LanguagePopover(Gtk.Popover, SignalManagerMixin):
     def _on_search_changed(self, entry: Gtk.SearchEntry) -> None:
         query = entry.get_text().strip()
         self.filter.set_filter_func(self._on_language_filter, query)
-        self.toggle_empty_state(not self.filter_list.get_n_items())
+        count = self.filter_list.get_n_items()
+        self.toggle_empty_state(not count)
+
+        if not query:
+            label = _("Language list")
+        elif count == 0:
+            label = _("Language list — No matching languages found")
+        else:
+            label = ngettext(
+                "Language list ({n} matching language)",
+                "Language list ({n} matching languages)",
+                count,
+            ).format(n=count)
+
+        self.list_view.update_property([Gtk.AccessibleProperty.LABEL], [label])
 
     @Gtk.Template.Callback()
     def _on_stop_search(self, _entry: Gtk.SearchEntry) -> None:
@@ -130,6 +146,7 @@ class LanguagePopover(Gtk.Popover, SignalManagerMixin):
     @Gtk.Template.Callback()
     def _on_popover_closed(self, *_args: object) -> None:
         self.entry.set_text("")
+        self.list_view.update_property([Gtk.AccessibleProperty.LABEL], [_("Language list")])
 
     @Gtk.Template.Callback()
     def _on_add_clicked(self, _: Gtk.Widget) -> None:
