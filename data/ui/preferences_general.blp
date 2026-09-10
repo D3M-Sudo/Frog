@@ -61,6 +61,25 @@ template $PreferencesGeneralPage : Adw.PreferencesPage {
   }
 
   Adw.PreferencesGroup {
+    title: _("History");
+
+    Adw.SwitchRow history_switch {
+      title: _("Save Extraction History");
+      subtitle: _("Keep a local list of recently extracted texts");
+    }
+
+    Adw.SpinRow history_limit_row {
+      title: _("History Size");
+      subtitle: _("Maximum number of entries kept in history");
+      adjustment: Adjustment {
+        lower: 1.0;
+        upper: 500.0;
+        step-increment: 1.0;
+      };
+    }
+  }
+
+  Adw.PreferencesGroup {
     title: _("Text-to-Speech");
 
     Adw.SpinRow volume_row {

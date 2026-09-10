@@ -11,6 +11,7 @@ import weakref
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 from loguru import logger
 
+from anura.services.history_service import HistoryService
 from anura.services.notification_service import get_notification_service
 from anura.services.result_dispatcher import get_result_dispatcher
 from anura.utils import uri_validator
@@ -39,7 +40,11 @@ class OcrController(GObject.GObject, SignalManagerMixin):
         "navigation-requested": (GObject.SignalFlags.RUN_LAST, None, (str,)),
     }
 
-    def __init__(self, window: "AnuraWindow") -> None:
+    def __init__(
+        self,
+        window: "AnuraWindow",
+        history_service: HistoryService | None = None,
+    ) -> None:
         GObject.GObject.__init__(self)
         SignalManagerMixin.__init__(self)
 
@@ -50,6 +55,9 @@ class OcrController(GObject.GObject, SignalManagerMixin):
         self._window_ref = weakref.ref(window)
         self._dispatcher = get_result_dispatcher()
         self._notification_service = get_notification_service()
+        # History V1: injected by the application wiring (AnuraWindow) so the
+        # configured history-limit is honoured.  None disables history recording.
+        self._history_service = history_service
 
         # Register for automatic teardown
         if hasattr(window, "register_controller"):
@@ -97,6 +105,11 @@ class OcrController(GObject.GObject, SignalManagerMixin):
             self.emit("error-occurred", _("No text found. Try to grab another region."))
             return
 
+        # History V1: persist the extraction only when the user opted in.
+        # Runs on the GTK main thread (decoded is emitted via GLib.idle_add),
+        # so the small synchronous JSON write of HistoryService is acceptable.
+        self._record_history(text, applied_name, ocr_result)
+
         try:
             self.emit("extraction-completed", text, applied_name)
             extraction_result = self._dispatcher.dispatch(text, ocr_result)
@@ -114,6 +127,34 @@ class OcrController(GObject.GObject, SignalManagerMixin):
             logger.debug("OcrController: Window was already destroyed, skipping _on_shot_done processing.")
         except (AttributeError, TypeError, RuntimeError) as e:
             logger.error(f"OcrController: Error in _on_shot_done: {e}")
+
+    def _record_history(self, text: str, applied_name: str, ocr_result: "OcrResult | None") -> None:
+        """Record a successful extraction in the local history, if enabled.
+
+        Never raises: a persistence failure must not break the OCR flow.
+        """
+        if self._history_service is None:
+            return
+        try:
+            settings = self._window.settings
+            if not settings.get_boolean("history-enabled"):
+                return
+
+            # Only data genuinely available at this point is recorded:
+            # text (mandatory), the current OCR language, the transformer
+            # name chosen by the pipeline and the average OCR confidence.
+            conf = ocr_result.avg_confidence if ocr_result is not None else 0.0
+            self._history_service.record(
+                text=text,
+                language=self._window.get_language(),
+                applied_name=applied_name,
+                conf=conf,
+            )
+            logger.debug("OcrController: Extraction recorded in history")
+        except ReferenceError:
+            logger.debug("OcrController: Window was already destroyed, skipping history record.")
+        except OSError:
+            logger.exception("OcrController: Failed to record extraction in history")
 
     def _handle_extraction_result(self, result: "ExtractionResult", copy_requested: bool) -> None:
         """Handle the extraction result, emitting signals for side effects."""

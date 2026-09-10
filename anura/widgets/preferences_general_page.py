@@ -28,6 +28,8 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
     autolinks_switch: Adw.SwitchRow = Gtk.Template.Child()
     volume_row: Adw.SpinRow = Gtk.Template.Child()
     tts_language_combo: Adw.ComboRow = Gtk.Template.Child()
+    history_switch: Adw.SwitchRow = Gtk.Template.Child()
+    history_limit_row: Adw.SpinRow = Gtk.Template.Child()
 
     def __init__(self, **kwargs: object) -> None:
         super().__init__(**kwargs)
@@ -49,6 +51,21 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
 
         self._setup_tts_volume()
         self._setup_tts_language()
+        self._setup_history()
+
+    def _setup_history(self) -> None:
+        """Initialize History settings (enabled switch + size limit spin row)."""
+        self.settings.bind("history-enabled", self.history_switch, "active", Gio.SettingsBindFlags.DEFAULT)
+
+        # SpinRow works with doubles; the GSettings key is an integer (entries count)
+        self.history_limit_row.set_value(float(self.settings.get_int("history-limit")))
+        self.connect_tracked(self.history_limit_row, "notify::value", self._on_history_limit_changed)
+
+    def _on_history_limit_changed(self, spin_row: Adw.SpinRow, _param: object) -> None:
+        """Persist the history size limit as integer, clamped to the schema range."""
+        value = int(spin_row.get_value())
+        self.settings.set_int("history-limit", value)
+        logger.debug(f"Anura: History size limit set to {value}")
 
     def _setup_color_scheme(self) -> None:
         """Initialize color scheme selector from settings."""

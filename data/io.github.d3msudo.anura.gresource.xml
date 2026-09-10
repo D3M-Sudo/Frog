@@ -4,6 +4,7 @@
         <file preprocess="xml-stripblanks">window.ui</file>
         <file preprocess="xml-stripblanks">welcome_page.ui</file>
         <file preprocess="xml-stripblanks">extracted_page.ui</file>
+        <file preprocess="xml-stripblanks">history_page.ui</file>
         <file preprocess="xml-stripblanks">language_popover.ui</file>
         <file preprocess="xml-stripblanks">language_popover_row.ui</file>
         <file preprocess="xml-stripblanks">language_row.ui</file>
