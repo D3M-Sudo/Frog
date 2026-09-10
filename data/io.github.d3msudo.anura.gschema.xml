@@ -84,5 +84,18 @@
       <summary>Tesseract Model Quality</summary>
       <description>Choose between speed-optimized (fast), balanced (standard), or accuracy-optimized (best) Tesseract language models.</description>
     </key>
+
+    <key name="history-enabled" type="b">
+      <default>false</default>
+      <summary>Enable extraction history</summary>
+      <description>When enabled, extracted texts are stored locally in the extraction history.</description>
+    </key>
+
+    <key name="history-limit" type="i">
+      <range min="1" max="500"/>
+      <default>50</default>
+      <summary>History size limit</summary>
+      <description>Maximum number of entries kept in the extraction history.</description>
+    </key>
   </schema>
 </schemalist>

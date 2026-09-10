@@ -3,8 +3,8 @@
 # Release script for Anura
 # Automatically pins tessdata commit SHA and creates git tag
 #
-# Usage: ./release.sh <version> [tessdata_commit]
-# Example: ./release.sh 0.1.4 4767ea922bcc460e70b87b1d303ebdfed0e3060b
+# Usage: ./build-aux/release.sh <version> [tessdata_commit]
+# Example: ./build-aux/release.sh 0.1.4 4767ea922bcc460e70b87b1d303ebdfed0e3060b
 
 set -e
 
@@ -24,9 +24,13 @@ if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?$'; then
     exit 1
 fi
 
-MANIFEST_FILE="flatpak/io.github.d3msudo.anura.json"
-METAINFO_FILE="data/io.github.d3msudo.anura.metainfo.xml.in"
-MESON_BUILD_FILE="meson.build"
+# Get script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+MANIFEST_FILE="$PROJECT_ROOT/flatpak/io.github.d3msudo.anura.json"
+METAINFO_FILE="$PROJECT_ROOT/data/io.github.d3msudo.anura.metainfo.xml.in"
+MESON_BUILD_FILE="$PROJECT_ROOT/meson.build"
 DATE=$(date +%Y-%m-%d)
 
 echo "=== Anura Release $VERSION ==="

@@ -307,17 +307,69 @@ class TestAccessibilityEnhancementsEnterprise:
 
     @pytest.mark.gtk
     def test_language_popover_row_selected_state(self):
-        """Verify LanguagePopoverRow updates SELECTED Gtk.AccessibleState when LanguageItem selection changes."""
+        """Verify LanguagePopoverRow updates SELECTED Gtk.AccessibleState and active label/tooltip when selection changes."""
         from anura.widgets.language_popover_row import LanguagePopoverRow
 
         item = LanguageItem(code="deu", title="German", selected=False)
         row = LanguagePopoverRow(item)
 
-        # Toggle selected and ensure it handles changes
+        assert "Select German" in row.get_tooltip_text()
+
+        # Toggle selected and ensure it updates tooltip and accessibility metadata
         item.selected = True
+        assert "German (active language)" in row.get_tooltip_text()
 
         # Clean dispose
         row.run_dispose()
+
+    @pytest.mark.gtk
+    def test_language_popover_down_arrow_navigation(self):
+        """Verify LanguagePopover handles Down arrow in search entry to focus the first row."""
+        from gi.repository import Gdk
+
+        import anura.widgets.language_popover as lp_mod
+
+        with patch("anura.widgets.language_popover.get_language_manager") as mock_get_manager:
+            mock_manager = MagicMock()
+            mock_get_manager.return_value = mock_manager
+            mock_manager.get_downloaded_codes.return_value = ["eng", "deu"]
+            mock_manager.get_language.side_effect = lambda x: "English" if x == "eng" else "German"
+
+            popover = lp_mod.LanguagePopover()
+            popover.populate_model()
+
+            # Trigger key pressed with Gdk.KEY_Down
+            res = popover._on_entry_key_pressed(None, Gdk.KEY_Down, 0, 0)
+            assert res is True
+
+    @pytest.mark.gtk
+    def test_language_popover_search_accessibility_label(self):
+        """Verify LanguagePopover updates accessible label on list_view when search query changes."""
+        import anura.widgets.language_popover as lp_mod
+
+        with patch("anura.widgets.language_popover.get_language_manager") as mock_get_manager:
+            mock_manager = MagicMock()
+            mock_get_manager.return_value = mock_manager
+            mock_manager.get_downloaded_codes.return_value = ["eng", "deu"]
+            mock_manager.get_language.side_effect = lambda x: "English" if x == "eng" else "German"
+
+            popover = lp_mod.LanguagePopover()
+            popover.populate_model()
+
+            # Filter for "Eng"
+            popover.entry.set_text("Eng")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 1
+
+            # Filter for non-existent
+            popover.entry.set_text("Russian")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 0
+
+            # Clear search
+            popover.entry.set_text("")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 2
 
     @pytest.mark.gtk
     def test_welcome_page_drop_button_accessibility(self):

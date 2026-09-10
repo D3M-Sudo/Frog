@@ -39,6 +39,11 @@ UV_LOCK = REPO_ROOT / "uv.lock"
 PYPI_JSON_URL = "https://pypi.org/pypi/{name}/{version}/json"
 
 # Flatpak module name → PyPI project name.
+#
+# NOTE: python3-certifi is intentionally NOT in this mapping.
+# certifi is a transitive dependency of requests and is managed
+# exclusively by FEDC via .github/workflows/flatpak-dependencies.yml.
+# Adding it here would create dual ownership and potential drift.
 MODULE_TO_PYPI: dict[str, str] = {
     "python3-charset-normalizer": "charset-normalizer",
     "python3-click": "click",
@@ -46,7 +51,6 @@ MODULE_TO_PYPI: dict[str, str] = {
     "python3-idna": "idna",
     "python3-loguru": "loguru",
     "python3-packaging": "packaging",
-    "python3-pathspec": "pathspec",
     "python3-pillow": "pillow",
     "python3-psutil": "psutil",
     "python3-pybind11": "pybind11",

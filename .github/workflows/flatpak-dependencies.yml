@@ -145,10 +145,10 @@ jobs:
           mkdir -p "$FEDC_HOME" "$TMP_DIR"
           trap 'rm -rf "$TMP_DIR"' EXIT
 
-          MANIFEST="flatpak/io.github.d3msudo.anura.json"
           CERTIFI_MANIFEST="$TMP_DIR/io.github.d3msudo.anura.certifi.json"
 
-          python3 .github/scripts/fedc_certifi.py isolate "$MANIFEST" "$CERTIFI_MANIFEST"
+          # Isolate certifi from main manifest and run FEDC once
+          python3 .github/scripts/fedc_certifi.py isolate "flatpak/io.github.d3msudo.anura.json" "$CERTIFI_MANIFEST"
 
           docker run --rm \
             --user $(id -u):$(id -g) \
@@ -160,11 +160,14 @@ jobs:
             --update --edit-only \
             "/github/workspace/.fedc-certifi-tmp/io.github.d3msudo.anura.certifi.json"
 
-          python3 .github/scripts/fedc_certifi.py replace "$MANIFEST" "$CERTIFI_MANIFEST"
+          # Apply updated certifi source to BOTH manifests
+          for MANIFEST in flatpak/io.github.d3msudo.anura.json flatpak/io.github.d3msudo.anura.local.json; do
+            python3 .github/scripts/fedc_certifi.py replace "$MANIFEST" "$CERTIFI_MANIFEST"
+          done
 
-          echo "Certifi-only update completed. Resulting diff:"
+          echo "Certifi update completed for both manifests. Resulting diff:"
           git diff --check
-          git diff -- flatpak/io.github.d3msudo.anura.json
+          git diff -- flatpak/io.github.d3msudo.anura.json flatpak/io.github.d3msudo.anura.local.json
 
       - name: Create PR for certifi updates
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8

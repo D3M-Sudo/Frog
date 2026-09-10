@@ -168,6 +168,12 @@ template $WelcomePage : Adw.NavigationPage {
 menu primary_menu {
   section {
     item {
+      label: _("History");
+      action: "win.show-history";
+      icon: "document-open-recent-symbolic";
+    }
+
+    item {
       label: _("Preferences");
       action: "app.preferences";
       icon: "preferences-system-symbolic";

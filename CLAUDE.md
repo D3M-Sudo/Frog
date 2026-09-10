@@ -31,15 +31,31 @@ anura/
 ├── main.py              ← AnuraApplication (Adw.Application)
 ├── window.py            ← AnuraWindow (Controller Composition)
 ├── config.py            ← Constants, tessdata URL, lang_code validation
-├── atomic_task_manager.py ← Threading (legacy — use core/atomic_task_manager.py)
+├── _release_notes.py    Auto-generated release notes (do not edit)
 ├── core/                ← atomic_task_manager, boot, logger, i18n, resources, dialogs, silent_runner
 ├── controllers/         ← ocr_controller, tts_controller, dnd_controller
 ├── services/            ← clipboard, screenshot, notification, tts, share, settings, language_manager
 ├── services/language/   ← cache_manager, download_manager, language_validator (specialized managers)
+├── services/tts/        ← audio_player, language_mapper, pipeline_manager, service, speech_generator
+├── services/screenshot/ ← base, factory, legacy_provider, portal_provider
 ├── models/              ← context, download_state, language_item, ocr (immutable dataclasses)
 ├── transformers/        ← magic_processor, base_transformers, email_transformer, url_transformer
 ├── utils/               ← barcode_detector, image_filters, structural_reconstructor, validators
 └── widgets/             ← extracted_page, welcome_page, preferences, shortcuts_overlay
+data/
+├── ui/                  Blueprint files (.blp) → compiled to .ui
+├── icons/               Scalable SVG icons + symbolic variants
+├── screenshots/         Screenshots for Flathub/metainfo
+└── *.xml                GResource, GSchema, desktop, metainfo files
+build-aux/
+├── release.sh           Release script (pin tessdata SHA, bump version)
+├── generate_release_notes.py CHANGELOG.md parser → _release_notes.py
+├── setup-gschema.sh     GSettings schema compilation for testing
+└── meson/postinstall.py Post-install script
+flatpak/
+└── io.github.d3msudo.anura.json Flatpak manifest with all dependencies
+po/                     Gettext translations (25+ languages)
+tests/                  Unit, integration, security, and enterprise tests
 ```
 
 ## Code Rules — ABSOLUTE
@@ -53,7 +69,8 @@ anura/
 ### Protected Files — NEVER MODIFY
 - `po/*.po`
 - `anura/_release_notes.py`
-- `data/ui/*.ui`
+- `data/ui/*.ui` (generated from .blp files)
+- `builddir/` (build artifacts)
 - `CHANGELOG.md` (manutenzione via Keep a Changelog)
 
 ### Internationalization (i18n)
@@ -83,7 +100,7 @@ GSETTINGS_SCHEMA_DIR=builddir/data python3 -m anura.main
 # Headless
 uv run pytest tests/ -v -m "not gtk"
 # Full (requires display)
-./setup-gschema.sh && ./tests/setup_resources.sh
+./build-aux/setup-gschema.sh && ./tests/setup_resources.sh
 export GSETTINGS_SCHEMA_DIR="builddir"
 uv run pytest tests/ -v
 ```

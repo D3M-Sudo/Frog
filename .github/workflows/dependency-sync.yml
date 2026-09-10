@@ -73,6 +73,8 @@ jobs:
         run: |
           python3 build-aux/sync_dependencies.py --update
           python3 build-aux/sync_dependencies.py --check
+          # F-005: fail if the sync left a new runtime dependency unrepresented.
+          python3 build-aux/check_runtime_dependency_coverage.py
 
       - name: Commit and push sync changes
         run: |

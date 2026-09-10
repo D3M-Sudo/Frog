@@ -28,11 +28,6 @@ class LanguagePopoverRow(Gtk.ListBoxRow):
         self.lang = lang
         self.title.set_label(self.lang.title)
 
-        # Accessibility: set tooltip and label for screen readers
-        tooltip = _("Select {language}").format(language=self.lang.title)
-        self.set_tooltip_text(tooltip)
-        self.update_property([Gtk.AccessibleProperty.LABEL], [tooltip])
-
         self.lang.bind_property(
             "selected",
             self.selection_revealer,
@@ -40,12 +35,24 @@ class LanguagePopoverRow(Gtk.ListBoxRow):
             GObject.BindingFlags.SYNC_CREATE,
         )
 
-        # ARIA: Keep the SELECTED state in sync with model property
+        # ARIA: Keep the SELECTED state, tooltip, and accessible label in sync
         self._selected_handler_id = self.lang.connect("notify::selected", self._on_selected_changed)
-        self.update_state([Gtk.AccessibleState.SELECTED], [self.lang.selected])
+        self._update_accessibility_metadata()
+
+    def _update_accessibility_metadata(self) -> None:
+        """Update tooltip, accessible label and SELECTED state based on active selection state."""
+        is_selected = self.lang.selected if self.lang else False
+        if is_selected:
+            tooltip = _("{language} (active language)").format(language=self.lang.title)
+        else:
+            tooltip = _("Select {language}").format(language=self.lang.title)
+
+        self.set_tooltip_text(tooltip)
+        self.update_property([Gtk.AccessibleProperty.LABEL], [tooltip])
+        self.update_state([Gtk.AccessibleState.SELECTED], [is_selected])
 
     def _on_selected_changed(self, _obj: GObject.GObject, _pspec: GObject.ParamSpec) -> None:
-        self.update_state([Gtk.AccessibleState.SELECTED], [self.lang.selected])
+        self._update_accessibility_metadata()
 
     def do_dispose(self) -> None:
         """Disconnect notification signals during dispose to prevent memory leaks."""

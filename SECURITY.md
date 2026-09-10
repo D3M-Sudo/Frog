@@ -52,7 +52,7 @@
 | `anura/services/language_manager.py` | Tessdata model download and atomic writing |
 | `anura/services/share_service.py` | Dynamic URI scheme validation and Pango markup sanitization |
 | `anura/services/notification_service.py` | Pango markup injection prevention in notifications |
-| `anura/services/host_screenshot_fallback.py` | Command building for the bundled `scrot` fallback |
+| `anura/services/screenshot/legacy_provider.py` | Command building for the bundled `scrot` fallback |
 
 ---
 

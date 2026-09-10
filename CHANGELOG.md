@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Implemented Extraction History V1 (opt-in local history of recent OCR extractions, newest-first JSON persistence with atomic writes and corruption recovery, HistoryPage with clear action, `history-enabled`/`history-limit` GSettings keys, `win.show-history` navigation) — see `docs/history-v1.md`
+- Added F-005 runtime dependency coverage check (`build-aux/check_runtime_dependency_coverage.py`) enforcing that every uv.lock runtime dependency is represented in both Flatpak manifests
 - Implemented UI theme selector with System, Light, and Dark options using `Adw.StyleManager`
 - Added `color-scheme` GSettings key for persistent theme preference storage
 - Implemented selection-aware text statistics and actions on OCR results page (Palette)

@@ -13,7 +13,7 @@ Il presente report documenta i risultati dell'analisi di qualità integrata (Tes
 ### Metodologia Applicata:
 1. **Fase 1 (Testing Dinamico e Build Locale/Flatpak):**
    - Build e compilazione nativa completata con **Meson** e **Ninja**.
-   - Compilazione e verifica degli schemi `GSettings` (`setup-gschema.sh`) e delle risorse binarie `GResource` (`io.github.d3msudo.anura.gresource`).
+   - Compilazione e verifica degli schemi `GSettings` (`build-aux/setup-gschema.sh`) e delle risorse binarie `GResource` (`io.github.d3msudo.anura.gresource`).
    - Verifica delle specifiche del pacchetto Flatpak locale (`io.github.d3msudo.anura.local.json`).
    - Esecuzione ed isolamento dell'intera suite di test automatizzati (171 test headless superati con esito PASSED al 100%).
    - Esecuzione in ambiente virtuale integrato con le librerie di sistema GTK4, Libadwaita, GStreamer (playbin3), Xdp/Portal e Libnotify.

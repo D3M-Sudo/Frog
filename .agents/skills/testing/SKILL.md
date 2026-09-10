@@ -28,7 +28,7 @@ uv run pytest tests/ -m "not gtk" -v
 ### GTK Integration Tests
 These tests require a live display or a Flatpak environment.
 ```bash
-./setup-gschema.sh
+./build-aux/setup-gschema.sh
 ./tests/setup_resources.sh
 export GSETTINGS_SCHEMA_DIR="builddir"
 uv run env PYTHONPATH="/usr/lib/python3/dist-packages:$PYTHONPATH" \

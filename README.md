@@ -52,10 +52,11 @@ It also decodes **QR codes and Barcodes** in a single click using **zxing-cpp**,
 | 🚀 **Async D&D** | Smooth, non-blocking asynchronous drag-and-drop |
 | ♿ **Enhanced Accessibility** | Improved keyboard navigation, tooltips, and screen reader support |
 | ✨ **Smart OCR Cleanup** | Adaptive image enhancement and structural layout reconstruction |
-🛡️ **Architectural Security** | Transactional worker isolation and OOM prevention guards |
-📜 **Offline Rotary Logs** | Secure, zero-telemetry local logging system |
+| 🛡️ **Architectural Security** | Transactional worker isolation and OOM prevention guards |
+| 📜 **Offline Rotary Logs** | Secure, zero-telemetry local logging system |
 | ⌨️ **Keyboard Shortcuts** | Modern shortcut overlay with categorized searchable cheat sheet |
 | 🔗 **Share Anywhere** | Share to Telegram, Reddit, Mastodon, X, Email, Bluesky, Discord, LinkedIn, Threads |
+| 🕘 **Extraction History** | Opt-in local history of recent extractions (JSON, newest-first, with clear action) — see [docs/history-v1.md](docs/history-v1.md) |
 
 ---
 
@@ -64,8 +65,8 @@ It also decodes **QR codes and Barcodes** in a single click using **zxing-cpp**,
 As of **v0.1.5**, Anura features an **Enterprise Clean Architecture** focused on event-driven decoupling and memory safety:
 
 - **Core Services (`anura/core/`)**: Pure infrastructure logic. Includes `boot` (capability audit), `logger` (rotary logging), `atomic_task_manager` (isolated worker pool), and `resources`.
-- **Business Services (`anura/services/`)**: High-level I/O and resource management. Includes `language_manager` (Tessdata coordination), specialized language managers (DownloadManager, CacheManager, LanguageValidator), `screenshot` (multi-provider capture factory), and `settings`.
-- **Event-Driven Controllers (`anura/controllers/`)**: Logic-only components that emit GLib signals. `OcrController` and `TtsController` are fully decoupled from UI side-effects, which are handled by the main application coordinator.
+- **Business Services (`anura/services/`)**: High-level I/O and resource management. Includes `language_manager` (Tessdata coordination), specialized language managers (DownloadManager, CacheManager, LanguageValidator), `screenshot` (multi-provider capture factory), `history_service` (opt-in local JSON history, see [docs/history-v1.md](docs/history-v1.md)), and `settings`.
+- **Event-Driven Controllers (`anura/controllers/`)**: Logic-only components that emit GLib signals. `OcrController` (OCR + history recording gate), `TtsController`, and `DndController` are fully decoupled from UI side-effects, which are handled by the main application coordinator.
 - **Semantic Transformers (`anura/transformers/`)**: Implements the **Chain of Responsibility** pattern. The `MagicProcessor` dynamically selects the best `ITransformer` for structured data extraction.
 - **Memory Safety**: Uses `weakref.proxy` for View-Controller relationships and asynchronous native Gio APIs for non-blocking I/O.
 
@@ -165,13 +166,23 @@ Anura uses **Ruff** for linting and **pytest** for testing, managed via **uv**.
 uv run pytest tests/ -m "not gtk" -v
 
 # Run full suite (requires GTK environment)
-./setup-gschema.sh
+./build-aux/setup-gschema.sh
 ./tests/setup_resources.sh
 export GSETTINGS_SCHEMA_DIR="builddir"
 uv run pytest tests/ -v
 ```
 
-The test suite includes 171 headless unit tests (logic without GTK dependencies), integration tests (GTK/GLib environment), security/hardening tests (DoS prevention, URI validation, sanitization), and reliability/enterprise tests (performance benchmarks, concurrency, lifecycle).
+The test suite includes headless unit tests (logic without GTK dependencies), integration tests (GTK/GLib environment), security/hardening tests (DoS prevention, URI validation, sanitization), and reliability/enterprise tests (performance benchmarks, concurrency, lifecycle). History V1 behaviour is covered by `tests/test_history_storage.py`, `tests/test_history_controller_integration.py`, `tests/test_history_ui.py`, and `tests/test_history_settings.py` (GTK-marked).
+
+---
+
+## Documentation
+
+- [docs/README.md](docs/README.md) — documentation index
+- [docs/history-v1.md](docs/history-v1.md) — Extraction History V1 (current behaviour)
+- [docs/dependencies.md](docs/dependencies.md) — Python/Flatpak dependency workflow (uv.lock, sync, FEDC/certifi)
+- [AGENTS.md](AGENTS.md) — canonical AI-assistant and architecture guide
+- [CONTRIBUTING.md](CONTRIBUTING.md) — contributor and development workflow
 
 ---
 

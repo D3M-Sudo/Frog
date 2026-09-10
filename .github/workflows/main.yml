@@ -57,6 +57,23 @@ jobs:
           files: coverage.xml
           fail_ci_if_error: false
 
+      - name: Check Flatpak manifest dependency consistency
+        # Ensure anura.json and anura.local.json stay in sync.
+        # Catches drift from manual edits or workflow bugs.
+        run: python3 build-aux/check_manifest_consistency.py
+
+      - name: Check tessdata commit SHA consistency
+        # Ensure tessdata SHAs match between config.py and both manifests.
+        # Catches drift from manual edits or incomplete updates.
+        run: python3 build-aux/check_tessdata_consistency.py
+
+      - name: Check Flatpak runtime dependency coverage (F-005)
+        # Ensure every runtime Python dependency in uv.lock (resolved from
+        # pyproject.toml) is represented by a python3-* module in both Flatpak
+        # manifests. Fails when a new direct/transitive runtime dependency has
+        # no matching manifest module, so it can never ship a broken Flatpak.
+        run: python3 build-aux/check_runtime_dependency_coverage.py
+
   gtk-tests:
     name: GTK Integration Tests
     runs-on: ubuntu-latest
@@ -83,6 +100,7 @@ jobs:
             gir1.2-xdp-1.0 libportal1 \
             gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 python3-gst-1.0 \
             libxml2-utils \
+            blueprint-compiler \
             tesseract-ocr tesseract-ocr-eng \
             weston xwayland
 
@@ -96,6 +114,15 @@ jobs:
           pip install uv
           uv venv --system-site-packages .venv
           uv sync --dev
+
+      - name: Compile Blueprint UI files
+        # .ui files are build artifacts from .blp sources and are no longer
+        # tracked in git. Regenerate them before compiling the GResource bundle.
+        run: |
+          for blp in data/ui/*.blp; do
+            blueprint-compiler compile "$blp" --output "${blp%.blp}.ui"
+          done
+          echo "Compiled $(find data/ui -maxdepth 1 -name '*.ui' | wc -l) .ui file(s)"
 
       - name: Compile GResources
         # Bug fixed: previously compiled to `anura.gresource` in the repo
