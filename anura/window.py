@@ -29,6 +29,7 @@ from anura.controllers.tts_controller import TtsController  # noqa: E402
 from anura.core.atomic_task_manager import get_atomic_manager  # noqa: E402
 from anura.models.context import get_app_context  # noqa: E402
 from anura.services.clipboard_service import get_clipboard_service  # noqa: E402
+from anura.services.history_service import HistoryService  # noqa: E402
 from anura.services.language_manager import get_language_manager  # noqa: E402
 from anura.services.screenshot_service import ScreenshotService, get_screenshot_service  # noqa: E402
 from anura.services.share_service import get_share_service  # noqa: E402
@@ -58,6 +59,7 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
     ocr_controller: OcrController
     tts_controller: TtsController
     dnd_controller: DndController
+    history_service: HistoryService
     _clipboard_service: Any | None
     _screenshot_timeout_id: int | None
 
@@ -97,7 +99,10 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
         self.add_action(share_action)
 
         self.backend = backend  # type: ignore[assignment]
-        self.ocr_controller = OcrController(self)
+        # History V1: one HistoryService wired once with the configured limit;
+        # recording itself is gated by the history-enabled setting at OCR time.
+        self.history_service = HistoryService(limit=self.settings.get_int("history-limit"))
+        self.ocr_controller = OcrController(self, history_service=self.history_service)
         self.tts_controller = TtsController(self)
         self.dnd_controller = DndController(self)
 
