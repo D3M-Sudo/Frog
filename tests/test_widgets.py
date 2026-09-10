@@ -343,6 +343,35 @@ class TestAccessibilityEnhancementsEnterprise:
             assert res is True
 
     @pytest.mark.gtk
+    def test_language_popover_search_accessibility_label(self):
+        """Verify LanguagePopover updates accessible label on list_view when search query changes."""
+        import anura.widgets.language_popover as lp_mod
+
+        with patch("anura.widgets.language_popover.get_language_manager") as mock_get_manager:
+            mock_manager = MagicMock()
+            mock_get_manager.return_value = mock_manager
+            mock_manager.get_downloaded_codes.return_value = ["eng", "deu"]
+            mock_manager.get_language.side_effect = lambda x: "English" if x == "eng" else "German"
+
+            popover = lp_mod.LanguagePopover()
+            popover.populate_model()
+
+            # Filter for "Eng"
+            popover.entry.set_text("Eng")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 1
+
+            # Filter for non-existent
+            popover.entry.set_text("Russian")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 0
+
+            # Clear search
+            popover.entry.set_text("")
+            popover.entry.emit("search-changed")
+            assert popover.filter_list.get_n_items() == 2
+
+    @pytest.mark.gtk
     def test_welcome_page_drop_button_accessibility(self):
         """Verify WelcomePage drop_button sets EXPANDED and label properties correctly."""
         with patch("anura.services.language_manager.get_language_manager") as mock_get_manager:
