@@ -51,6 +51,7 @@ MODULE_TO_PYPI: dict[str, str] = {
     "python3-idna": "idna",
     "python3-loguru": "loguru",
     "python3-packaging": "packaging",
+    "python3-pathspec": "pathspec",
     "python3-pillow": "pillow",
     "python3-psutil": "psutil",
     "python3-pybind11": "pybind11",
