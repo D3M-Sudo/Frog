@@ -9,22 +9,23 @@ pytest.importorskip("gi")
 
 from gi.repository import Gio, GLib
 
-from anura.services.settings import Settings
-
 pytestmark = pytest.mark.gtk
 
 
 @pytest.fixture
-def gsettings(monkeypatch):
+def gsettings():
     """Fresh GSettings instance with history keys reset to defaults.
 
-    Forces the in-memory backend so read/write tests are deterministic
-    and do not require a D-Bus session bus (unavailable on headless CI
-    runners, where dconf commits fail silently and reads return stale
+    Uses an explicit in-memory backend (Gio.SettingsBackend.get_default()
+    would otherwise point at dconf, which on headless CI runners has no
+    D-Bus session bus — commits fail silently and reads return stale
     values). Schema defaults and ranges still apply.
     """
-    monkeypatch.setenv("GSETTINGS_BACKEND", "memory")
-    s = Settings()
+    backend = Gio.memory_settings_backend_new()
+    schema_source = Gio.SettingsSchemaSource.get_default()
+    schema = schema_source.lookup("io.github.d3msudo.anura", True)
+    s = Gio.Settings.new_with_backend("io.github.d3msudo.anura", backend)
+    assert schema is not None
     yield s
     s.reset("history-enabled")
     s.reset("history-limit")
