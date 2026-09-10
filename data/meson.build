@@ -60,6 +60,7 @@ blueprint_files = [
   'ui/language_row.blp',
   'ui/welcome_page.blp',
   'ui/extracted_page.blp',
+  'ui/history_page.blp',
   'ui/share_row.blp',
 ]
 

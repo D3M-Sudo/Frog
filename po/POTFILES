@@ -16,6 +16,7 @@ anura/services/tts/speech_generator.py
 anura/utils/portal_advice.py
 anura/utils/validators.py
 anura/widgets/extracted_page.py
+anura/widgets/history_page.py
 anura/widgets/preferences_general_page.py
 anura/widgets/preferences_languages_page.py
 anura/widgets/share_row.py
@@ -24,6 +25,7 @@ anura/widgets/welcome_page.py
 anura/window.py
 data/io.github.d3msudo.anura.desktop.in
 data/ui/extracted_page.blp
+data/ui/history_page.blp
 data/ui/language_popover.blp
 data/ui/language_popover_row.blp
 data/ui/language_row.blp

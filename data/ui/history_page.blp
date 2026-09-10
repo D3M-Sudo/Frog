@@ -1,0 +1,64 @@
+// This file is part of Anura.
+// Copyright (C) 2026 D3M-Sudo (Anura)
+//
+// SPDX-License-Identifier: MIT
+
+using Gtk 4.0;
+using Adw 1;
+
+translation-domain 'io.github.d3msudo.anura';
+
+template $HistoryPage : Adw.NavigationPage {
+  title: _("History");
+
+  Adw.ToolbarView {
+
+    [top]
+    Adw.HeaderBar headerbar {
+      [end]
+      Button clear_button {
+        tooltip-text: _("Clear all history");
+        accessibility {
+          label: _("Clear all history");
+        }
+        icon-name: "user-trash-symbolic";
+        styles ["anura-button"]
+      }
+    }
+
+    Gtk.Stack history_stack {
+      hexpand: true;
+      vexpand: true;
+
+      StackPage {
+        name: "entries";
+        child: Gtk.ScrolledWindow {
+          hscrollbar-policy: never;
+          child: Gtk.ListBox history_list {
+            selection-mode: none;
+            margin-top: 12;
+            margin-bottom: 12;
+            margin-start: 12;
+            margin-end: 12;
+          };
+        };
+      }
+
+      StackPage {
+        name: "empty";
+        child: Adw.StatusPage {
+          title: _("No History");
+          description: _("Extracted texts will appear here once you enable history in Preferences and extract some text.");
+        };
+      }
+
+      StackPage {
+        name: "disabled";
+        child: Adw.StatusPage {
+          title: _("History Disabled");
+          description: _("Enable \"Save Extraction History\" in Preferences to start recording extracted texts.");
+        };
+      }
+    }
+  }
+}

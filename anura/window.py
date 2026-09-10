@@ -36,6 +36,7 @@ from anura.services.share_service import get_share_service  # noqa: E402
 from anura.utils import validate_image_resource  # noqa: E402
 from anura.utils.signal_manager import SignalManagerMixin  # noqa: E402
 from anura.widgets.extracted_page import ExtractedPage  # noqa: E402
+from anura.widgets.history_page import HistoryPage  # noqa: E402
 from anura.widgets.preferences_dialog import PreferencesDialog  # noqa: E402
 from anura.widgets.welcome_page import WelcomePage  # noqa: E402
 
@@ -51,6 +52,7 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
     navigation_view: Adw.NavigationView = Gtk.Template.Child()
     welcome_page: WelcomePage = Gtk.Template.Child()
     extracted_page: ExtractedPage = Gtk.Template.Child()
+    history_page: HistoryPage = Gtk.Template.Child()
     portal_banner: Adw.Banner = Gtk.Template.Child()
 
     settings: Gio.Settings
@@ -102,7 +104,12 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
         # History V1: one HistoryService wired once with the configured limit;
         # recording itself is gated by the history-enabled setting at OCR time.
         self.history_service = HistoryService(limit=self.settings.get_int("history-limit"))
+        self.history_page.setup(self.history_service)
         self.ocr_controller = OcrController(self, history_service=self.history_service)
+
+        show_history_action = Gio.SimpleAction.new("show-history", None)
+        self.connect_tracked(show_history_action, "activate", self._on_show_history)
+        self.add_action(show_history_action)
         self.tts_controller = TtsController(self)
         self.dnd_controller = DndController(self)
 
@@ -306,6 +313,15 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
         """Show the welcome page and hide the extracted content."""
         self.navigation_view.pop_to_tag("welcome")
         self.tts_controller.stop()
+
+    def show_history_page(self, *_args: object) -> None:
+        """Show the History page, reloading its entries from the service."""
+        self.history_page.refresh()
+        self.navigation_view.push_by_tag("history")
+
+    def _on_show_history(self, _action: Gio.SimpleAction, _parameter: object) -> None:
+        """Activate the win.show-history action."""
+        self.show_history_page()
 
     def _setup_controller_signals(self) -> None:
         """Connect to controller signals to mediate UI updates."""
