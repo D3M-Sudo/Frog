@@ -59,17 +59,15 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.1.5" type="stable" date="2026-05-25">
+    <release version="0.1.5" type="stable" date="2026-11-09">
       <description>
-        <p>Architectural milestone: modular core services, progressive loading feedback, and hardened resource security.</p>
+        <p>Extraction History V1, controller composition architecture, and comprehensive security hardening.</p>
         <ul>
-          <li>Modular Core Architecture: restructured application into specialized boot, i18n, and resource services.</li>
-          <li>Progressive Loading: added granular status updates during OCR processing to eliminate Zombie UI.</li>
-          <li>Offline Rotary Logging: implemented a secure, zero-telemetry local logging system with rotation.</li>
-          <li>Resource Guards: added proactive memory monitoring to prevent OOM on high-resolution images.</li>
-          <li>Worker Isolation: hardened OCR process isolation with transactional temporary directory management.</li>
-          <li>Automated Cleanup: implemented native GObject destroy hooks for fail-safe resource management.</li>
-          <li>Performance: introduced immutable dataclasses with optimized memory slots.</li>
+          <li>History V1: opt-in local history of recent OCR extractions with atomic writes and corruption recovery.</li>
+          <li>Controller Composition: decoupled OCR, TTS, and DnD logic into standalone controllers.</li>
+          <li>Security Hardening: URI validation, input sanitization, DoS prevention, and resource leak remediation.</li>
+          <li>FEDC Integration: automated Flatpak external data checker for dependency updates.</li>
+          <li>Accessibility: keyboard navigation improvements and better screen reader support.</li>
         </ul>
       </description>
     </release>

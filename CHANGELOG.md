@@ -7,6 +7,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- *(No changes yet)*
+
+### Fixed
+- *(No changes yet)*
+
+### Changed
+- *(No changes yet)*
+
+### Security
+- *(No changes yet)*
+
+## [0.1.5] - 2026-11-09
+
+### Added
 - Implemented Extraction History V1 (opt-in local history of recent OCR extractions, newest-first JSON persistence with atomic writes and corruption recovery, HistoryPage with clear action, `history-enabled`/`history-limit` GSettings keys, `win.show-history` navigation) — see `docs/history-v1.md`
 - Added F-005 runtime dependency coverage check (`build-aux/check_runtime_dependency_coverage.py`) enforcing that every uv.lock runtime dependency is represented in both Flatpak manifests
 - Implemented UI theme selector with System, Light, and Dark options using `Adw.StyleManager`
@@ -92,65 +106,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 - Deleted CHANGELOG_REMEDIATION.md
-
-## [0.1.5] - 2026-05-25 {version-0.1.5-architectural-milestone}
-
-### Added
-- Implemented "Modular Core Architecture" by decomposing AnuraApplication into isolated services (boot, i18n, resources, dialogs).
-- Implemented "SilentRunner" to isolate the headless/CLI engine from the GTK main loop.
-- Zero-telemetry "Offline Rotary Logging" system in $XDG_STATE_HOME/anura/logs/.
-- Asynchronous "Progressive Loading" to prevent the Zombie UI effect during Magic Processing.
-- Implemented **Controller-based Composition Architecture**; dismantled legacy mixins for OCR, TTS, and DnD
-- Introduced immutable **OcrResult** and **OcrWord** dataclasses with `slots=True` for optimized memory and performance
-- Added boot-time **Capability Audit** (`ApplicationContext`) to detect system dependencies (Tesseract, ZXing, GStreamer)
-- Implemented proactive **UI Sensitivity Binding** to prevent runtime failures on unsupported environments
-- Implemented **Deep Codebase Audit & Reliability Hardening** (v0.1.5 architecture)
-- Replaced legacy `GObjectWorker` with `AtomicTaskManager` for single-slot task execution with UUID-based result validation
-- Migrated `AnuraWindow` to a modular architecture using **Naked Mixins** (`WindowOCRMixin`, `WindowTTSMixin`, `WindowDnDMixin`)
-- Implemented automated signal lifecycle management via `SignalManagerMixin` across all core widgets and services
-- Added modular **Image Filter Chain** (`anura/utils/image_filters.py`) for extensible OCR preprocessing
-- Integrated `StructuralReconstructor` for spatial layout analysis and paragraph merging
-- Replaced `pyzbar` with `zxing-cpp` for more robust and reliable barcode and QR code detection
-- Expanded the test suite to **437 tests**, including 393 unit tests (Non-GTK) and 44 integration tests (GTK)
-- Added comprehensive security-focused tests for DoS prevention and structural UI verification
-- Added support for Tesseract multi-language pooling in `~/.cache/anura/tessdata_pool/`
-- Added keyboard shortcut hints and empty search state in the language selector
-- Added 'All files (*)' filter to the image selection dialog
-- Improved pluralization and internationalization support for text statistics
-
-### Fixed
-- Fixed **GStreamer Bus Memory Safety** using `weakref` closures to prevent reference cycles in `TTSService`
-- Fixed silent scanning failures by implementing explicit **Dependency Fail-Fast** propagation
-- Fixed critical race conditions in OCR processing by invalidating stale tasks in `AtomicTaskManager`
-- Resolved memory leaks by ensuring automated signal disconnection via `connect_tracked()`
-- Fixed `Gtk.FileFilter` regression to prevent duplicate entries on portal backends like LXQt and GNOME
-- Corrected `Gio.File.query_info_async` implementation by providing exact positional arguments
-- Resolved layout reflow issues where `Gtk.TextView` content was clipped in GTK4
-- Fixed `__slots__` conflict and potential `AttributeError` in `ClipboardService`
-- Improved error handling for missing Tesseract languages with `Adw.Toast` feedback
-- Fixed keyboard shortcuts to use universal key names (F1, K) for cross-layout compatibility
-- Resolved navigation focus race conditions and spinner animation states
-
-### Security
-- Implemented "Resource Guards" (OOM prevention) to block processing of images >20MP with less than 15% free RAM or 500MB.
-- Transactional I/O isolation for the OCR worker via tempfile.TemporaryDirectory within the isolated process.
-- Implemented **Resource-based DoS Protection** by validating image file sizes (`MAX_IMAGE_SIZE_BYTES`) before processing
-- Hardened text extraction with `validators.sanitize_text`, stripping Unicode Control (Cc) and Format (Cf) characters
-- Hardened URL validation and encoding in `ShareService` against injection and RTL spoofing attacks
-
-### Changed
-- Refactored SignalManagerMixin for native binding and automatic teardown of controllers on the destroy event.
-- Optimized OCR pipeline by unifying Tesseract parsing into a single $O(N)$ pass
-- Standardized file headers across the entire repository for project-wide consistency
-- Updated Tesseract language identifier for German Fraktur to the correct `deu_latf` code
-- Optimized multi-monitor support with improved DPI scaling (`notify::scale-factor`)
-- Standardized UI placeholders and messages with Unicode ellipses (…) following GNOME HIG
-- Renamed application ID from com.github.d3msudo.anura to io.github.d3msudo.anura
-- Updated GitHub Actions to major versions (checkout@v6, upload-artifact@v7) for CI reliability
-
-### Removed
-- Removed legacy `gobject_worker.py` and all direct `GLib.idle_add` emissions for task results
-- Deleted the legacy `po/com.github.d3msudo.anura.pot` file
 
 ## [0.1.4.3] - 2026-05-16 {version-0.1.4.3}
 
