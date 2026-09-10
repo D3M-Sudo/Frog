@@ -67,6 +67,13 @@ jobs:
         # Catches drift from manual edits or incomplete updates.
         run: python3 build-aux/check_tessdata_consistency.py
 
+      - name: Check Flatpak runtime dependency coverage (F-005)
+        # Ensure every runtime Python dependency in uv.lock (resolved from
+        # pyproject.toml) is represented by a python3-* module in both Flatpak
+        # manifests. Fails when a new direct/transitive runtime dependency has
+        # no matching manifest module, so it can never ship a broken Flatpak.
+        run: python3 build-aux/check_runtime_dependency_coverage.py
+
   gtk-tests:
     name: GTK Integration Tests
     runs-on: ubuntu-latest
