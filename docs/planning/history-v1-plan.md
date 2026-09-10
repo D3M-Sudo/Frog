@@ -1,4 +1,10 @@
 # Anura — History V1
+
+> **Historical document — pre-implementation plan (baseline `testing @ a52f4563`).**
+> History V1 has since been implemented and merged on `testing`; the current
+> normative reference is [../history-v1.md](../history-v1.md). This file is
+> preserved unchanged as implementation history.
+
 ## Piano di implementazione aggiornato — baseline repository 28 agosto 2026 (`testing @ a52f4563`)
 
 **Repository:** `D3M-Sudo/Anura`  

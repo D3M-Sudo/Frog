@@ -28,11 +28,16 @@ GSETTINGS_SCHEMA_DIR=builddir/data python3 -m anura.main
 
 ## Running Tests
 
+History V1 behaviour is covered by `tests/test_history_storage.py`,
+`tests/test_history_controller_integration.py`, `tests/test_history_ui.py`,
+and `tests/test_history_settings.py` (GTK-marked). See
+[docs/history-v1.md](docs/history-v1.md) for the current History V1 reference.
+
 ### Test Categories
 
 Anura has two main categories of tests:
 
-1. **Unit & Security Tests** - Logic without GTK dependencies (171 headless tests)
+1. **Unit & Security Tests** - Logic without GTK dependencies (headless tests)
 2. **Integration Tests** - Require GTK/GLib environment
 
 ### 🚀 QUICK START - Daily Development
@@ -40,7 +45,6 @@ Anura has two main categories of tests:
 ```bash
 # Run unit tests (ALWAYS use this for daily development)
 uv run pytest tests/ -m "not gtk" -v
-# Expected: 171 passed, 17 deselected, 20 skipped ✅
 ```
 
 ### 📋 COMPLETE TEST COMMANDS
@@ -53,7 +57,7 @@ uv run pytest tests/ -m "not gtk" -v
 # Run specific unit test files
 uv run pytest tests/test_gi_atomic_task_manager_unit.py -v
 uv run pytest tests/test_security_hardening.py -v
-uv run pytest tests/test_uri_validator.py -v
+uv run pytest tests/test_history_storage.py -v
 ```
 
 #### **GTK Tests (Requires display/sandbox)**
@@ -92,6 +96,7 @@ uv run ruff format anura/
 ## Branch & Commit Conventions
 
 - **Branch names**: `feature/short-description`, `fix/short-description`
+- **Base branch for integration work**: `testing` (Dependabot and FEDC automation target `testing`; see [docs/dependencies.md](docs/dependencies.md))
 - **Commit messages**: Use [Conventional Commits](https://www.conventionalcommits.org/).
 - Every change should be documented in `CHANGELOG.md` under `[Unreleased]`.
 
