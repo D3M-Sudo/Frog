@@ -15,8 +15,15 @@ pytestmark = pytest.mark.gtk
 
 
 @pytest.fixture
-def gsettings():
-    """Fresh GSettings instance with history keys reset to defaults."""
+def gsettings(monkeypatch):
+    """Fresh GSettings instance with history keys reset to defaults.
+
+    Forces the in-memory backend so read/write tests are deterministic
+    and do not require a D-Bus session bus (unavailable on headless CI
+    runners, where dconf commits fail silently and reads return stale
+    values). Schema defaults and ranges still apply.
+    """
+    monkeypatch.setenv("GSETTINGS_BACKEND", "memory")
     s = Settings()
     yield s
     s.reset("history-enabled")
