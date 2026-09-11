@@ -97,5 +97,34 @@
       <summary>History size limit</summary>
       <description>Maximum number of entries kept in the extraction history.</description>
     </key>
+
+    <key name="editor-show-line-numbers" type="b">
+      <default>false</default>
+      <summary>Show line numbers</summary>
+      <description>Display line numbers along the side of the text editor.</description>
+    </key>
+
+    <key name="editor-highlight-current-line" type="b">
+      <default>true</default>
+      <summary>Highlight current line</summary>
+      <description>Highlight the line containing the text cursor.</description>
+    </key>
+
+    <key name="editor-wrap-mode" type="s">
+      <choices>
+        <choice value="word"/>
+        <choice value="char"/>
+        <choice value="none"/>
+      </choices>
+      <default>"word"</default>
+      <summary>Word Wrap Mode</summary>
+      <description>Line wrapping policy for the extracted text editor.</description>
+    </key>
+
+    <key name="external-editor" type="s">
+      <default>"xed"</default>
+      <summary>External text editor</summary>
+      <description>Desktop app or executable name for opening exported text externally.</description>
+    </key>
   </schema>
 </schemalist>

@@ -22,6 +22,8 @@ class ActionRegistry:
         self._create_action("copy_to_clipboard", self.app.on_copy_to_clipboard, ["<primary>c"])
         self._create_action("open_image", self.app.open_image, ["<primary>o"])
         self._create_action("paste_from_clipboard", self.app.on_paste_from_clipboard, ["<primary>v"])
+        self._create_action("find", self.app.on_find, ["<primary>f"])
+        self._create_action("open_external_editor", self.app.on_open_external_editor, ["<primary><shift>e"])
         self._create_action("listen", self.app.on_listen, ["<primary>l"])
         self._create_action("listen_pause", self.app.on_listen_pause, ["<primary><alt>l"])
         self._create_action("listen_cancel", self.app.on_listen_cancel, ["<primary><shift>l"])

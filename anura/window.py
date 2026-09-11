@@ -7,6 +7,8 @@
 import contextlib
 from gettext import gettext as _
 from io import BytesIO
+import os
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import gi
@@ -308,6 +310,48 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
             show_shortcuts_overlay(self)
         except (ImportError, RuntimeError) as e:
             logger.error(f"Failed to show shortcuts overlay: {e}")
+
+    def show_search(self) -> None:
+        """Toggle search bar on the extracted page."""
+        self.navigation_view.push_by_tag("extracted")
+        self.extracted_page.toggle_search()
+
+    def open_in_external_editor(self) -> None:
+        """Export current extracted text to temporary file and launch external editor."""
+        text = self.extracted_page.get_active_text()
+        if not text:
+            self.show_toast(_("No text to open in external editor"))
+            return
+
+        try:
+            runtime_dir = os.environ.get("XDG_RUNTIME_DIR")
+            import tempfile
+
+            base_dir = (
+                Path(runtime_dir) / "anura" / "exports"
+                if runtime_dir
+                else Path(tempfile.gettempdir()) / "anura_exports"
+            )
+            base_dir.mkdir(parents=True, exist_ok=True)
+
+            temp_file = base_dir / f"extracted_{GLib.get_monotonic_time()}.txt"
+            temp_file.write_text(text, encoding="utf-8")
+
+            gfile = Gio.File.new_for_path(str(temp_file))
+            launcher = Gtk.FileLauncher.new(gfile)
+            launcher.launch(self, None, self._on_external_editor_launched)
+        except (OSError, RuntimeError, GLib.Error) as e:
+            logger.error(f"Failed to export or launch external editor: {e}")
+            self.show_toast(_("Failed to open external editor"))
+
+    def _on_external_editor_launched(self, launcher: Gtk.FileLauncher, result: Gio.AsyncResult) -> None:
+        try:
+            success = launcher.launch_finish(result)
+            if success:
+                self.show_toast(_("Opened in external editor"))
+        except (GLib.Error, RuntimeError) as e:
+            logger.warning(f"External editor launch cancelled or failed: {e}")
+            self.show_toast(_("Could not launch external editor"))
 
     def show_welcome_page(self, *_args: object) -> None:
         """Show the welcome page and hide the extracted content."""

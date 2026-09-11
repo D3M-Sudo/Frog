@@ -68,6 +68,7 @@ _GI_KEYS: tuple[str, ...] = (
     "gi.repository.Xdp",
     "gi.repository.Adw",
     "gi.repository.Gtk",
+    "gi.repository.GtkSource",
     "gi.repository.Gst",
     "gi.repository.Notify",
     "gi.repository.GdkPixbuf",

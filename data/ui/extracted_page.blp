@@ -6,6 +6,7 @@
 
 using Gtk 4.0;
 using Adw 1;
+using GtkSource 5;
 
 translation-domain 'io.github.d3msudo.anura';
 
@@ -37,6 +38,16 @@ template $ExtractedPage : Adw.NavigationPage {
           label: C_("Extracted screen", "Copy extracted text to clipboard");
         }
         icon-name: "edit-copy-symbolic";
+        styles ["anura-button"]
+      }
+
+      [start]
+      ToggleButton search_button {
+        tooltip-text: C_("Extracted screen", "Search Text (Ctrl+F)");
+        accessibility {
+          label: C_("Extracted screen", "Search text");
+        }
+        icon-name: "edit-find-symbolic";
         styles ["anura-button"]
       }
 
@@ -143,6 +154,57 @@ template $ExtractedPage : Adw.NavigationPage {
       }
     }
 
+    [top]
+    SearchBar search_bar {
+      key-capture-widget: text_view;
+
+      child: Box {
+        styles ["linked"]
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 6;
+        margin-bottom: 6;
+
+        SearchEntry search_entry {
+          hexpand: true;
+          placeholder-text: _("Search text…");
+          accessibility {
+            label: _("Search extracted text");
+          }
+        }
+
+        Label search_count_label {
+          styles ["dim-label"]
+          margin-start: 6;
+          margin-end: 8;
+        }
+
+        ToggleButton search_case_btn {
+          icon-name: "format-text-capitalize-symbolic";
+          tooltip-text: _("Match Case");
+          accessibility {
+            label: _("Match Case");
+          }
+        }
+
+        Button search_prev_btn {
+          icon-name: "go-up-symbolic";
+          tooltip-text: _("Previous Match (Shift+Enter)");
+          accessibility {
+            label: _("Previous match");
+          }
+        }
+
+        Button search_next_btn {
+          icon-name: "go-down-symbolic";
+          tooltip-text: _("Next Match (Enter)");
+          accessibility {
+            label: _("Next match");
+          }
+        }
+      };
+    }
+
     ScrolledWindow text_scrollview {
       hexpand: true;
       vexpand: true;
@@ -150,7 +212,7 @@ template $ExtractedPage : Adw.NavigationPage {
       propagate-natural-width: false;
       width-request: 150; // Consente il rimpicciolimento fluido sotto la dimensione ideale del testo
 
-      TextView text_view {
+      GtkSource.View text_view {
         accessibility {
           label: _("Extracted text editing buffer");
         }
@@ -167,7 +229,7 @@ template $ExtractedPage : Adw.NavigationPage {
         pixels-above-lines: 4;
         pixels-below-lines: 4;
 
-        buffer: TextBuffer buffer {
+        buffer: GtkSource.Buffer buffer {
           enable-undo: true;
         };
       }
@@ -206,6 +268,12 @@ template $ExtractedPage : Adw.NavigationPage {
 
 menu primary_menu {
   section {
+    item {
+      label: _("Open in External Editor");
+      action: "app.open_external_editor";
+      icon: "document-open-symbolic";
+    }
+
     item {
       label: _("Preferences");
       action: "app.preferences";

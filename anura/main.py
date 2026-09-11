@@ -357,6 +357,16 @@ class AnuraApplication(Adw.Application, SignalManagerMixin):
         elif hasattr(win, "_do_copy_to_clipboard"):
             win._do_copy_to_clipboard()
 
+    def on_find(self, *_) -> None:
+        win = self.get_active_window()
+        if win and hasattr(win, "show_search"):
+            win.show_search()
+
+    def on_open_external_editor(self, *_) -> None:
+        win = self.get_active_window()
+        if win and hasattr(win, "open_in_external_editor"):
+            win.open_in_external_editor()
+
     def get_screenshot(self, *_) -> None:
         win = self.get_active_window()
         if win:
