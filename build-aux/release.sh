@@ -1,20 +1,22 @@
 #!/bin/bash
 #
 # Release script for Anura
-# Automatically pins tessdata commit SHA and creates git tag
+# Automatically pins tessdata ref (release tag recommended) and creates git tag
 #
-# Usage: ./build-aux/release.sh <version> [tessdata_commit]
-# Example: ./build-aux/release.sh 0.1.4 4767ea922bcc460e70b87b1d303ebdfed0e3060b
+# Usage: ./build-aux/release.sh <version> [tessdata_ref]
+# Example: ./build-aux/release.sh 0.1.4 4.1.0
 
 set -e
 
 VERSION="$1"
-TESSDATA_COMMIT="${2:-923915d4ced2a7235221788285785a29c4a42d4a}"
+# Default: tessdata release tag (Bug #6, 2026-09). Do NOT re-pin to commit SHAs:
+# upstream tesseract-ocr repos rewrite history, orphaning hardcoded SHAs (404).
+TESSDATA_REF="${2:-4.1.0}"
 
 if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <version> [tessdata_commit]"
+    echo "Usage: $0 <version> [tessdata_ref]"
     echo "Example: $0 0.1.4"
-    echo "Example with custom tessdata commit: $0 0.1.4 abc123..."
+    echo "Example with custom tessdata ref: $0 0.1.4 4.0.0"
     exit 1
 fi
 
@@ -34,7 +36,7 @@ MESON_BUILD_FILE="$PROJECT_ROOT/meson.build"
 DATE=$(date +%Y-%m-%d)
 
 echo "=== Anura Release $VERSION ==="
-echo "Tessdata commit: $TESSDATA_COMMIT"
+echo "Tessdata ref: $TESSDATA_REF"
 echo "Release date: $DATE"
 echo ""
 
@@ -56,12 +58,12 @@ fi
 
 echo ""
 
-# Update manifest with pinned tessdata commit
-echo "Updating $MANIFEST_FILE with pinned tessdata commit..."
-sed -i "s|tessdata_fast/raw/[a-f0-9]*/|tessdata_fast/raw/${TESSDATA_COMMIT}/|g" "$MANIFEST_FILE"
+# Update manifest with pinned tessdata ref
+echo "Updating $MANIFEST_FILE with pinned tessdata ref..."
+sed -i "s|tessdata_fast/raw/[^/]*/|tessdata_fast/raw/${TESSDATA_REF}/|g" "$MANIFEST_FILE"
 
 # Verify the change was made
-if grep -q "tessdata_fast/raw/${TESSDATA_COMMIT}/" "$MANIFEST_FILE"; then
+if grep -q "tessdata_fast/raw/${TESSDATA_REF}/" "$MANIFEST_FILE"; then
     echo "✓ Manifest updated successfully"
 else
     echo "✗ Failed to update manifest"
@@ -95,7 +97,7 @@ echo ""
 echo "=== Summary of changes ==="
 echo "Files modified:"
 echo "  - $MESON_BUILD_FILE (version bumped to $VERSION)"
-echo "  - $MANIFEST_FILE (tessdata pinned to $TESSDATA_COMMIT)"
+echo "  - $MANIFEST_FILE (tessdata pinned to ref $TESSDATA_REF)"
 echo "  - $METAINFO_FILE (release $VERSION added)"
 echo ""
 
@@ -108,14 +110,14 @@ echo "Creating commit..."
 git commit -m "Release v$VERSION
 
 - Bump version to $VERSION in meson.build
-- Pin tessdata to commit $TESSDATA_COMMIT
+- Pin tessdata to ref $TESSDATA_REF
 - Update metainfo for v$VERSION release"
 
 echo "Creating tag v$VERSION..."
 git tag -a "v$VERSION" -m "Anura v$VERSION
 
 Release highlights:
-- Tessdata models pinned to commit $TESSDATA_COMMIT
+- Tessdata models pinned to ref $TESSDATA_REF
 - See CHANGELOG.md for full details"
 
 echo ""

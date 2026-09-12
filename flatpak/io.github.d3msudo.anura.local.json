@@ -209,12 +209,12 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/923915d4ced2a7235221788285785a29c4a42d4a/eng.traineddata",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/eng.traineddata",
                     "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
                 },
                 {
                     "type": "file",
-                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/923915d4ced2a7235221788285785a29c4a42d4a/ita.traineddata",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/ita.traineddata",
                     "sha256": "b8f89e1e785118dac4d51ae042c029a64edb5c3ee42ef73027a6d412748d8827"
                 }
             ]

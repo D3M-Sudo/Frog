@@ -91,20 +91,25 @@ TESSDATA_SYSTEM_DIR = _get_tessdata_system_dir()
 # to avoid side effects at import time.
 
 # Tesseract OCR Repository URLs
-# Pinned to specific commit hashes for security and immutability.
+# Pinned to release tags (e.g. "4.1.0") instead of commit SHAs.
+# WHY: upstream tesseract-ocr repos periodically rewrite/compress their history
+# (large binary blobs), orphaning hardcoded commit SHAs -> downloads fail 404.
+# A release tag is stable and always reachable. Do NOT re-pin to commit SHAs
+# (see Bug #6, 2026-09). Hash-pinning for manifests is preserved via sha256
+# checks on the downloaded files.
 # Three distinct repositories with different accuracy/speed trade-offs:
 #   tessdata      → legacy models (fast, mixed LSTM+legacy engines)
 #   tessdata_fast → LSTM fast models (balanced accuracy/speed, recommended default)
 #   tessdata_best → LSTM best models (highest accuracy, slower)
 #
-# tessdata (legacy/fast models) - Pinned to main as of 2024-05-18
-TESSDATA_URL = "https://github.com/tesseract-ocr/tessdata/raw/4767ea922bcc460e70b87b1d303ebdfed0e3060b/"
-# tessdata_best (high-quality LSTM models) - Pinned to main as of 2024-05-18
-TESSDATA_BEST_URL = "https://github.com/tesseract-ocr/tessdata_best/raw/923915d4ced2a7235221788285785a29c4a42d4a/"
-# tessdata_fast (balanced LSTM models) - Pinned to main as of 2024-05-18
+# tessdata (legacy/fast models) - Pinned to release tag 4.1.0 (Bug #6, 2026-09)
+TESSDATA_URL = "https://github.com/tesseract-ocr/tessdata/raw/4.1.0/"
+# tessdata_best (high-quality LSTM models) - Pinned to release tag 4.1.0 (Bug #6, 2026-09)
+TESSDATA_BEST_URL = "https://github.com/tesseract-ocr/tessdata_best/raw/4.1.0/"
+# tessdata_fast (balanced LSTM models) - Pinned to release tag 4.1.0 (Bug #6, 2026-09)
 # FIX BUG-H-004: was incorrectly pointing to tessdata (same as TESSDATA_URL).
 # Standard quality must use the tessdata_fast repository (different repo, different models).
-TESSDATA_STANDARD_URL = "https://github.com/tesseract-ocr/tessdata_fast/raw/4b1b5210416f18f5c2cd9e2b7c8c7e82df37de44/"
+TESSDATA_STANDARD_URL = "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/"
 
 # Network configuration for LanguageManager
 USER_AGENT = "Anura-OCR-Client/1.0 (Linux; Flatpak)"

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # build-aux/check_tessdata_consistency.py
-"""Check tessdata commit SHA consistency across configuration files.
+"""Check tessdata ref (tag or SHA) consistency across configuration files.
 
-Verifies that the tessdata commit SHAs are consistent between:
+Verifies that the tessdata git refs are consistent between:
 - anura/config.py (TESSDATA_BEST_URL)
 - flatpak/io.github.d3msudo.anura.json (tessdata module sources)
 - flatpak/io.github.d3msudo.anura.local.json (tessdata module sources)
@@ -21,15 +21,17 @@ CONFIG_PY = REPO_ROOT / "anura" / "config.py"
 MANIFEST_MAIN = REPO_ROOT / "flatpak" / "io.github.d3msudo.anura.json"
 MANIFEST_LOCAL = REPO_ROOT / "flatpak" / "io.github.d3msudo.anura.local.json"
 
-# Regex to extract commit SHA from tessdata GitHub URLs
-# Matches patterns like: tessdata_fast/raw/<commit_sha>/filename
+# Regex to extract tessdata git ref (commit SHA or release tag, e.g. "4.1.0")
+# from tessdata GitHub URLs. Refs may be tags since Bug #6 (2026-09): upstream
+# repos rewrite history, orphaning hardcoded commit SHAs.
+# Matches patterns like: tessdata_fast/raw/<ref>/filename
 TESSDATA_URL_PATTERN = re.compile(
-    r"github\.com/tesseract-ocr/tessdata[^/]*/raw/([a-f0-9]{40})/"
+    r"github\.com/tesseract-ocr/tessdata[^/]*/raw/([A-Za-z0-9._-]+)/"
 )
 
-# Regex to extract commit SHA from config.py TESSDATA_BEST_URL
+# Regex to extract tessdata git ref from config.py TESSDATA_BEST_URL
 CONFIG_TESSDATA_PATTERN = re.compile(
-    r"TESSDATA_BEST_URL\s*=\s*[\"']https?://[^\"']*/raw/([a-f0-9]{40})/"
+    r"TESSDATA_BEST_URL\s*=\s*[\"']https?://[^\"']*/raw/([A-Za-z0-9._-]+)/"
 )
 
 
