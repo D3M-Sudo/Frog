@@ -294,7 +294,3 @@ class OcrController(GObject.GObject, SignalManagerMixin):
             return
 
         dialog.open(_win, None, _on_open_image_result)
-
-    def cleanup(self) -> None:
-        """Explicit cleanup for backwards compatibility. Use teardown() instead."""
-        self.teardown()
