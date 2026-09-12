@@ -13,7 +13,6 @@ gi.require_version("GLib", "2.0")
 gi.require_version("GObject", "2.0")
 
 from gi.repository import GObject  # noqa: E402
-import gtts  # noqa: E402
 from loguru import logger  # noqa: E402
 
 from anura.services.settings import settings  # noqa: E402
@@ -66,10 +65,14 @@ class TTSService(GObject.GObject):
         """Forward error signal from PipelineManager."""
         self.emit("error", error_msg)
 
-    @staticmethod
-    def get_languages() -> dict:
-        """Fetch available languages supported by gTTS."""
-        return gtts.lang.tts_langs()
+    def get_supported_languages(self) -> dict:
+        """Fetch available languages supported by gTTS (cached, via LanguageMapper).
+
+        Pass-through to PipelineManager on purpose: callers must not reach
+        into self._pipeline directly, and the legacy uncached gtts.lang.tts_langs()
+        call must not be re-exposed here (synchronous network fetch per call).
+        """
+        return self._pipeline.get_supported_languages()
 
     def get_effective_language(self, ocr_lang: str) -> str | None:
         """Return TTS language: user preference or fallback to OCR language."""
@@ -103,6 +106,14 @@ class TTSService(GObject.GObject):
     def is_playing(self) -> bool:
         """Check if currently playing."""
         return self._pipeline.is_playing()
+
+    def is_paused(self) -> bool:
+        """Check if currently paused.
+
+        Pass-through to PipelineManager on purpose: the controller must not
+        access the underlying GStreamer element (self._pipeline._player.player).
+        """
+        return self._pipeline.is_paused()
 
     def toggle_pause(self) -> None:
         """Toggle pause state."""

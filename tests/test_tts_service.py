@@ -95,3 +95,20 @@ class TestTTSServiceEnterprise:
         """Test that language mapping is pure."""
         code = "eng"
         assert LanguageMapper.map_tesseract_to_gtts(code) == LanguageMapper.map_tesseract_to_gtts(code)
+
+    def test_get_supported_languages_delegates_to_cached_mapper(self, service):
+        """TTSService.get_supported_languages must delegate to the cached
+        LanguageMapper (via PipelineManager), never to an uncached network call."""
+        cached = {"fr": "French", "it": "Italian"}
+        with patch.object(LanguageMapper, "get_supported_gtts_languages", return_value=cached):
+            result = service.get_supported_languages()
+        assert result == cached
+
+    def test_is_paused_delegates_to_pipeline(self, service):
+        """TTSService.is_paused must be a pass-through to PipelineManager."""
+        service._pipeline._player = MagicMock()
+        service._pipeline._player.is_paused.return_value = True
+        assert service.is_paused() is True
+
+        service._pipeline._player.is_paused.return_value = False
+        assert service.is_paused() is False

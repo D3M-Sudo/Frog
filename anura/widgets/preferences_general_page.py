@@ -202,7 +202,7 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
 
     def _setup_tts_language(self) -> None:
         """Populate TTS language combo with gTTS supported languages."""
-        supported = get_tts_service().get_supported_gtts_languages()
+        supported = get_tts_service().get_supported_languages()
 
         # Create list: "Auto (follow OCR)" + all supported languages
         lang_names = [_("Auto (follow OCR language)"), *list(supported.values())]
@@ -226,7 +226,7 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
         if idx == 0:
             self.settings.set_string("tts-language", "")  # Auto
         else:
-            supported = get_tts_service().get_supported_gtts_languages()
+            supported = get_tts_service().get_supported_languages()
             supported_keys = list(supported.keys())
             # Bounds check to prevent IndexError
             if idx - 1 < len(supported_keys):
