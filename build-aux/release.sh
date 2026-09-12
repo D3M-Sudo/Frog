@@ -14,9 +14,9 @@ VERSION="$1"
 TESSDATA_REF="${2:-4.1.0}"
 
 if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <version> [tessdata_commit]"
+    echo "Usage: $0 <version> [tessdata_ref]"
     echo "Example: $0 0.1.4"
-    echo "Example with custom tessdata commit: $0 0.1.4 abc123..."
+    echo "Example with custom tessdata ref: $0 0.1.4 4.0.0"
     exit 1
 fi
 
@@ -58,8 +58,8 @@ fi
 
 echo ""
 
-# Update manifest with pinned tessdata commit
-echo "Updating $MANIFEST_FILE with pinned tessdata commit..."
+# Update manifest with pinned tessdata ref
+echo "Updating $MANIFEST_FILE with pinned tessdata ref..."
 sed -i "s|tessdata_fast/raw/[^/]*/|tessdata_fast/raw/${TESSDATA_REF}/|g" "$MANIFEST_FILE"
 
 # Verify the change was made
