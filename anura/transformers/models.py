@@ -151,7 +151,7 @@ class ITransformer(Protocol):
     """Protocol for OCR result transformers."""
 
     def score(self, ocr_result: OcrResult) -> float:
-        """Calculate a score (0.0 to 1.0) indicating how well this transformer fits the result."""
+        """Calculate a score (0.0 to 100.0) indicating how well this transformer fits the result."""
         ...
 
     def transform(self, ocr_result: OcrResult) -> list[str]:
