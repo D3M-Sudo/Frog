@@ -88,12 +88,6 @@ def get_provider_by_id(provider_id: str) -> ShareProvider | None:
     return None
 
 
-def get_provider_name(provider_id: str) -> str:
-    """Get provider display name by ID."""
-    provider = get_provider_by_id(provider_id)
-    return provider.name if provider else provider_id
-
-
 def generate_share_link(provider_id: str, text: str) -> str:
     """Generate share link for a provider."""
     provider = get_provider_by_id(provider_id)
