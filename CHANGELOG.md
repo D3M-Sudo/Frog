@@ -7,13 +7,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Synchronized the keyboard shortcuts overlay with the actions actually registered in the app: new Editor category (select all, copy, undo, redo, search, external editor), Text-to-Speech category with pause/resume (`<Primary><Alt>L`), and previously undocumented accelerators (`<Primary>comma` documented, duplicate aliases deduplicated)
+- Added `tests/test_shortcuts_consistency.py`: bidirectional anti-drift test (headless-safe, per `docs/dependencies.md`) ensuring the shortcuts overlay and `ActionRegistry` accelerators stay in sync, with a documented whitelist for native widget bindings (select-all, undo, redo, Escape)
 - Migrated the OCR result text editor to **GtkSourceView 5** (`GtkSource.View`/`GtkSource.Buffer`) with native search bar (`<Primary>f`), editor preferences (line numbers, current line highlight, wrapping), and an "Open in External Editor" action (`<Primary><Shift>E`) with safe `Gtk.FileLauncher` handoff
 
 ### Fixed
+- Removed stale/incorrect shortcut entries from the shortcuts overlay (`<Primary>?`, `<Primary>/`, `<Primary><Shift>O`, `F1`, `F10`, `Tab`/`Shift+Tab`) and deduplicated accelerator aliases both in the overlay and `ActionRegistry` (`<Primary>F1`/`<Primary>K`/`<Primary>W`/`<Primary>Period` removed in favour of `<Primary>H`/`<Primary>Q`/`<Primary>Comma`)
 - Repinned orphaned tessdata commit SHAs to release tag 4.1.0 in `anura/config.py` and both Flatpak manifests (Bug #6)
 - Exposed cached language list and pause state on `TTSService` for correct TTS UI state synchronization
 
 ### Changed
+- Documented the GTK/PyGObject headless testing approach (system `python3-gi` + venv site-packages via `PYTHONPATH`) in `docs/dependencies.md`
 - CI: added `gir1.2-gtksource-5` system dependency to the GTK integration test workflow
 
 ## [0.1.5] - 2026-11-09

@@ -57,6 +57,8 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
     search_case_btn: Gtk.ToggleButton = Gtk.Template.Child()
     search_prev_btn: Gtk.Button = Gtk.Template.Child()
     search_next_btn: Gtk.Button = Gtk.Template.Child()
+    undo_btn: Gtk.Button = Gtk.Template.Child()
+    redo_btn: Gtk.Button = Gtk.Template.Child()
 
     def __init__(self, **kwargs: object) -> None:
         # Pre-initialize attributes to avoid AttributeError during failed template init
@@ -123,6 +125,17 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
 
         self.buffer.set_enable_undo(True)
 
+        # Undo/Redo buttons: sensitivity driven by the buffer undo stack
+        if self.undo_btn and self.redo_btn:
+            self.buffer.bind_property(
+                "can-undo", self.undo_btn, "sensitive", GObject.BindingFlags.SYNC_CREATE
+            )
+            self.buffer.bind_property(
+                "can-redo", self.redo_btn, "sensitive", GObject.BindingFlags.SYNC_CREATE
+            )
+            self.connect_tracked(self.undo_btn, "clicked", self._on_undo)
+            self.connect_tracked(self.redo_btn, "clicked", self._on_redo)
+
     def _apply_wrap_mode(self) -> None:
         mode_str = self.settings.get_string("editor-wrap-mode")
         mapping = {
@@ -136,6 +149,16 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
 
     def _on_wrap_mode_setting_changed(self, _settings: object, _key: str) -> None:
         self._apply_wrap_mode()
+
+    def _on_undo(self, *_args: object) -> None:
+        """Undo the last user edit in the buffer."""
+        if self.buffer and self.buffer.can_undo():
+            self.buffer.undo()
+
+    def _on_redo(self, *_args: object) -> None:
+        """Redo the last undone edit in the buffer."""
+        if self.buffer and self.buffer.can_redo():
+            self.buffer.redo()
 
     def _on_buffer_changed(self, buffer: GtkSource.Buffer) -> None:
         """Update action sensitivities when buffer changes."""

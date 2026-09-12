@@ -85,3 +85,58 @@ python3 build-aux/check_manifest_consistency.py
 python3 build-aux/check_tessdata_consistency.py
 python3 build-aux/check_runtime_dependency_coverage.py
 ```
+
+## GTK (PyGObject) and the development venv
+
+**Status: known environment constraint (documented 2026-09-12).**
+
+PyGObject (`gi`) is **not installable in the project venv** and this is not
+expected to change:
+
+- PyGObject publishes **no binary wheels** on PyPI; it must always be compiled.
+- Local build environments typically lack the required toolchain
+  (`gcc`/`clang`, `pkg-config`, `gobject-introspection`/`girepository` dev
+  headers, pycairo build deps), so `uv pip install pygobject` fails at the
+  meson/pycairo build stage.
+- Anura therefore relies on the **system-provided** `python3-gi` package (GTK
+  typelibs come from the host or the Flatpak runtime) — the same model used by
+  Flatpak builds, where `gi` is provided by the GNOME runtime.
+
+### Testing GTK-dependent code without a display or venv `gi`
+
+Headless verification of GTK-touching logic (accelerators, GAction
+registration, template data) must run with the **system Python interpreter**:
+
+```bash
+SP=$(ls -d .venv/lib/python3.*/site-packages)
+PYTHONPATH=".:$SP" /usr/bin/python3 script.py
+```
+
+- `PYTHONPATH` merges the repo root and the venv site-packages so that
+  `anura` imports and pure-Python dependencies (e.g. `loguru`) resolve, while
+  `gi` resolves from the system `python3-gi`.
+- When importing `Gtk.Template`-based widgets headlessly, **register the
+  compiled GResource first**:
+
+  ```python
+  with open("builddir/data/io.github.d3msudo.anura.gresource", "rb") as f:
+      Gio.Resource.new_from_data(GLib.Bytes.new(f.read()))._register()
+  ```
+
+- GObject classes cannot be created via `object.__new__()`; to inspect
+  instance methods without a display, call them unbound against a plain
+  `types.SimpleNamespace()` stub (e.g.
+  `ShortcutsOverlay._setup_shortcuts_data(SimpleNamespace())`).
+- Note for PyGObject >= 3.48: `Gtk.accelerator_parse()` returns
+  `(success, keyval, mods)` — three values, not two.
+- `blueprint-compiler` on the host may lack runtime typelibs (e.g.
+  `GtkSource-5`); point it at the Flatpak runtime GIR directory when needed:
+
+  ```bash
+  blueprint-compiler compile \
+    --typelib-path /var/lib/flatpak/runtime/org.gnome.Platform/x86_64/<ver>/active/files/lib/x86_64-linux-gnu/girepository-1.0 \
+    data/ui/<page>.blp
+  ```
+
+Reference implementation: the shortcuts-overlay vs `ActionRegistry`
+accelerator consistency check (2026-09-12) validated this approach end to end.

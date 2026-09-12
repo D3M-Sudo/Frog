@@ -42,6 +42,26 @@ template $ExtractedPage : Adw.NavigationPage {
       }
 
       [start]
+      Button undo_btn {
+        tooltip-text: C_("Extracted screen", "Undo (Ctrl+Z)");
+        accessibility {
+          label: C_("Extracted screen", "Undo");
+        }
+        icon-name: "edit-undo-symbolic";
+        styles ["anura-button"]
+      }
+
+      [start]
+      Button redo_btn {
+        tooltip-text: C_("Extracted screen", "Redo (Ctrl+Shift+Z)");
+        accessibility {
+          label: C_("Extracted screen", "Redo");
+        }
+        icon-name: "edit-redo-symbolic";
+        styles ["anura-button"]
+      }
+
+      [start]
       ToggleButton search_button {
         tooltip-text: C_("Extracted screen", "Search Text (Ctrl+F)");
         accessibility {

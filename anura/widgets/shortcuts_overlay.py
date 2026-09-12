@@ -67,14 +67,25 @@ class ShortcutsOverlay(Adw.Window):
                     {"key": "<Control>v", "description": _("Paste image from clipboard")},
                 ],
             },
-            # Text Operations
+            # Editor (native GtkSourceView bindings — no GAction behind them)
             {
-                "category": _("Text Operations"),
+                "category": _("Editor"),
                 "shortcuts": [
-                    {"key": "<Control>a", "description": _("Select all text")},
+                    {"key": "<Control>a", "description": _("Select all text (in editor)")},
                     {"key": "<Control>c", "description": _("Copy text to clipboard")},
-                    {"key": "<Control>l", "description": _("Listen to text (TTS)")},
-                    {"key": "<Control><Shift>l", "description": _("Stop text-to-speech")},
+                    {"key": "<Control>z", "description": _("Undo (in editor)")},
+                    {"key": "<Control><Shift>z", "description": _("Redo (in editor)")},
+                    {"key": "<Control>f", "description": _("Search text")},
+                    {"key": "<Control><Shift>e", "description": _("Open in external editor")},
+                ],
+            },
+            # Text-to-Speech
+            {
+                "category": _("Text-to-Speech"),
+                "shortcuts": [
+                    {"key": "<Control>l", "description": _("Listen to text")},
+                    {"key": "<Control><Alt>l", "description": _("Pause/resume listening")},
+                    {"key": "<Control><Shift>l", "description": _("Stop listening")},
                 ],
             },
             # Application
@@ -82,29 +93,15 @@ class ShortcutsOverlay(Adw.Window):
                 "category": _("Application"),
                 "shortcuts": [
                     {"key": "<Control>comma", "description": _("Open preferences")},
-                    {"key": "<Control>question", "description": _("Show keyboard shortcuts")},
                     {"key": "<Control>h", "description": _("Show keyboard shortcuts")},
-                    {"key": "<Control>slash", "description": _("Show keyboard shortcuts")},
                     {"key": "<Control>q", "description": _("Quit application")},
-                    {"key": "<Control>w", "description": _("Quit application")},
                 ],
             },
             # Navigation
             {
                 "category": _("Navigation"),
                 "shortcuts": [
-                    {"key": "Escape", "description": _("Close dialog/go back")},
-                    {"key": "Tab", "description": _("Navigate between widgets")},
-                    {"key": "<Shift>Tab", "description": _("Navigate backwards")},
-                ],
-            },
-            # Advanced
-            {
-                "category": _("Advanced"),
-                "shortcuts": [
-                    {"key": "<Control><Shift>o", "description": _("Open image file (advanced)")},
-                    {"key": "F1", "description": _("Show help")},
-                    {"key": "F10", "description": _("Open application menu")},
+                    {"key": "Escape", "description": _("Clear search / go back")},
                 ],
             },
         ]
