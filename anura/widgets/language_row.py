@@ -99,7 +99,7 @@ class LanguageRow(Gtk.Overlay, SignalManagerMixin):
         if not is_loading:
             self.revealer.set_reveal_child(False)
 
-    def update_progress(self, sender: GObject.GObject, code: str, progress: float) -> None:
+    def update_progress(self, _sender: GObject.GObject, code: str, progress: float) -> None:
         """Signal handler for download progress."""
         if self._item and code == self._item.code:
             # NEW-006: Use a single tracked idle ID to throttle UI updates.
@@ -156,7 +156,7 @@ class LanguageRow(Gtk.Overlay, SignalManagerMixin):
             get_language_manager().remove_language(self._item.code)
             self.update_ui()
 
-    def on_downloaded(self, sender: GObject.GObject, code: str) -> None:
+    def on_downloaded(self, _sender: GObject.GObject, code: str) -> None:
         """
         Signal handler for completed downloads.
         """

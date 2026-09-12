@@ -34,7 +34,7 @@ class ParagraphTransformer(TransformerProtocol):
         breaks = ocr_result.num_blocks + ocr_result.num_pars - 1
         if breaks <= 1:
             return 0
-        # BUG-037: Adjust base offset to always exceed MultiLine (60.0) / SingleLine (50.0)
+        # Keep Paragraph above MultiLine (60.0) / SingleLine (50.0)
         # for any result with multiple paragraphs/blocks.
         return 60.0 + (40.0 * (1.0 - (1.0 / (breaks + 0.05))))
 

@@ -9,7 +9,7 @@ from gettext import gettext as _
 from io import BytesIO
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import gi
 
@@ -41,9 +41,6 @@ from anura.widgets.extracted_page import ExtractedPage  # noqa: E402
 from anura.widgets.history_page import HistoryPage  # noqa: E402
 from anura.widgets.preferences_dialog import PreferencesDialog  # noqa: E402
 from anura.widgets.welcome_page import WelcomePage  # noqa: E402
-
-if TYPE_CHECKING:
-    pass
 
 
 @Gtk.Template(resource_path=f"{RESOURCE_PREFIX}/window.ui")
@@ -396,9 +393,10 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
         if not message:
             return
         # For total capture failure with no fallback available, show a fatal
-        # error dialog instead of a toast (previously handled in
-        # AnuraApplication._on_error_occurred; moved here to avoid the double
-        # notification burst caused by connecting error-occurred twice).
+        # error dialog instead of a toast. This lives here (rather than in
+        # AnuraApplication) so the fatal dialog runs in the window where the
+        # window context is always available, avoiding the double-notification
+        # burst caused by connecting error-occurred twice.
         from anura.services.screenshot_service import get_screenshot_service
         backend = get_screenshot_service()
         if "screenshot failed" in message.lower() and not getattr(backend, "fallback_provider", None):
@@ -460,12 +458,6 @@ class AnuraWindow(Adw.ApplicationWindow, SignalManagerMixin):
     def show_toast(self, title: str, priority: Adw.ToastPriority = Adw.ToastPriority.NORMAL) -> None:
         """Show a toast notification to the user."""
         self.toast_overlay.add_toast(Adw.Toast(title=title, priority=priority))
-
-    def _launch_uri(self, url: str) -> None:
-        """Open a URI in the default system browser."""
-        from anura.utils.validators import launch_uri
-
-        launch_uri(url, window=self, error_callback=lambda msg: self.show_toast(msg))
 
     def on_listen(self) -> None:
         """Trigger TTS playback."""

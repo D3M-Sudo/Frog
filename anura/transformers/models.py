@@ -28,11 +28,6 @@ class OcrResult:
     transformer_scores: dict[TransformerType, float] = field(default_factory=dict)
     parsed: list[str] = field(default_factory=list)
 
-    def _get_val(self, obj: Any, attr: str) -> Any:
-        if isinstance(obj, dict):
-            return obj.get(attr)
-        return getattr(obj, attr, None)
-
     @cached_property
     def _layout_stats(self) -> dict[str, int]:
         """
@@ -96,7 +91,7 @@ class OcrResult:
         text_parts = []
 
         # Optimization: Check if the first word is a dictionary or an object
-        # to avoid dynamic _get_val calls within the hot loop.
+        # once, to avoid per-word type checks within the hot loop.
         first = self.words[0]
         if isinstance(first, dict):
             for word in self.words:
@@ -156,7 +151,7 @@ class ITransformer(Protocol):
     """Protocol for OCR result transformers."""
 
     def score(self, ocr_result: OcrResult) -> float:
-        """Calculate a score (0.0 to 1.0) indicating how well this transformer fits the result."""
+        """Calculate a score (0.0 to 100.0) indicating how well this transformer fits the result."""
         ...
 
     def transform(self, ocr_result: OcrResult) -> list[str]:

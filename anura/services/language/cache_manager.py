@@ -221,16 +221,3 @@ class CacheManager:
         except OSError as e:
             logger.error(f"Anura: OS error removing language '{code}': {e}")
             return False
-
-    def model_exists(self, code: str) -> bool:
-        """Check if a model file exists.
-
-        Args:
-            code: Language code to check
-
-        Returns:
-            True if model exists, False otherwise
-        """
-        quality = settings.get_string("tessdata-model")
-        path = self._get_model_quality_dir(quality) / f"{code}.traineddata"
-        return path.exists()
