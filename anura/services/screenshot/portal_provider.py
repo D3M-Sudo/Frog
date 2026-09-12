@@ -55,7 +55,7 @@ class PortalProvider(ScreenshotProvider):
                 self._cancellable = None
             callback(False, None, str(e))
 
-    def _on_finish(self, source_object: object, res: Gio.AsyncResult, user_data: tuple) -> None:
+    def _on_finish(self, _source_object: object, res: Gio.AsyncResult, user_data: tuple) -> None:
         _lang, _copy, callback = user_data
 
         # Clear saved cancellable — this request is done
