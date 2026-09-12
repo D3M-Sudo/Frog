@@ -91,7 +91,7 @@ class OcrResult:
         text_parts = []
 
         # Optimization: Check if the first word is a dictionary or an object
-        # to avoid dynamic _get_val calls within the hot loop.
+        # once, to avoid per-word type checks within the hot loop.
         first = self.words[0]
         if isinstance(first, dict):
             for word in self.words:
