@@ -55,7 +55,7 @@ class PortalProvider(ScreenshotProvider):
                 self._cancellable = None
             callback(False, None, str(e))
 
-    def _on_finish(self, source_object: object, res: Gio.AsyncResult, user_data: tuple) -> None:
+    def _on_finish(self, _source_object: object, res: Gio.AsyncResult, user_data: tuple) -> None:
         _lang, _copy, callback = user_data
 
         # Clear saved cancellable — this request is done
@@ -80,12 +80,12 @@ class PortalProvider(ScreenshotProvider):
                         f"(domain={e.domain}, code={e.code}): {e.message}",
                     )
 
-                    is_generic = (
+                    is_known_backend_missing = (
                         e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.FAILED)
                         and (e.message or "").strip().lower() == "screenshot failed"
                     )
 
-                    if is_generic:
+                    if is_known_backend_missing:
                         logger.warning(
                             "PortalProvider: xdg-desktop-portal screenshot backend failed (code=0). "
                             "This is often caused by missing portal backends or an unavailable "
