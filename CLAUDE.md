@@ -7,7 +7,7 @@
 - **Language**: Python 3.12+
 - **Build**: Meson ≥ 1.5.0
 - **Distribuzione**: Flatpak (`io.github.d3msudo.anura`)
-- **UI**: GTK4 + Libadwaita + Blueprint Compiler 0.16.0
+- **UI**: GTK4 + Libadwaita + GtkSourceView 5 + Blueprint Compiler 0.16.0
 - **OCR**: pytesseract + Tesseract 5.3.4
 - **QR/Barcode**: zxing-cpp 3.0.0 (replaces pyzbar)
 - **Image Processing**: Leptonica 1.87.0
@@ -41,7 +41,7 @@ anura/
 ├── models/              ← context, download_state, language_item, ocr (immutable dataclasses)
 ├── transformers/        ← magic_processor, base_transformers, email_transformer, url_transformer
 ├── utils/               ← barcode_detector, image_filters, structural_reconstructor, validators
-└── widgets/             ← extracted_page, welcome_page, preferences, shortcuts_overlay
+└── widgets/             ← extracted_page (GtkSourceView 5 editor), welcome_page, preferences, shortcuts_overlay
 data/
 ├── ui/                  Blueprint files (.blp) → compiled to .ui
 ├── icons/               Scalable SVG icons + symbolic variants

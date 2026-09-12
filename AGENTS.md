@@ -90,7 +90,7 @@ anura/
 │   │   ├── text_preprocessor.py   Image enhancement & text cleanup factory
 │   │   └── validators.py          URI validation, security & text sanitization
 │   └── widgets/
-│       ├── extracted_page.py       OCR result page with share/TTS actions
+│       ├── extracted_page.py       OCR result page: GtkSourceView 5 editor (native search, external editor handoff) + share/TTS actions
 │       ├── history_page.py         History V1 page (read-only list, clear action)
 │       ├── language_popover.py     Language selector with search
 │       ├── language_popover_row.py Language row in popover
@@ -151,7 +151,7 @@ anura/
 ```bash
 # System dependencies (Ubuntu/Debian)
 sudo apt install gettext python3-gi gir1.2-gtk-4.0 gir1.2-adw-1 \
-    blueprint-compiler libportal-gtk4-dev \
+    gir1.2-gtksource-5 blueprint-compiler libportal-gtk4-dev \
     tesseract-ocr python3-pil python3-pip \
     gstreamer1.0-plugins-good gstreamer1.0-pulseaudio \
     libxml2-utils # Required for GResource compilation

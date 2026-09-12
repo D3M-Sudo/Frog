@@ -47,8 +47,9 @@ It also decodes **QR codes and Barcodes** in a single click using **zxing-cpp**,
 | 🎨 **Theme Selector** | Choose between System, Light, or Dark theme via Adw.StyleManager |
 | ✏️ **Selection-Aware Actions** | Text statistics and actions based on selection in OCR results |
 | ↩️ **Undo/Redo** | Full undo/redo support in ExtractedPage for text editing workflow |
+| ✏️ **GtkSourceView Editor** | Native search bar, editor preferences, and "Open in External Editor" handoff in OCR results |
 | 🔒 **Privacy-first** | All processing happens locally — no telemetry or tracking |
-| 🎨 **Native GTK4** | Designed for GNOME, built with Libadwaita and Blueprint |
+| 🎨 **Native GTK4** | Designed for GNOME, built with Libadwaita, GtkSourceView and Blueprint |
 | 🚀 **Async D&D** | Smooth, non-blocking asynchronous drag-and-drop |
 | ♿ **Enhanced Accessibility** | Improved keyboard navigation, tooltips, and screen reader support |
 | ✨ **Smart OCR Cleanup** | Adaptive image enhancement and structural layout reconstruction |

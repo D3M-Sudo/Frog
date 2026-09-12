@@ -7,16 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
-- *(No changes yet)*
+- Migrated the OCR result text editor to **GtkSourceView 5** (`GtkSource.View`/`GtkSource.Buffer`) with native search bar (`<Primary>f`), editor preferences (line numbers, current line highlight, wrapping), and an "Open in External Editor" action (`<Primary><Shift>E`) with safe `Gtk.FileLauncher` handoff
 
 ### Fixed
-- *(No changes yet)*
+- Repinned orphaned tessdata commit SHAs to release tag 4.1.0 in `anura/config.py` and both Flatpak manifests (Bug #6)
+- Exposed cached language list and pause state on `TTSService` for correct TTS UI state synchronization
 
 ### Changed
-- *(No changes yet)*
-
-### Security
-- *(No changes yet)*
+- CI: added `gir1.2-gtksource-5` system dependency to the GTK integration test workflow
 
 ## [0.1.5] - 2026-11-09
 
