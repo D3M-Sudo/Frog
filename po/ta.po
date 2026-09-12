@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: anura 1.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 12:34+0000\n"
+"POT-Creation-Date: 2026-09-12 19:27+0200\n"
 "PO-Revision-Date: 2025-04-27 14:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/anura/default/ta/"
@@ -18,766 +18,835 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: ../anura/controllers/dnd_controller.py:38
+#: anura/controllers/dnd_controller.py:45
 msgid "Failed to load dropped file (invalid path)."
 msgstr "கைவிடப்பட்ட கோப்பை ஏற்ற முடியவில்லை (தவறான பாதை)."
 
-#: ../anura/controllers/dnd_controller.py:46
-#: ../anura/services/screenshot_service.py:412 ../anura/window.py:219
+#: anura/controllers/dnd_controller.py:52
+#: anura/services/screenshot_service.py:581 anura/window.py:238
 msgid "Invalid image file"
 msgstr ""
 
-#: ../anura/controllers/dnd_controller.py:60
+#: anura/controllers/dnd_controller.py:65
 msgid "Failed to process the file."
 msgstr "கோப்பைச் செயலாக்க முடியவில்லை."
 
-#: ../anura/controllers/ocr_controller.py:92
+#: anura/controllers/ocr_controller.py:105
 msgid "No text found. Try to grab another region."
 msgstr "உரை எதுவும் கிடைக்கவில்லை. மற்றொரு பகுதியைப் பிடிக்க முயற்சி செய்யுங்கள்."
 
-#: ../anura/controllers/ocr_controller.py:109
+#: anura/controllers/ocr_controller.py:120
 msgid "Text extracted"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:132
+#: anura/controllers/ocr_controller.py:175
 #, python-brace-format
 msgid "{n} email found in text"
 msgid_plural "{n} emails found in text"
 msgstr[0] "{n} மின்னஞ்சல் உரையில் காணப்பட்டது"
 msgstr[1] "உரையில் {n} மின்னஞ்சல்கள் காணப்பட்டன"
 
-#: ../anura/controllers/ocr_controller.py:138
+#: anura/controllers/ocr_controller.py:181
 #, python-brace-format
 msgid "{n} phone number found in text"
 msgid_plural "{n} phone numbers found in text"
 msgstr[0] "உரையில் {n} தொலைபேசி எண் கண்டறியப்பட்டது"
 msgstr[1] "உரையில் {n} தொலைபேசி எண்கள் உள்ளன"
 
-#: ../anura/controllers/ocr_controller.py:193
+#: anura/controllers/ocr_controller.py:227
 msgid "Choose an image for extraction"
 msgstr "உரையை பிரித்தெடுக்க படத்தைத் திறக்கவும்"
 
-#: ../anura/controllers/ocr_controller.py:196
+#: anura/controllers/ocr_controller.py:230
 msgid "All supported images"
 msgstr "அனைத்து ஆதரிக்கப்படும் படங்கள்"
 
-#: ../anura/controllers/ocr_controller.py:228
+#: anura/controllers/ocr_controller.py:262
 msgid "PNG images (*.png)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:229
+#: anura/controllers/ocr_controller.py:263
 msgid "JPEG images (*.jpg)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:230
+#: anura/controllers/ocr_controller.py:264
 msgid "WebP images (*.webp)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:231
+#: anura/controllers/ocr_controller.py:265
 msgid "AVIF images (*.avif)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:232
+#: anura/controllers/ocr_controller.py:266
 msgid "TIFF images (*.tif)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:233
+#: anura/controllers/ocr_controller.py:267
 msgid "BMP images (*.bmp)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:234
+#: anura/controllers/ocr_controller.py:268
 msgid "GIF images (*.gif)"
 msgstr ""
 
-#: ../anura/controllers/ocr_controller.py:237
+#: anura/controllers/ocr_controller.py:271
 msgid "All files (*)"
 msgstr "அனைத்து கோப்புகளும் (*)"
 
-#: ../anura/main.py:81
+#: anura/controllers/tts_controller.py:73
+msgid "Text-to-speech is not available for this language"
+msgstr ""
+
+#: anura/controllers/tts_controller.py:106
+msgid "Request timed out. Please try again."
+msgstr "கோரிக்கை நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்."
+
+#: anura/controllers/tts_controller.py:108
+msgid "Network error. Please check your internet connection."
+msgstr "பிணையம் பிழை. உங்கள் இணைய இணைப்பைச் சரிபார்க்கவும்."
+
+#: anura/controllers/tts_controller.py:110
+msgid "Text-to-speech failed. Please try again."
+msgstr "உரையிலிருந்து பேச்சு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+
+#: anura/core/dialogs.py:39
+msgid "Acknowledgements"
+msgstr "அங்கீகாரங்கள்"
+
+#: anura/core/dialogs.py:42
+msgid ""
+"Built with Tesseract OCR, GTK4, Libadwaita, and other open source components."
+msgstr ""
+
+#: anura/core/dialogs.py:44
+msgid "Changelog"
+msgstr "மாற்றபதிவு"
+
+#: anura/core/dialogs.py:45 data/ui/extracted_page.blp:318
+#: data/ui/welcome_page.blp:197
+msgid "Report an Issue"
+msgstr "ஒரு சிக்கலைப் புகாரளிக்கவும்"
+
+#: anura/core/dialogs.py:80
+msgid "OK"
+msgstr ""
+
+#: anura/main.py:81
 msgid "Extract directly into the clipboard"
 msgstr "கிளிப்போர்டில் நேரடியாக பிரித்தெடுக்கவும்"
 
-#: ../anura/main.py:89
+#: anura/main.py:89
 msgid "Process image file for OCR"
 msgstr "OCR க்கான படக் கோப்பை செயலாக்கவும்"
 
-#: ../anura/main.py:97
+#: anura/main.py:97
 msgid "Run OCR without UI (copy result to clipboard)"
-msgstr ""
-"இடைமுகம் இல்லாமல் OCR ஐ இயக்கவும் (கிளிப்போர்டுக்கு முடிவை நகலெடுக்கவும்)"
+msgstr "இடைமுகம் இல்லாமல் OCR ஐ இயக்கவும் (கிளிப்போர்டுக்கு முடிவை நகலெடுக்கவும்)"
 
-#: ../anura/main.py:203 ../anura/main.py:349 ../anura/window.py:241
+#: anura/main.py:210 anura/main.py:356 anura/window.py:260
 msgid "Text copied to clipboard"
 msgstr "உரை இடைநிலைப்பலகைக்கு நகலெடுக்கப்பட்டது"
 
-#: ../anura/main.py:206 ../anura/main.py:211 ../anura/main.py:251
-#: ../anura/main.py:400 ../anura/main.py:405 ../anura/main.py:407
-#: ../anura/main.py:413
+#: anura/main.py:213 anura/main.py:218 anura/main.py:258 anura/main.py:417
+#: anura/main.py:422 anura/main.py:424 anura/main.py:438
 msgid "Anura OCR"
 msgstr "OCR ஐத் திறக்கவும்"
 
-#: ../anura/main.py:206
+#: anura/main.py:213
 msgid "Text extracted and copied to clipboard."
 msgstr "உரையைப் பிரித்தெடுத்து இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: ../anura/main.py:211
+#: anura/main.py:218
 msgid "Text extracted successfully."
 msgstr "உரை வெற்றிகரமாக பிரித்தெடுக்கப்பட்டது."
 
-#: ../anura/main.py:220
+#: anura/main.py:227
 msgid "URL opened automatically"
 msgstr "முகவரி தானாகவே திறக்கப்பட்டது"
 
-#: ../anura/main.py:225
+#: anura/main.py:232
 msgid "QR Code URL Detected"
 msgstr "QR குறியீடு முகவரி கண்டறியப்பட்டது"
 
-#: ../anura/main.py:236
+#: anura/main.py:243
 #, fuzzy
 msgid "URL copied to clipboard"
 msgstr "உரை இடைநிலைப்பலகைக்கு நகலெடுக்கப்பட்டது"
 
-#: ../anura/main.py:244
+#: anura/main.py:251 anura/window.py:407
 msgid ""
 "Anura could not capture a screenshot because no suitable portal backend or "
 "fallback tool was found."
 msgstr ""
 
-#: ../anura/main.py:247
+#: anura/main.py:254 anura/window.py:410
 msgid "Capture Failed"
 msgstr ""
 
-#: ../anura/main.py:316
+#: anura/main.py:323
 msgid "Bug fixes and improvements."
 msgstr "பிழை திருத்தங்கள் மற்றும் மேம்பாடுகள்."
 
-#: ../anura/main.py:400 ../anura/services/screenshot_service.py:594
+#: anura/main.py:417 anura/services/screenshot_service.py:794
+#: anura/services/screenshot_service.py:827
 msgid "No text found."
 msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
 
-#: ../anura/main.py:405
+#: anura/main.py:422
 msgid "Text copied to clipboard."
 msgstr ""
 
-#: ../anura/main.py:407
+#: anura/main.py:424
 msgid "Text extracted."
 msgstr ""
 
-#: ../anura/main.py:410
+#: anura/main.py:435
 msgid "Cancelled"
 msgstr "ரத்து செய்யப்பட்டது"
 
-#: ../anura/services/clipboard_service.py:169
-#: ../anura/services/clipboard_service.py:185
-#: ../anura/services/clipboard_service.py:203
-#: ../anura/services/clipboard_service.py:441
-#: ../anura/services/clipboard_service.py:471
-#: ../anura/services/clipboard_service.py:485
-#: ../anura/services/clipboard_service.py:497
-#: ../anura/services/clipboard_service.py:505
-#: ../anura/services/clipboard_service.py:516
-#: ../anura/services/clipboard_service.py:530
-#: ../anura/services/clipboard_service.py:542
+#: anura/services/clipboard_service.py:184
+#: anura/services/clipboard_service.py:200
+#: anura/services/clipboard_service.py:218
+#: anura/services/clipboard_service.py:525
+#: anura/services/clipboard_service.py:555
+#: anura/services/clipboard_service.py:571
+#: anura/services/clipboard_service.py:583
+#: anura/services/clipboard_service.py:591
+#: anura/services/clipboard_service.py:602
+#: anura/services/clipboard_service.py:616
+#: anura/services/clipboard_service.py:628
 msgid "No image in clipboard"
 msgstr "கிளிப்போர்டில் படம் இல்லை"
 
-#: ../anura/services/clipboard_service.py:586
+#: anura/services/clipboard_service.py:672
 msgid "Clipboard read operation timed out."
 msgstr "இடைநிலைப்பலகை வாசிப்பு செயல்பாட்டின் நேரம் முடிந்தது."
 
-#: ../anura/services/tts.py:454
-#, python-brace-format
-msgid "GStreamer playback error: {error}"
-msgstr "GStreamer பின்னணி பிழை: {error}"
+#: anura/services/language_manager.py:52
+#: anura/services/language/validator.py:50 anura/window.py:89
+msgid "English"
+msgstr "ஆங்கிலம்"
 
-#: ../anura/services/screenshot_service.py:74
-#: ../anura/services/screenshot_service.py:454
-msgid "The selected image file is empty."
-msgstr "தேர்ந்தெடுக்கப்பட்ட படக் கோப்பு காலியாக உள்ளது."
+#: anura/services/language/validator.py:23
+msgid "Afrikaans"
+msgstr "ஆப்பிரிக்கா"
 
-#: ../anura/services/screenshot_service.py:114
+#: anura/services/language/validator.py:24
+msgid "Amharic"
+msgstr "அம்ஆரிக்"
+
+#: anura/services/language/validator.py:25
+msgid "Arabic"
+msgstr "அரபு"
+
+#: anura/services/language/validator.py:26
+msgid "Assamese"
+msgstr "அச்சாமீச்"
+
+#: anura/services/language/validator.py:27
+msgid "Azerbaijani"
+msgstr "அசர்பைசானி"
+
+#: anura/services/language/validator.py:28
+msgid "Azerbaijani - Cyrillic"
+msgstr "அசர்பைசானி - சிரிலிக்"
+
+#: anura/services/language/validator.py:29
+msgid "Belarusian"
+msgstr "பெலாருசியன்"
+
+#: anura/services/language/validator.py:30
+msgid "Bengali"
+msgstr "பெங்காலி"
+
+#: anura/services/language/validator.py:31
+msgid "Tibetan"
+msgstr "திபெத்திய"
+
+#: anura/services/language/validator.py:32
+msgid "Bosnian"
+msgstr "போச்னிய"
+
+#: anura/services/language/validator.py:33
+msgid "Breton"
+msgstr "பிரெட்டன்"
+
+#: anura/services/language/validator.py:34
+msgid "Bulgarian"
+msgstr "பல்கேரியன்"
+
+#: anura/services/language/validator.py:35
+msgid "Catalan"
+msgstr "கற்றலான்"
+
+#: anura/services/language/validator.py:36
+msgid "Cebuano"
+msgstr "செபுவானோ"
+
+#: anura/services/language/validator.py:37
+msgid "Czech"
+msgstr "செக்"
+
+#: anura/services/language/validator.py:38
+msgid "Chinese - Simplified"
+msgstr "சீன - எளிமைப்படுத்தப்பட்ட"
+
+#: anura/services/language/validator.py:39
+msgid "Chinese - Simplified (vertical)"
+msgstr "சீன - எளிமைப்படுத்தப்பட்ட (செங்குத்து)"
+
+#: anura/services/language/validator.py:40
+msgid "Chinese - Traditional"
+msgstr "சீன - பாரம்பரிய"
+
+#: anura/services/language/validator.py:41
+msgid "Chinese - Traditional (vertical)"
+msgstr "சீன - பாரம்பரிய (செங்குத்து)"
+
+#: anura/services/language/validator.py:42
+msgid "Cherokee"
+msgstr "செரோகி"
+
+#: anura/services/language/validator.py:43
+msgid "Corsican"
+msgstr "கார்சிகன்"
+
+#: anura/services/language/validator.py:44
+msgid "Welsh"
+msgstr "வேல்ச்"
+
+#: anura/services/language/validator.py:45
+msgid "Danish"
+msgstr "டேனிச்"
+
+#: anura/services/language/validator.py:46
+msgid "German"
+msgstr "செர்மன்"
+
+#: anura/services/language/validator.py:47
+msgid "German - Fraktur"
+msgstr ""
+
+#: anura/services/language/validator.py:48
+msgid "Dzongkha"
+msgstr "பூடானி"
+
+#: anura/services/language/validator.py:49
+msgid "Greek"
+msgstr "கிரேக்கம்"
+
+#: anura/services/language/validator.py:51
+msgid "English, Middle"
+msgstr "ஆங்கிலம் மத்திய (1100-1500)"
+
+#: anura/services/language/validator.py:52
+msgid "Esperanto"
+msgstr "எச்பெராண்டோ"
+
+#: anura/services/language/validator.py:53
+msgid "Estonian"
+msgstr "எச்டோனிய"
+
+#: anura/services/language/validator.py:54
+msgid "Basque"
+msgstr "பாச்க்"
+
+#: anura/services/language/validator.py:55
+msgid "Faroese"
+msgstr "பரோச்"
+
+#: anura/services/language/validator.py:56
+msgid "Persian"
+msgstr "பெர்சியன்"
+
+#: anura/services/language/validator.py:57
+msgid "Filipino"
+msgstr "ஃபிலிபினோ"
+
+#: anura/services/language/validator.py:58
+msgid "Finnish"
+msgstr "பின்னிச்"
+
+#: anura/services/language/validator.py:59
+msgid "French"
+msgstr "பிரஞ்சு"
+
+#: anura/services/language/validator.py:60
+msgid "French, Middle"
+msgstr "பிரஞ்சு, நடுத்தர (Ca.1400-1600)"
+
+#: anura/services/language/validator.py:61
+msgid "Western Frisian"
+msgstr "மேற்கு ஃபிரிசியன்"
+
+#: anura/services/language/validator.py:62
+msgid "Scottish Gaelic"
+msgstr "ச்கோட்டிச் கயாலிக்"
+
+#: anura/services/language/validator.py:63
+msgid "Irish"
+msgstr "ஐரிச்"
+
+#: anura/services/language/validator.py:64
+msgid "Galician"
+msgstr "காலிசியன்"
+
+#: anura/services/language/validator.py:65
+msgid "Greek, Ancient"
+msgstr "கிரேக்கம், பண்டைய"
+
+#: anura/services/language/validator.py:66
+msgid "Gujarati"
+msgstr "குசராத்தி"
+
+#: anura/services/language/validator.py:67
+msgid "Haitian"
+msgstr "குரோசியன்"
+
+#: anura/services/language/validator.py:68
+msgid "Hebrew"
+msgstr "எபிரேய"
+
+#: anura/services/language/validator.py:69
+msgid "Hindi"
+msgstr "இந்தி"
+
+#: anura/services/language/validator.py:70
+msgid "Croatian"
+msgstr "குரோசியன்"
+
+#: anura/services/language/validator.py:71
+msgid "Hungarian"
+msgstr "அங்கேரியன்"
+
+#: anura/services/language/validator.py:72
+msgid "Armenian"
+msgstr "ஆர்மீனியன்"
+
+#: anura/services/language/validator.py:73
+msgid "Inuktitut"
+msgstr "இனுகிடூட்"
+
+#: anura/services/language/validator.py:74
+msgid "Indonesian"
+msgstr "இந்தோனேசிய"
+
+#: anura/services/language/validator.py:75
+msgid "Icelandic"
+msgstr "ஐச்லாந்திய"
+
+#: anura/services/language/validator.py:76
+msgid "Italian"
+msgstr "இத்தாலிய"
+
+#: anura/services/language/validator.py:77
+msgid "Italian - Old"
+msgstr "இத்தாலியன் - பழையது"
+
+#: anura/services/language/validator.py:78
+msgid "Javanese"
+msgstr "சாவானீச்"
+
+#: anura/services/language/validator.py:79
+msgid "Japanese"
+msgstr "சப்பானியர்கள்"
+
+#: anura/services/language/validator.py:80
+msgid "Japanese (vertical)"
+msgstr "சப்பானிய (செங்குத்து)"
+
+#: anura/services/language/validator.py:81
+msgid "Kannada"
+msgstr "கன்னடா"
+
+#: anura/services/language/validator.py:82
+msgid "Georgian"
+msgstr "சார்சியன்"
+
+#: anura/services/language/validator.py:83
+msgid "Georgian - Old"
+msgstr "சார்சியன் - பழையது"
+
+#: anura/services/language/validator.py:84
+msgid "Kazakh"
+msgstr "கசாக்"
+
+#: anura/services/language/validator.py:85
+msgid "Central Khmer"
+msgstr "சென்டரல் கெமெர்"
+
+#: anura/services/language/validator.py:86
+msgid "Kirghiz"
+msgstr "கிர்கிச்; கைர்கிசை"
+
+#: anura/services/language/validator.py:87
+msgid "Kurmanji"
+msgstr "குர்மான்சி"
+
+#: anura/services/language/validator.py:88
+msgid "Korean"
+msgstr "கொரிய"
+
+#: anura/services/language/validator.py:89
+msgid "Korean (vertical)"
+msgstr "கொரிய (செங்குத்து)"
+
+#: anura/services/language/validator.py:90
+msgid "Lao"
+msgstr "லாவோ"
+
+#: anura/services/language/validator.py:91
+msgid "Latin"
+msgstr "லத்தீன்"
+
+#: anura/services/language/validator.py:92
+msgid "Latvian"
+msgstr "லாட்வியன்"
+
+#: anura/services/language/validator.py:93
+msgid "Lithuanian"
+msgstr "லிதுவேனியன்"
+
+#: anura/services/language/validator.py:94
+msgid "Luxembourgish"
+msgstr "லக்சம்போர்கிச்"
+
+#: anura/services/language/validator.py:95
+msgid "Malayalam"
+msgstr "மலையாளம்"
+
+#: anura/services/language/validator.py:96
+msgid "Marathi"
+msgstr "மராத்தி"
+
+#: anura/services/language/validator.py:97
+msgid "Macedonian"
+msgstr "மாசிடோனியன்"
+
+#: anura/services/language/validator.py:98
+msgid "Maltese"
+msgstr "மால்டிச்"
+
+#: anura/services/language/validator.py:99
+msgid "Mongolian"
+msgstr "மங்கோலியன்"
+
+#: anura/services/language/validator.py:100
+msgid "Maori"
+msgstr "மௌரி"
+
+#: anura/services/language/validator.py:101
+msgid "Malay"
+msgstr "மலாய்"
+
+#: anura/services/language/validator.py:102
+msgid "Burmese"
+msgstr "பர்மீச்"
+
+#: anura/services/language/validator.py:103
+msgid "Nepali"
+msgstr "நேபாளி"
+
+#: anura/services/language/validator.py:104
+msgid "Dutch"
+msgstr "டச்சு"
+
+#: anura/services/language/validator.py:105
+msgid "Norwegian"
+msgstr "நோர்வே"
+
+#: anura/services/language/validator.py:106
+msgid "Occitan"
+msgstr "ஒக்கிடன்"
+
+#: anura/services/language/validator.py:107
+msgid "Oriya"
+msgstr "ஓரியா"
+
+#: anura/services/language/validator.py:108
+msgid "Panjabi"
+msgstr "பஞ்சாபி; பஞ்சாபி"
+
+#: anura/services/language/validator.py:109
+msgid "Polish"
+msgstr "போலீச்"
+
+#: anura/services/language/validator.py:110
+msgid "Portuguese"
+msgstr "போர்த்துகீசியம்"
+
+#: anura/services/language/validator.py:111
+msgid "Pushto"
+msgstr "புச்டூ; பாச்டூ"
+
+#: anura/services/language/validator.py:112
+msgid "Quechua"
+msgstr "க்வெச்சுவா"
+
+#: anura/services/language/validator.py:113
+msgid "Romanian"
+msgstr "போச்னிய"
+
+#: anura/services/language/validator.py:114
+msgid "Russian"
+msgstr "ரச்ய"
+
+#: anura/services/language/validator.py:115
+msgid "Sanskrit"
+msgstr "செங்கிருதம்"
+
+#: anura/services/language/validator.py:116
+msgid "Sinhala"
+msgstr "சிங்களம்"
+
+#: anura/services/language/validator.py:117
+msgid "Slovak"
+msgstr "ச்லோவாக்"
+
+#: anura/services/language/validator.py:118
+msgid "Slovenian"
+msgstr "ச்லோவேனியன்"
+
+#: anura/services/language/validator.py:119
+msgid "Sindhi"
+msgstr "சிந்தி"
+
+#: anura/services/language/validator.py:120
+msgid "Spanish"
+msgstr "டேனிச்"
+
+#: anura/services/language/validator.py:121
+msgid "Spanish - Old"
+msgstr "ச்பானிச்; காச்டிலியன் - பழையது"
+
+#: anura/services/language/validator.py:122
+msgid "Albanian"
+msgstr "அல்பேனிய"
+
+#: anura/services/language/validator.py:123
+msgid "Serbian"
+msgstr "செர்பிய"
+
+#: anura/services/language/validator.py:124
+msgid "Serbian - Latin"
+msgstr "செர்பியன் - லத்தீன்"
+
+#: anura/services/language/validator.py:125
+msgid "Sundanese"
+msgstr "சுந்தானியர்கள்"
+
+#: anura/services/language/validator.py:126
+msgid "Swahili"
+msgstr "ச்வாஇலி"
+
+#: anura/services/language/validator.py:127
+msgid "Swedish"
+msgstr "ச்வீடிச்"
+
+#: anura/services/language/validator.py:128
+msgid "Syriac"
+msgstr "சிரியாக்"
+
+#: anura/services/language/validator.py:129
+msgid "Tamil"
+msgstr "தமிழ்"
+
+#: anura/services/language/validator.py:130
+msgid "Tatar"
+msgstr "டாடர்"
+
+#: anura/services/language/validator.py:131
+msgid "Telugu"
+msgstr "தெலுங்கு"
+
+#: anura/services/language/validator.py:132
+msgid "Tajik"
+msgstr "தசிக்"
+
+#: anura/services/language/validator.py:133
+msgid "Thai"
+msgstr "தாய்"
+
+#: anura/services/language/validator.py:134
+msgid "Tigrinya"
+msgstr "டிக்ரின்யா"
+
+#: anura/services/language/validator.py:135
+msgid "Tonga"
+msgstr "டொங்கா"
+
+#: anura/services/language/validator.py:136
+msgid "Turkish"
+msgstr "துருக்கிய"
+
+#: anura/services/language/validator.py:137
+msgid "Uighur"
+msgstr "உகுர்;யுகுர்"
+
+#: anura/services/language/validator.py:138
+msgid "Ukrainian"
+msgstr "உக்ரேனிய"
+
+#: anura/services/language/validator.py:139
+msgid "Urdu"
+msgstr "உருது"
+
+#: anura/services/language/validator.py:140
+msgid "Uzbek"
+msgstr "உச்பெக்"
+
+#: anura/services/language/validator.py:141
+msgid "Uzbek - Cyrillic"
+msgstr "உச்பெக் - சிரிலிக்"
+
+#: anura/services/language/validator.py:142
+msgid "Vietnamese"
+msgstr "வியட்நாமிய"
+
+#: anura/services/language/validator.py:143
+msgid "Yiddish"
+msgstr "யெட்டிச்"
+
+#: anura/services/language/validator.py:144
+msgid "Yoruba"
+msgstr "யோருபா"
+
+#: anura/services/screenshot/legacy_provider.py:86
+msgid "Failed to create temporary file."
+msgstr ""
+
+#: anura/services/screenshot/legacy_provider.py:189
+msgid "Screenshot tool produced no output."
+msgstr ""
+
+#: anura/services/screenshot_service.py:67
 msgid "Enhancing image..."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:125
+#: anura/services/screenshot_service.py:81
 msgid "Running Tesseract OCR..."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:137
+#: anura/services/screenshot_service.py:95
 msgid "Reconstructing structure..."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:144
+#: anura/services/screenshot_service.py:106
 msgid "Magic processing..."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:181
+#: anura/services/screenshot_service.py:161
+#: anura/services/screenshot_service.py:631
+msgid "The selected image file is empty."
+msgstr "தேர்ந்தெடுக்கப்பட்ட படக் கோப்பு காலியாக உள்ளது."
+
+#: anura/services/screenshot_service.py:254
 msgid "Failed to process image in isolated process."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:291
+#: anura/services/screenshot_service.py:381
+#: anura/services/screenshot_service.py:389
 #, python-brace-format
 msgid "Screenshot failed: {reason}"
 msgstr "திரைக்காட்சி தோல்வியடைந்தது: {reason}"
 
-#: ../anura/services/screenshot_service.py:301
+#: anura/services/screenshot_service.py:399
 msgid "Failed to initiate screenshot capture."
 msgstr "திரைக்காட்சி பிடிப்பைத் தொடங்குவதில் தோல்வி."
 
-#: ../anura/services/screenshot_service.py:312
-#: ../anura/services/screenshot_service.py:322
+#: anura/services/screenshot_service.py:410
+#: anura/services/screenshot_service.py:420
 msgid "Can't take a screenshot."
 msgstr "திரை காட்சி எடுக்க முடியாது."
 
-#: ../anura/services/screenshot_service.py:433
-#: ../anura/services/screenshot_service.py:614
-msgid "Invalid language code specified."
-msgstr "தவறான மொழிக் குறியீடு குறிப்பிடப்பட்டுள்ளது."
-
-#: ../anura/services/screenshot_service.py:553
-msgid "Failed to read image file."
-msgstr "படக் கோப்பைப் படிக்க முடியவில்லை."
-
-#: ../anura/services/screenshot_service.py:556
-msgid "OCR engine failed to process image."
-msgstr "OCR இன்சின் படத்தைச் செயலாக்க முடியவில்லை."
-
-#: ../anura/services/screenshot_service.py:559
-#: ../anura/services/screenshot_service.py:564
-msgid "Failed to decode data."
-msgstr "தரவை டிகோட் செய்ய முடியவில்லை."
-
-#: ../anura/services/screenshot_service.py:631
+#: anura/services/screenshot_service.py:470
 msgid "Extracting text..."
 msgstr ""
 
-#: ../anura/services/screenshot_service.py:674
+#: anura/services/screenshot_service.py:490
 msgid "OCR processing failed. Please try again."
 msgstr ""
 
-#: ../anura/services/screenshot/legacy_provider.py:90
-msgid "Failed to create temporary file."
+#: anura/services/screenshot_service.py:605
+#: anura/services/screenshot_service.py:811
+msgid "Invalid language code specified."
+msgstr "தவறான மொழிக் குறியீடு குறிப்பிடப்பட்டுள்ளது."
+
+#: anura/services/screenshot_service.py:752
+msgid "Failed to read image file."
+msgstr "படக் கோப்பைப் படிக்க முடியவில்லை."
+
+#: anura/services/screenshot_service.py:755
+msgid "OCR engine failed to process image."
+msgstr "OCR இன்சின் படத்தைச் செயலாக்க முடியவில்லை."
+
+#: anura/services/screenshot_service.py:758
+#: anura/services/screenshot_service.py:763
+msgid "Failed to decode data."
+msgstr "தரவை டிகோட் செய்ய முடியவில்லை."
+
+#: anura/services/screenshot_service.py:832
+#, fuzzy
+msgid "Failed to decode image."
+msgstr "தரவை டிகோட் செய்ய முடியவில்லை."
+
+#: anura/services/share_providers.py:27
+msgid "Email"
 msgstr ""
 
-#: ../anura/services/screenshot/legacy_provider.py:184
-msgid "Screenshot tool produced no output."
+#: anura/services/share_providers.py:32
+msgid "Mastodon"
 msgstr ""
 
-#: ../anura/services/share_service.py:208
+#: anura/services/share_providers.py:37
+msgid "Reddit"
+msgstr ""
+
+#: anura/services/share_providers.py:46
+msgid "Telegram"
+msgstr ""
+
+#: anura/services/share_providers.py:51
+msgid "X"
+msgstr ""
+
+#: anura/services/share_providers.py:56
+msgid "Bluesky"
+msgstr ""
+
+#: anura/services/share_providers.py:61
+msgid "Discord"
+msgstr ""
+
+#: anura/services/share_providers.py:66
+msgid "LinkedIn"
+msgstr ""
+
+#: anura/services/share_providers.py:71
+msgid "Threads"
+msgstr ""
+
+#: anura/services/share_service.py:199
 msgid "Select Mastodon Instance"
 msgstr "மாச்டோடன் நிகழ்வைத் தேர்ந்தெடுக்கவும்"
 
-#: ../anura/services/share_service.py:209
+#: anura/services/share_service.py:200
 msgid "Choose your Mastodon instance to share the extracted text:"
-msgstr ""
-"பிரித்தெடுக்கப்பட்ட உரையைப் பகிர உங்கள் மாச்டோடன் நிகழ்வைத் தேர்வு செய்யவும்:"
+msgstr "பிரித்தெடுக்கப்பட்ட உரையைப் பகிர உங்கள் மாச்டோடன் நிகழ்வைத் தேர்வு செய்யவும்:"
 
-#: ../anura/services/share_service.py:215
+#: anura/services/share_service.py:206 anura/widgets/history_page.py:140
 msgid "Cancel"
 msgstr "ரத்துசெய்"
 
-#: ../anura/services/share_service.py:254
+#: anura/services/share_service.py:245
 msgid "Cannot show dialog without active window"
 msgstr "செயலில் உள்ள சாளரம் இல்லாமல் உரையாடலைக் காட்ட முடியாது"
 
-#: ../anura/services/share_service.py:373
-msgid "Extracted Text"
-msgstr "பிரித்தெடுக்கப்பட்ட உரை"
-
-#: ../anura/services/language_manager.py:69
-#: ../anura/services/language_manager.py:125 ../anura/window.py:83
-msgid "English"
-msgstr "ஆங்கிலம்"
-
-#: ../anura/services/language_manager.py:98
-msgid "Afrikaans"
-msgstr "ஆப்பிரிக்கா"
-
-#: ../anura/services/language_manager.py:99
-msgid "Amharic"
-msgstr "அம்ஆரிக்"
-
-#: ../anura/services/language_manager.py:100
-msgid "Arabic"
-msgstr "அரபு"
-
-#: ../anura/services/language_manager.py:101
-msgid "Assamese"
-msgstr "அச்சாமீச்"
-
-#: ../anura/services/language_manager.py:102
-msgid "Azerbaijani"
-msgstr "அசர்பைசானி"
-
-#: ../anura/services/language_manager.py:103
-msgid "Azerbaijani - Cyrillic"
-msgstr "அசர்பைசானி - சிரிலிக்"
-
-#: ../anura/services/language_manager.py:104
-msgid "Belarusian"
-msgstr "பெலாருசியன்"
-
-#: ../anura/services/language_manager.py:105
-msgid "Bengali"
-msgstr "பெங்காலி"
-
-#: ../anura/services/language_manager.py:106
-msgid "Tibetan"
-msgstr "திபெத்திய"
-
-#: ../anura/services/language_manager.py:107
-msgid "Bosnian"
-msgstr "போச்னிய"
-
-#: ../anura/services/language_manager.py:108
-msgid "Breton"
-msgstr "பிரெட்டன்"
-
-#: ../anura/services/language_manager.py:109
-msgid "Bulgarian"
-msgstr "பல்கேரியன்"
-
-#: ../anura/services/language_manager.py:110
-msgid "Catalan"
-msgstr "கற்றலான்"
-
-#: ../anura/services/language_manager.py:111
-msgid "Cebuano"
-msgstr "செபுவானோ"
-
-#: ../anura/services/language_manager.py:112
-msgid "Czech"
-msgstr "செக்"
-
-#: ../anura/services/language_manager.py:113
-msgid "Chinese - Simplified"
-msgstr "சீன - எளிமைப்படுத்தப்பட்ட"
-
-#: ../anura/services/language_manager.py:114
-msgid "Chinese - Simplified (vertical)"
-msgstr "சீன - எளிமைப்படுத்தப்பட்ட (செங்குத்து)"
-
-#: ../anura/services/language_manager.py:115
-msgid "Chinese - Traditional"
-msgstr "சீன - பாரம்பரிய"
-
-#: ../anura/services/language_manager.py:116
-msgid "Chinese - Traditional (vertical)"
-msgstr "சீன - பாரம்பரிய (செங்குத்து)"
-
-#: ../anura/services/language_manager.py:117
-msgid "Cherokee"
-msgstr "செரோகி"
-
-#: ../anura/services/language_manager.py:118
-msgid "Corsican"
-msgstr "கார்சிகன்"
-
-#: ../anura/services/language_manager.py:119
-msgid "Welsh"
-msgstr "வேல்ச்"
-
-#: ../anura/services/language_manager.py:120
-msgid "Danish"
-msgstr "டேனிச்"
-
-#: ../anura/services/language_manager.py:121
-msgid "German"
-msgstr "செர்மன்"
-
-#: ../anura/services/language_manager.py:122
-msgid "German - Fraktur"
-msgstr ""
-
-#: ../anura/services/language_manager.py:123
-msgid "Dzongkha"
-msgstr "பூடானி"
-
-#: ../anura/services/language_manager.py:124
-msgid "Greek"
-msgstr "கிரேக்கம்"
-
-#: ../anura/services/language_manager.py:126
-msgid "English, Middle"
-msgstr "ஆங்கிலம் மத்திய (1100-1500)"
-
-#: ../anura/services/language_manager.py:127
-msgid "Esperanto"
-msgstr "எச்பெராண்டோ"
-
-#: ../anura/services/language_manager.py:131
-msgid "Estonian"
-msgstr "எச்டோனிய"
-
-#: ../anura/services/language_manager.py:132
-msgid "Basque"
-msgstr "பாச்க்"
-
-#: ../anura/services/language_manager.py:133
-msgid "Faroese"
-msgstr "பரோச்"
-
-#: ../anura/services/language_manager.py:134
-msgid "Persian"
-msgstr "பெர்சியன்"
-
-#: ../anura/services/language_manager.py:135
-msgid "Filipino"
-msgstr "ஃபிலிபினோ"
-
-#: ../anura/services/language_manager.py:136
-msgid "Finnish"
-msgstr "பின்னிச்"
-
-#: ../anura/services/language_manager.py:137
-msgid "French"
-msgstr "பிரஞ்சு"
-
-#: ../anura/services/language_manager.py:138
-msgid "French, Middle"
-msgstr "பிரஞ்சு, நடுத்தர (Ca.1400-1600)"
-
-#: ../anura/services/language_manager.py:139
-msgid "Western Frisian"
-msgstr "மேற்கு ஃபிரிசியன்"
-
-#: ../anura/services/language_manager.py:140
-msgid "Scottish Gaelic"
-msgstr "ச்கோட்டிச் கயாலிக்"
-
-#: ../anura/services/language_manager.py:141
-msgid "Irish"
-msgstr "ஐரிச்"
-
-#: ../anura/services/language_manager.py:142
-msgid "Galician"
-msgstr "காலிசியன்"
-
-#: ../anura/services/language_manager.py:143
-msgid "Greek, Ancient"
-msgstr "கிரேக்கம், பண்டைய"
-
-#: ../anura/services/language_manager.py:144
-msgid "Gujarati"
-msgstr "குசராத்தி"
-
-#: ../anura/services/language_manager.py:145
-msgid "Haitian"
-msgstr "குரோசியன்"
-
-#: ../anura/services/language_manager.py:146
-msgid "Hebrew"
-msgstr "எபிரேய"
-
-#: ../anura/services/language_manager.py:147
-msgid "Hindi"
-msgstr "இந்தி"
-
-#: ../anura/services/language_manager.py:148
-msgid "Croatian"
-msgstr "குரோசியன்"
-
-#: ../anura/services/language_manager.py:149
-msgid "Hungarian"
-msgstr "அங்கேரியன்"
-
-#: ../anura/services/language_manager.py:150
-msgid "Armenian"
-msgstr "ஆர்மீனியன்"
-
-#: ../anura/services/language_manager.py:151
-msgid "Inuktitut"
-msgstr "இனுகிடூட்"
-
-#: ../anura/services/language_manager.py:152
-msgid "Indonesian"
-msgstr "இந்தோனேசிய"
-
-#: ../anura/services/language_manager.py:153
-msgid "Icelandic"
-msgstr "ஐச்லாந்திய"
-
-#: ../anura/services/language_manager.py:154
-msgid "Italian"
-msgstr "இத்தாலிய"
-
-#: ../anura/services/language_manager.py:155
-msgid "Italian - Old"
-msgstr "இத்தாலியன் - பழையது"
-
-#: ../anura/services/language_manager.py:156
-msgid "Javanese"
-msgstr "சாவானீச்"
-
-#: ../anura/services/language_manager.py:157
-msgid "Japanese"
-msgstr "சப்பானியர்கள்"
-
-#: ../anura/services/language_manager.py:158
-msgid "Japanese (vertical)"
-msgstr "சப்பானிய (செங்குத்து)"
-
-#: ../anura/services/language_manager.py:159
-msgid "Kannada"
-msgstr "கன்னடா"
-
-#: ../anura/services/language_manager.py:160
-msgid "Georgian"
-msgstr "சார்சியன்"
-
-#: ../anura/services/language_manager.py:161
-msgid "Georgian - Old"
-msgstr "சார்சியன் - பழையது"
-
-#: ../anura/services/language_manager.py:162
-msgid "Kazakh"
-msgstr "கசாக்"
-
-#: ../anura/services/language_manager.py:163
-msgid "Central Khmer"
-msgstr "சென்டரல் கெமெர்"
-
-#: ../anura/services/language_manager.py:164
-msgid "Kirghiz"
-msgstr "கிர்கிச்; கைர்கிசை"
-
-#: ../anura/services/language_manager.py:165
-msgid "Kurmanji"
-msgstr "குர்மான்சி"
-
-#: ../anura/services/language_manager.py:166
-msgid "Korean"
-msgstr "கொரிய"
-
-#: ../anura/services/language_manager.py:167
-msgid "Korean (vertical)"
-msgstr "கொரிய (செங்குத்து)"
-
-#: ../anura/services/language_manager.py:168
-msgid "Lao"
-msgstr "லாவோ"
-
-#: ../anura/services/language_manager.py:169
-msgid "Latin"
-msgstr "லத்தீன்"
-
-#: ../anura/services/language_manager.py:170
-msgid "Latvian"
-msgstr "லாட்வியன்"
-
-#: ../anura/services/language_manager.py:171
-msgid "Lithuanian"
-msgstr "லிதுவேனியன்"
-
-#: ../anura/services/language_manager.py:172
-msgid "Luxembourgish"
-msgstr "லக்சம்போர்கிச்"
-
-#: ../anura/services/language_manager.py:173
-msgid "Malayalam"
-msgstr "மலையாளம்"
-
-#: ../anura/services/language_manager.py:174
-msgid "Marathi"
-msgstr "மராத்தி"
-
-#: ../anura/services/language_manager.py:175
-msgid "Macedonian"
-msgstr "மாசிடோனியன்"
-
-#: ../anura/services/language_manager.py:176
-msgid "Maltese"
-msgstr "மால்டிச்"
-
-#: ../anura/services/language_manager.py:177
-msgid "Mongolian"
-msgstr "மங்கோலியன்"
-
-#: ../anura/services/language_manager.py:178
-msgid "Maori"
-msgstr "மௌரி"
-
-#: ../anura/services/language_manager.py:179
-msgid "Malay"
-msgstr "மலாய்"
-
-#: ../anura/services/language_manager.py:180
-msgid "Burmese"
-msgstr "பர்மீச்"
-
-#: ../anura/services/language_manager.py:181
-msgid "Nepali"
-msgstr "நேபாளி"
-
-#: ../anura/services/language_manager.py:182
-msgid "Dutch"
-msgstr "டச்சு"
-
-#: ../anura/services/language_manager.py:183
-msgid "Norwegian"
-msgstr "நோர்வே"
-
-#: ../anura/services/language_manager.py:184
-msgid "Occitan"
-msgstr "ஒக்கிடன்"
-
-#: ../anura/services/language_manager.py:185
-msgid "Oriya"
-msgstr "ஓரியா"
-
-#: ../anura/services/language_manager.py:189
-msgid "Panjabi"
-msgstr "பஞ்சாபி; பஞ்சாபி"
-
-#: ../anura/services/language_manager.py:190
-msgid "Polish"
-msgstr "போலீச்"
-
-#: ../anura/services/language_manager.py:191
-msgid "Portuguese"
-msgstr "போர்த்துகீசியம்"
-
-#: ../anura/services/language_manager.py:192
-msgid "Pushto"
-msgstr "புச்டூ; பாச்டூ"
-
-#: ../anura/services/language_manager.py:193
-msgid "Quechua"
-msgstr "க்வெச்சுவா"
-
-#: ../anura/services/language_manager.py:194
-msgid "Romanian"
-msgstr "போச்னிய"
-
-#: ../anura/services/language_manager.py:195
-msgid "Russian"
-msgstr "ரச்ய"
-
-#: ../anura/services/language_manager.py:196
-msgid "Sanskrit"
-msgstr "செங்கிருதம்"
-
-#: ../anura/services/language_manager.py:197
-msgid "Sinhala"
-msgstr "சிங்களம்"
-
-#: ../anura/services/language_manager.py:198
-msgid "Slovak"
-msgstr "ச்லோவாக்"
-
-#: ../anura/services/language_manager.py:199
-msgid "Slovenian"
-msgstr "ச்லோவேனியன்"
-
-#: ../anura/services/language_manager.py:200
-msgid "Sindhi"
-msgstr "சிந்தி"
-
-#: ../anura/services/language_manager.py:201
-msgid "Spanish"
-msgstr "டேனிச்"
-
-#: ../anura/services/language_manager.py:202
-msgid "Spanish - Old"
-msgstr "ச்பானிச்; காச்டிலியன் - பழையது"
-
-#: ../anura/services/language_manager.py:203
-msgid "Albanian"
-msgstr "அல்பேனிய"
-
-#: ../anura/services/language_manager.py:204
-msgid "Serbian"
-msgstr "செர்பிய"
-
-#: ../anura/services/language_manager.py:205
-msgid "Serbian - Latin"
-msgstr "செர்பியன் - லத்தீன்"
-
-#: ../anura/services/language_manager.py:206
-msgid "Sundanese"
-msgstr "சுந்தானியர்கள்"
-
-#: ../anura/services/language_manager.py:207
-msgid "Swahili"
-msgstr "ச்வாஇலி"
-
-#: ../anura/services/language_manager.py:208
-msgid "Swedish"
-msgstr "ச்வீடிச்"
-
-#: ../anura/services/language_manager.py:209
-msgid "Syriac"
-msgstr "சிரியாக்"
-
-#: ../anura/services/language_manager.py:210
-msgid "Tamil"
-msgstr "தமிழ்"
-
-#: ../anura/services/language_manager.py:211
-msgid "Tatar"
-msgstr "டாடர்"
-
-#: ../anura/services/language_manager.py:212
-msgid "Telugu"
-msgstr "தெலுங்கு"
-
-#: ../anura/services/language_manager.py:213
-msgid "Tajik"
-msgstr "தசிக்"
-
-#: ../anura/services/language_manager.py:214
-msgid "Thai"
-msgstr "தாய்"
-
-#: ../anura/services/language_manager.py:215
-msgid "Tigrinya"
-msgstr "டிக்ரின்யா"
-
-#: ../anura/services/language_manager.py:216
-msgid "Tonga"
-msgstr "டொங்கா"
-
-#: ../anura/services/language_manager.py:217
-msgid "Turkish"
-msgstr "துருக்கிய"
-
-#: ../anura/services/language_manager.py:218
-msgid "Uighur"
-msgstr "உகுர்;யுகுர்"
-
-#: ../anura/services/language_manager.py:219
-msgid "Ukrainian"
-msgstr "உக்ரேனிய"
-
-#: ../anura/services/language_manager.py:220
-msgid "Urdu"
-msgstr "உருது"
-
-#: ../anura/services/language_manager.py:221
-msgid "Uzbek"
-msgstr "உச்பெக்"
-
-#: ../anura/services/language_manager.py:222
-msgid "Uzbek - Cyrillic"
-msgstr "உச்பெக் - சிரிலிக்"
-
-#: ../anura/services/language_manager.py:223
-msgid "Vietnamese"
-msgstr "வியட்நாமிய"
-
-#: ../anura/services/language_manager.py:224
-msgid "Yiddish"
-msgstr "யெட்டிச்"
-
-#: ../anura/services/language_manager.py:225
-msgid "Yoruba"
-msgstr "யோருபா"
-
-#: ../anura/utils/portal_advice.py:86
+#: anura/utils/portal_advice.py:86
 msgid "LXQt"
 msgstr "பெருமூச்சு விடுகிறார்கள்"
 
-#: ../anura/utils/portal_advice.py:87
+#: anura/utils/portal_advice.py:87
 msgid ""
 "Screenshot portal is not configured for LXQt. See the README for the LXQt "
 "setup steps."
@@ -785,7 +854,7 @@ msgstr ""
 "திரைக்காட்சி போர்டல் LXQt க்காக கட்டமைக்கப்படவில்லை. LXQt அமைவு படிகளுக்கு README ஐப் "
 "பார்க்கவும்."
 
-#: ../anura/utils/portal_advice.py:89
+#: anura/utils/portal_advice.py:89
 msgid ""
 "On LXQt, install xdg-desktop-portal-kde, then create ~/.config/xdg-desktop-"
 "portal/lxqt-portals.conf with [preferred] org.freedesktop.impl.portal."
@@ -793,18 +862,18 @@ msgid ""
 "portal.service)."
 msgstr ""
 
-#: ../anura/utils/portal_advice.py:100
+#: anura/utils/portal_advice.py:100
 msgid "KDE Plasma"
 msgstr "KDE பிளாச்மா"
 
-#: ../anura/utils/portal_advice.py:101
+#: anura/utils/portal_advice.py:101
 msgid ""
 "Screenshot portal unavailable. Install xdg-desktop-portal-kde and re-login."
 msgstr ""
 "திரைக்காட்சி போர்டல் கிடைக்கவில்லை. xdg-desktop-portal-kde ஐ நிறுவி மீண்டும் "
 "உள்நுழையவும்."
 
-#: ../anura/utils/portal_advice.py:103
+#: anura/utils/portal_advice.py:103
 msgid ""
 "Screenshot failed. On KDE Plasma, install xdg-desktop-portal-kde (e.g. sudo "
 "apt install xdg-desktop-portal-kde) and log out and back in."
@@ -813,43 +882,43 @@ msgstr ""
 "(எ.கா. sudo apt install xdg-desktop-portal-kde) மற்றும் வெளியேறி மீண்டும் உள்ளே "
 "செல்லவும்."
 
-#: ../anura/utils/portal_advice.py:112
+#: anura/utils/portal_advice.py:112
 msgid "your wlroots compositor"
 msgstr "உங்கள் wlroots இசையமைப்பாளர்"
 
-#: ../anura/utils/portal_advice.py:113
+#: anura/utils/portal_advice.py:113
 msgid ""
 "Screenshot portal unavailable. Install xdg-desktop-portal-wlr and re-login."
 msgstr ""
 "திரைக்காட்சி போர்டல் கிடைக்கவில்லை. xdg-desktop-portal-wlr ஐ நிறுவி மீண்டும் "
 "உள்நுழையவும்."
 
-#: ../anura/utils/portal_advice.py:115
+#: anura/utils/portal_advice.py:115
 msgid ""
 "Screenshot failed. On wlroots-based compositors (Sway, Hyprland, river, "
 "Niri, …), install xdg-desktop-portal-wlr (e.g. sudo apt install xdg-desktop-"
 "portal-wlr) and log out and back in."
 msgstr ""
-"திரைக்காட்சி தோல்வியடைந்தது. wlroots-அடிப்படையிலான இசையமைப்பாளர்களில் (Sway, Hyprland, "
-"River, Niri, …), xdg-desktop-portal-wlr ஐ நிறுவவும் (எ.கா. sudo apt install "
-"xdg-desktop-portal-wlr) மற்றும் வெளியேறி மீண்டும் உள்ளே செல்லவும்."
+"திரைக்காட்சி தோல்வியடைந்தது. wlroots-அடிப்படையிலான இசையமைப்பாளர்களில் (Sway, "
+"Hyprland, River, Niri, …), xdg-desktop-portal-wlr ஐ நிறுவவும் (எ.கா. sudo apt "
+"install xdg-desktop-portal-wlr) மற்றும் வெளியேறி மீண்டும் உள்ளே செல்லவும்."
 
-#: ../anura/utils/portal_advice.py:126
+#: anura/utils/portal_advice.py:126
 msgid "GNOME"
 msgstr "க்னோம்"
 
-#: ../anura/utils/portal_advice.py:127
+#: anura/utils/portal_advice.py:127
 msgid ""
 "Screenshot portal unavailable. Install xdg-desktop-portal-gnome and re-login."
 msgstr ""
 
-#: ../anura/utils/portal_advice.py:129
+#: anura/utils/portal_advice.py:129
 msgid ""
 "Screenshot failed. On GNOME / Ubuntu, install xdg-desktop-portal-gnome (e.g. "
 "sudo apt install xdg-desktop-portal-gnome) and log out and back in."
 msgstr ""
 
-#: ../anura/utils/portal_advice.py:148
+#: anura/utils/portal_advice.py:148
 msgid ""
 "Screenshot portal unavailable. Install xdg-desktop-portal-gnome (or -kde) "
 "and re-login."
@@ -857,7 +926,7 @@ msgstr ""
 "திரைக்காட்சி போர்டல் கிடைக்கவில்லை. xdg-desktop-portal-gnome (அல்லது -kde) ஐ நிறுவி "
 "மீண்டும் உள்நுழைக."
 
-#: ../anura/utils/portal_advice.py:150
+#: anura/utils/portal_advice.py:150
 #, python-brace-format
 msgid ""
 "Screenshot failed. On {desktop}, install xdg-desktop-portal-gnome (or xdg-"
@@ -868,11 +937,11 @@ msgstr ""
 "desktop-portal-kde) ஐ நிறுவி, வெளியேறி மீண்டும் உள்ளே செல்லவும். நவீன உபுண்டுவில் xdg-"
 "desktop-portal-gtk இனி திரைக்காட்சி இடைமுகத்தை வழங்காது."
 
-#: ../anura/utils/portal_advice.py:159
+#: anura/utils/portal_advice.py:159
 msgid "your desktop"
 msgstr "உங்கள் டெச்க்டாப்"
 
-#: ../anura/utils/portal_advice.py:160
+#: anura/utils/portal_advice.py:160
 msgid ""
 "Screenshot portal unavailable. Install the xdg-desktop-portal backend "
 "matching your desktop."
@@ -880,7 +949,7 @@ msgstr ""
 "திரைக்காட்சி போர்டல் கிடைக்கவில்லை. உங்கள் டெச்க்டாப்பிற்கு பொருந்தும் xdg-desktop-portal "
 "backendஐ நிறுவவும்."
 
-#: ../anura/utils/portal_advice.py:162
+#: anura/utils/portal_advice.py:162
 msgid ""
 "Screenshot failed. Your desktop session does not appear to expose a working "
 "screenshot portal. Install the xdg-desktop-portal backend matching your "
@@ -891,673 +960,902 @@ msgstr ""
 "backendஐ நிறுவவும் (எ.கா. xdg-desktop-portal-gnome, -kde, -wlr) மற்றும் மீண்டும் "
 "உள்நுழையவும்."
 
-#: ../anura/utils/validators.py:310
+#: anura/utils/validators.py:476
 msgid "Invalid URL blocked for security"
 msgstr "பாதுகாப்பிற்காக தவறான முகவரி தடுக்கப்பட்டது"
 
-#: ../anura/utils/validators.py:324
+#: anura/utils/validators.py:490
 msgid "Failed to open link"
 msgstr "இணைப்பைத் திறக்க முடியவில்லை"
 
-#: ../anura/core/dialogs.py:39
-msgid "Acknowledgements"
-msgstr "அங்கீகாரங்கள்"
-
-#: ../anura/core/dialogs.py:42
-msgid ""
-"Built with Tesseract OCR, GTK4, Libadwaita, and other open source components."
-msgstr ""
-
-#: ../anura/core/dialogs.py:44
-msgid "Changelog"
-msgstr "மாற்றபதிவு"
-
-#: ../anura/core/dialogs.py:45
-msgid "Report an Issue"
-msgstr "ஒரு சிக்கலைப் புகாரளிக்கவும்"
-
-#: ../anura/core/dialogs.py:80
-msgid "OK"
-msgstr ""
-
-#: ../anura/widgets/preferences_general_page.py:57
-msgctxt "color-scheme"
-msgid "System"
-msgstr ""
-
-#: ../anura/widgets/preferences_general_page.py:58
-msgctxt "color-scheme"
-msgid "Light"
-msgstr ""
-
-#: ../anura/widgets/preferences_general_page.py:59
-msgctxt "color-scheme"
-msgid "Dark"
-msgstr ""
-
-#: ../anura/widgets/preferences_general_page.py:142
-#, python-brace-format
-msgid "TTS playback volume level: {percentage:.0f}%"
-msgstr "TTS பிளேபேக் வால்யூம் நிலை: {percentage:.0f}%"
-
-#: ../anura/widgets/preferences_general_page.py:157
-msgid "Auto (follow OCR language)"
-msgstr "தானியங்கு (OCR மொழியைப் பின்பற்றவும்)"
-
-#: ../anura/widgets/extracted_page.py:88
+#: anura/widgets/extracted_page.py:123
 msgid ""
 "Shows character and word count. If text is selected, shows selection stats."
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:138
+#: anura/widgets/extracted_page.py:191
 msgid "Selection: "
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:146
+#: anura/widgets/extracted_page.py:199
 #, python-brace-format
 msgid "{n} word"
 msgid_plural "{n} words"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../anura/widgets/extracted_page.py:147
+#: anura/widgets/extracted_page.py:200
 #, python-brace-format
 msgid "{n} character"
 msgid_plural "{n} characters"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../anura/widgets/extracted_page.py:150
+#: anura/widgets/extracted_page.py:203
 #, python-brace-format
 msgid "{words} | {chars}"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:158
+#: anura/widgets/extracted_page.py:211
 msgctxt "Extracted screen"
 msgid "Copy Selected Text to Clipboard (Ctrl+C)"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:159
+#: anura/widgets/extracted_page.py:212
 msgctxt "Extracted screen"
 msgid "Listen to Selected Text (Ctrl+L)"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:160
+#: anura/widgets/extracted_page.py:213
 msgctxt "Extracted screen"
 msgid "Share Selection To"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:162
+#: anura/widgets/extracted_page.py:215 data/ui/extracted_page.blp:36
 msgctxt "Extracted screen"
 msgid "Copy Extracted Text to Clipboard (Ctrl+C)"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:163
+#: anura/widgets/extracted_page.py:216 data/ui/extracted_page.blp:82
 msgctxt "Extracted screen"
 msgid "Listen to Text (Ctrl+L)"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:164
+#: anura/widgets/extracted_page.py:217 data/ui/extracted_page.blp:156
 msgctxt "Extracted screen"
 msgid "Share To"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:258
+#: anura/widgets/extracted_page.py:245
+#, fuzzy
+msgctxt "Extracted screen"
+msgid "Copied to clipboard!"
+msgstr "உரை இடைநிலைப்பலகைக்கு நகலெடுக்கப்பட்டது"
+
+#: anura/widgets/extracted_page.py:300
 #, python-brace-format
 msgid "Smart Parse: {name}"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:316
-msgid "Text-to-speech is not available for this language"
+#: anura/widgets/extracted_page.py:343
+#, fuzzy
+msgid "Searching…"
+msgstr "மொழிகளைத் தேடுங்கள்…"
+
+#: anura/widgets/extracted_page.py:345
+msgid "No matches"
 msgstr ""
 
-#: ../anura/widgets/extracted_page.py:371
-msgid "Request timed out. Please try again."
-msgstr "கோரிக்கை நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்."
+#: anura/widgets/extracted_page.py:347
+#, python-brace-format
+msgid "{n} match"
+msgid_plural "{n} matches"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../anura/widgets/extracted_page.py:373
-msgid "Network error. Please check your internet connection."
-msgstr "பிணையம் பிழை. உங்கள் இணைய இணைப்பைச் சரிபார்க்கவும்."
+#: anura/widgets/extracted_page.py:415
+msgctxt "Extracted screen"
+msgid "Pause listening (Ctrl+Alt+L)"
+msgstr ""
 
-#: ../anura/widgets/extracted_page.py:375
-msgid "Text-to-speech failed. Please try again."
-msgstr "உரையிலிருந்து பேச்சு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+#: anura/widgets/extracted_page.py:416
+msgctxt "Extracted screen"
+msgid "Pause listening"
+msgstr ""
 
-#: ../anura/widgets/preferences_languages_page.py:76
+#: anura/widgets/extracted_page.py:424
+msgctxt "Extracted screen"
+msgid "Resume listening (Ctrl+Alt+L)"
+msgstr ""
+
+#: anura/widgets/extracted_page.py:425
+msgctxt "Extracted screen"
+msgid "Resume listening"
+msgstr ""
+
+#: anura/widgets/history_page.py:137
+msgid "Clear History?"
+msgstr ""
+
+#: anura/widgets/history_page.py:138
+msgid "All stored extraction history will be removed. This cannot be undone."
+msgstr ""
+
+#: anura/widgets/history_page.py:141
+msgid "Clear"
+msgstr ""
+
+#: anura/widgets/language_popover.py:125 anura/widgets/language_popover.py:149
+#: data/ui/language_popover.blp:53
+#, fuzzy
+msgid "Language list"
+msgstr "_ மொழிகள்"
+
+#: anura/widgets/language_popover.py:127
+msgid "Language list — No matching languages found"
+msgstr ""
+
+#: anura/widgets/language_popover.py:130
+#, python-brace-format
+msgid "Language list ({n} matching language)"
+msgid_plural "Language list ({n} matching languages)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: anura/widgets/language_popover_row.py:46
+#, python-brace-format
+msgid "{language} (active language)"
+msgstr ""
+
+#: anura/widgets/language_popover_row.py:48
+#, fuzzy, python-brace-format
+msgid "Select {language}"
+msgstr "பிரித்தெடுக்க மொழியைத் தேர்ந்தெடுக்கவும்"
+
+#: anura/widgets/language_row.py:59
+#, fuzzy, python-brace-format
+msgid "Install {language}"
+msgstr "நிறுவப்பட்ட மொழிகள்"
+
+#: anura/widgets/language_row.py:60
+#, fuzzy, python-brace-format
+msgid "Remove {language}"
+msgstr "மொழியைச் சேர்க்கவும்"
+
+#: anura/widgets/preferences_general_page.py:197
+#, python-brace-format
+msgid "TTS playback volume level: {percentage:.0f}%"
+msgstr "TTS பிளேபேக் வால்யூம் நிலை: {percentage:.0f}%"
+
+#: anura/widgets/preferences_general_page.py:212
+msgid "Auto (follow OCR language)"
+msgstr "தானியங்கு (OCR மொழியைப் பின்பற்றவும்)"
+
+#: anura/widgets/preferences_languages_page.py:76
+#: data/ui/preferences_languages.blp:43
 msgid "OCR models unreachable. Please check your internet connection."
 msgstr "மாதிரிகள் அணுக முடியாதவை. உங்கள் இணைய இணைப்பை சரிபார்க்கவும்."
 
-#: ../anura/widgets/preferences_languages_page.py:81
+#: anura/widgets/preferences_languages_page.py:81
 msgid "Metered connection detected. Model downloads may incur data costs."
 msgstr ""
 "அளவிடப்பட்ட இணைப்பு கண்டறியப்பட்டது. மாதிரி பதிவிறக்கங்கள் தரவு செலவுகளை ஏற்படுத்தலாம்."
 
-#: ../anura/widgets/preferences_languages_page.py:184
+#: anura/widgets/preferences_languages_page.py:186
 msgid "Fast"
 msgstr ""
 
-#: ../anura/widgets/preferences_languages_page.py:184
+#: anura/widgets/preferences_languages_page.py:186
 msgid "Standard"
 msgstr ""
 
-#: ../anura/widgets/preferences_languages_page.py:184
+#: anura/widgets/preferences_languages_page.py:186
 msgid "Best"
 msgstr ""
 
-#: ../anura/widgets/share_row.py:29
+#: anura/widgets/share_row.py:29
 #, python-brace-format
 msgid "Share via {name}"
 msgstr "{name} மூலம் பகிரவும்"
 
-#: ../anura/widgets/welcome_page.py:102
+#: anura/widgets/shortcuts_overlay.py:62
+msgid "Screenshot & OCR"
+msgstr "திரைக்காட்சி & OCR"
+
+#: anura/widgets/shortcuts_overlay.py:64
+msgid "Take screenshot"
+msgstr "திரைக்காட்சி எடுக்கவும்"
+
+#: anura/widgets/shortcuts_overlay.py:65
+msgid "Take screenshot and copy to clipboard"
+msgstr "ச்கிரீன்சாட்டை எடுத்து இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
+
+#: anura/widgets/shortcuts_overlay.py:66
+msgid "Open image file"
+msgstr "படக் கோப்பைத் திறக்கவும்"
+
+#: anura/widgets/shortcuts_overlay.py:67
+msgid "Paste image from clipboard"
+msgstr "கிளிப்போர்டிலிருந்து படத்தை ஒட்டவும்"
+
+#: anura/widgets/shortcuts_overlay.py:72 data/ui/preferences_general.blp:83
+msgid "Editor"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:74
+msgid "Select all text (in editor)"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:75
+msgid "Copy text to clipboard"
+msgstr "உரையை இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
+
+#: anura/widgets/shortcuts_overlay.py:76
+msgid "Undo (in editor)"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:77
+msgid "Redo (in editor)"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:78
+msgid "Search text"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:79
+msgid "Open in external editor"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:84 data/ui/preferences_general.blp:102
+msgid "Text-to-Speech"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:86
+#, fuzzy
+msgid "Listen to text"
+msgstr "உரையைக் கேளுங்கள் (TTS)"
+
+#: anura/widgets/shortcuts_overlay.py:87
+msgid "Pause/resume listening"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:88
+msgid "Stop listening"
+msgstr ""
+
+#: anura/widgets/shortcuts_overlay.py:93
+msgid "Application"
+msgstr "விண்ணப்பம்"
+
+#: anura/widgets/shortcuts_overlay.py:95
+msgid "Open preferences"
+msgstr "விருப்பங்களைத் திறக்கவும்"
+
+#: anura/widgets/shortcuts_overlay.py:96
+msgid "Show keyboard shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகளைக் காட்டு"
+
+#: anura/widgets/shortcuts_overlay.py:97
+msgid "Quit application"
+msgstr "விண்ணப்பத்திலிருந்து வெளியேறு"
+
+#: anura/widgets/shortcuts_overlay.py:102
+msgid "Navigation"
+msgstr "வானோடல்"
+
+#: anura/widgets/shortcuts_overlay.py:104
+#, fuzzy
+msgid "Clear search / go back"
+msgstr "உரையாடலை மூடவும்/திரும்பவும்"
+
+#: anura/widgets/welcome_page.py:76 anura/widgets/welcome_page.py:78
+#: anura/widgets/welcome_page.py:129 anura/widgets/welcome_page.py:131
+#: anura/widgets/welcome_page.py:312 anura/widgets/welcome_page.py:314
+#, fuzzy
+msgid "Drop image here"
+msgstr "படக் கோப்பை இங்கே விடவும்"
+
+#: anura/widgets/welcome_page.py:122 anura/widgets/welcome_page.py:124
+msgid "Hide drop area"
+msgstr ""
+
+#: anura/widgets/welcome_page.py:142
 #, fuzzy
 msgid "Drop image to extract text"
 msgstr "உரையை பிரித்தெடுக்க படத்தைத் திறக்கவும்"
 
-#: ../anura/widgets/welcome_page.py:114 ../anura/widgets/welcome_page.py:270
+#: anura/widgets/welcome_page.py:154 anura/widgets/welcome_page.py:315
+#: data/ui/welcome_page.blp:54
 msgid "Extract text from anywhere"
 msgstr "எங்கிருந்தும் உரையை பிரித்தெடுக்கவும்"
 
-#: ../anura/widgets/welcome_page.py:194
+#: anura/widgets/welcome_page.py:234
 msgid "No file data received from drop"
 msgstr "டிராப்பில் இருந்து கோப்பு தரவு எதுவும் பெறப்படவில்லை"
 
-#: ../anura/widgets/welcome_page.py:207
+#: anura/widgets/welcome_page.py:247
 msgid "No valid file found in drop"
 msgstr "டிராப்பில் சரியான கோப்பு எதுவும் இல்லை"
 
-#: ../anura/widgets/welcome_page.py:216
+#: anura/widgets/welcome_page.py:256
 msgid "Only local files can be dropped"
 msgstr "உள்ளக கோப்புகளை மட்டுமே கைவிட முடியும்"
 
-#: ../anura/widgets/welcome_page.py:225
+#: anura/widgets/welcome_page.py:265
 msgid ""
 "File not accessible. Ensure Anura has permission to access this location."
 msgstr ""
 
-#: ../anura/widgets/welcome_page.py:232
+#: anura/widgets/welcome_page.py:272
 msgid "Only images can be processed that way."
 msgstr "படங்களை மட்டுமே அவ்வாறு செயலாக்க முடியும்."
 
-#: ../anura/widgets/welcome_page.py:238
+#: anura/widgets/welcome_page.py:278
 msgid "Failed to process dropped file"
 msgstr "கைவிடப்பட்ட கோப்பைச் செயலாக்க முடியவில்லை"
 
-#: ../anura/widgets/welcome_page.py:258
+#: anura/widgets/welcome_page.py:298
 msgid "Processing..."
 msgstr "செயலாக்குகிறது..."
 
-#: ../anura/widgets/welcome_page.py:262
+#: anura/widgets/welcome_page.py:299
+#, fuzzy
+msgid "Image drop zone: Processing..."
+msgstr "செயலாக்குகிறது..."
+
+#: anura/widgets/welcome_page.py:303 data/ui/welcome_page.blp:153
 msgid "Drop image file here"
 msgstr "படக் கோப்பை இங்கே விடவும்"
 
-#: ../anura/widgets/shortcuts_overlay.py:62
-msgid "Screenshot & OCR"
-msgstr "திரைக்காட்சி & OCR"
-
-#: ../anura/widgets/shortcuts_overlay.py:64
-msgid "Take screenshot"
-msgstr "திரைக்காட்சி எடுக்கவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:65
-msgid "Take screenshot and copy to clipboard"
-msgstr "ச்கிரீன்சாட்டை எடுத்து இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:66
-msgid "Open image file"
-msgstr "படக் கோப்பைத் திறக்கவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:67
-msgid "Paste image from clipboard"
-msgstr "கிளிப்போர்டிலிருந்து படத்தை ஒட்டவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:72
-msgid "Text Operations"
-msgstr "உரை செயல்பாடுகள்"
-
-#: ../anura/widgets/shortcuts_overlay.py:74
-msgid "Select all text"
+#: anura/widgets/welcome_page.py:304 data/ui/welcome_page.blp:150
+msgid "Image drop zone"
 msgstr ""
 
-#: ../anura/widgets/shortcuts_overlay.py:75
-msgid "Copy text to clipboard"
-msgstr "உரையை இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:76
-msgid "Listen to text (TTS)"
-msgstr "உரையைக் கேளுங்கள் (TTS)"
-
-#: ../anura/widgets/shortcuts_overlay.py:77
-msgid "Stop text-to-speech"
-msgstr "உரையிலிருந்து பேச்சுக்கு நிறுத்து"
-
-#: ../anura/widgets/shortcuts_overlay.py:82
-msgid "Application"
-msgstr "விண்ணப்பம்"
-
-#: ../anura/widgets/shortcuts_overlay.py:84
-msgid "Open preferences"
-msgstr "விருப்பங்களைத் திறக்கவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:85
-#: ../anura/widgets/shortcuts_overlay.py:86
-#: ../anura/widgets/shortcuts_overlay.py:87
-msgid "Show keyboard shortcuts"
-msgstr "விசைப்பலகை குறுக்குவழிகளைக் காட்டு"
-
-#: ../anura/widgets/shortcuts_overlay.py:88
-#: ../anura/widgets/shortcuts_overlay.py:89
-msgid "Quit application"
-msgstr "விண்ணப்பத்திலிருந்து வெளியேறு"
-
-#: ../anura/widgets/shortcuts_overlay.py:94
-msgid "Navigation"
-msgstr "வானோடல்"
-
-#: ../anura/widgets/shortcuts_overlay.py:96
-msgid "Close dialog/go back"
-msgstr "உரையாடலை மூடவும்/திரும்பவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:97
-msgid "Navigate between widgets"
-msgstr "விட்செட்டுகளுக்கு இடையில் செல்லவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:98
-msgid "Navigate backwards"
-msgstr "பின்னோக்கி செல்லவும்"
-
-#: ../anura/widgets/shortcuts_overlay.py:103
-msgid "Advanced"
-msgstr "மேம்பட்ட"
-
-#: ../anura/widgets/shortcuts_overlay.py:105
-msgid "Open image file (advanced)"
-msgstr "படக் கோப்பைத் திற (மேம்பட்டது)"
-
-#: ../anura/widgets/shortcuts_overlay.py:106
-msgid "Show help"
-msgstr "உதவி காட்டு"
-
-#: ../anura/widgets/shortcuts_overlay.py:107
-msgid "Open application menu"
-msgstr "பயன்பாட்டு மெனுவைத் திறக்கவும்"
-
-#: ../anura/window.py:142
+#: anura/window.py:161
 msgid "Tesseract OCR not found on system"
 msgstr ""
 
-#: ../anura/window.py:148
+#: anura/window.py:167
 msgid "TTS dependencies (gTTS/GStreamer) missing"
 msgstr ""
 
-#: ../anura/window.py:169
+#: anura/window.py:188
 msgid "Screenshot timed out. Please try again."
 msgstr ""
 
-#: ../anura/window.py:181
+#: anura/window.py:200
 msgid "Capture already in progress"
 msgstr ""
 
-#: ../anura/window.py:202
+#: anura/window.py:221
 msgid "Failed to capture screenshot"
 msgstr "திரை காட்சி எடுத்துக் கொள்ளுங்கள்"
 
-#: ../anura/window.py:225
+#: anura/window.py:244
 msgid "Failed to load image file"
 msgstr "படக் கோப்பை ஏற்ற முடியவில்லை"
 
-#: ../anura/window.py:229
+#: anura/window.py:248
 msgid "Error loading file"
 msgstr ""
 
-#: ../anura/window.py:239
+#: anura/window.py:258
 msgid "Selection copied to clipboard"
 msgstr ""
 
-#: ../anura/window.py:244
+#: anura/window.py:263
 msgid "No text to copy"
 msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
 
-#: ../anura/window.py:305
+#: anura/window.py:323
+msgid "No text to open in external editor"
+msgstr ""
+
+#: anura/window.py:345
+#, fuzzy
+msgid "Failed to open external editor"
+msgstr "இணைப்பைத் திறக்க முடியவில்லை"
+
+#: anura/window.py:351
+msgid "Opened in external editor"
+msgstr ""
+
+#: anura/window.py:354
+msgid "Could not launch external editor"
+msgstr ""
+
+#: anura/window.py:456
 msgid "No text to share."
 msgstr "பகிர்வதற்கு உரை இல்லை."
 
-#: ../data/ui/preferences_languages.blp:14
-msgid "_Languages"
-msgstr "_ மொழிகள்"
-
-#: ../data/ui/preferences_languages.blp:20
-msgid "Model Quality"
+#: data/ui/extracted_page.blp:14
+msgid "Extracted"
 msgstr ""
 
-#: ../data/ui/preferences_languages.blp:21
-msgid "Higher quality is slower but more accurate"
+#: data/ui/extracted_page.blp:25
+#, fuzzy
+msgid "Take a Screenshot (Ctrl+G)"
+msgstr "_ ஒரு திரை காட்சி எடுக்கவும்"
+
+#: data/ui/extracted_page.blp:27
+msgid "Take a screenshot"
+msgstr "திரை காட்சி எடுத்துக் கொள்ளுங்கள்"
+
+#: data/ui/extracted_page.blp:38
+msgctxt "Extracted screen"
+msgid "Copy extracted text to clipboard"
 msgstr ""
 
-#: ../data/ui/preferences_languages.blp:34 ../data/ui/language_popover.blp:27
+#: data/ui/extracted_page.blp:46
+msgctxt "Extracted screen"
+msgid "Undo (Ctrl+Z)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:48
+msgctxt "Extracted screen"
+msgid "Undo"
+msgstr ""
+
+#: data/ui/extracted_page.blp:56
+msgctxt "Extracted screen"
+msgid "Redo (Ctrl+Shift+Z)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:58
+msgctxt "Extracted screen"
+msgid "Redo"
+msgstr ""
+
+#: data/ui/extracted_page.blp:66
+msgctxt "Extracted screen"
+msgid "Search Text (Ctrl+F)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:68
+msgctxt "Extracted screen"
+msgid "Search text"
+msgstr ""
+
+#: data/ui/extracted_page.blp:84
+msgctxt "Extracted screen"
+msgid "Listen to text"
+msgstr ""
+
+#: data/ui/extracted_page.blp:95 data/ui/extracted_page.blp:132
+msgctxt "Extracted screen"
+msgid "Stop listening (Ctrl+Shift+L)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:97 data/ui/extracted_page.blp:134
+msgctxt "Extracted screen"
+msgid "Stop listening"
+msgstr ""
+
+#: data/ui/extracted_page.blp:110
+msgid "Generating audio"
+msgstr ""
+
+#: data/ui/extracted_page.blp:122
+msgctxt "Extracted screen"
+msgid "Pause/Resume listening (Ctrl+Alt+L)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:124
+msgctxt "Extracted screen"
+msgid "Pause or resume listening"
+msgstr ""
+
+#: data/ui/extracted_page.blp:146 data/ui/extracted_page.blp:148
+msgctxt "Extracted screen"
+msgid "Open menu"
+msgstr ""
+
+#: data/ui/extracted_page.blp:158
+msgctxt "Extracted screen"
+msgid "Share text to other applications"
+msgstr ""
+
+#: data/ui/extracted_page.blp:166
+msgid "Share providers"
+msgstr ""
+
+#: data/ui/extracted_page.blp:190
+#, fuzzy
+msgid "Search text…"
+msgstr "மொழிகளைத் தேடுங்கள்…"
+
+#: data/ui/extracted_page.blp:192
+#, fuzzy
+msgid "Search extracted text"
+msgstr "பிரித்தெடுக்கப்பட்ட உரை"
+
+#: data/ui/extracted_page.blp:204 data/ui/extracted_page.blp:206
+msgid "Match Case"
+msgstr ""
+
+#: data/ui/extracted_page.blp:212
+msgid "Previous Match (Shift+Enter)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:214
+msgid "Previous match"
+msgstr ""
+
+#: data/ui/extracted_page.blp:220
+msgid "Next Match (Enter)"
+msgstr ""
+
+#: data/ui/extracted_page.blp:222
+msgid "Next match"
+msgstr ""
+
+#: data/ui/extracted_page.blp:237
+#, fuzzy
+msgid "Extracted text editing buffer"
+msgstr "பிரித்தெடுக்கப்பட்ட உரை"
+
+#: data/ui/extracted_page.blp:270
+msgid "Applied smart transformation"
+msgstr ""
+
+#: data/ui/extracted_page.blp:282
+#, fuzzy
+msgid "Text statistics"
+msgstr "உரை செயல்பாடுகள்"
+
+#: data/ui/extracted_page.blp:292
+msgid "Open in External Editor"
+msgstr ""
+
+#: data/ui/extracted_page.blp:298 data/ui/preferences_dialog.blp:13
+#: data/ui/welcome_page.blp:177
+msgid "Preferences"
+msgstr "விருப்பத்தேர்வுகள்"
+
+#: data/ui/extracted_page.blp:306 data/ui/shortcuts_overlay.blp:13
+#: data/ui/shortcuts_overlay.blp:25 data/ui/welcome_page.blp:185
+msgid "Keyboard Shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
+
+#: data/ui/extracted_page.blp:312 data/ui/welcome_page.blp:191
+msgid "About Anura"
+msgstr "தவளை பற்றி"
+
+#: data/ui/extracted_page.blp:327
+msgid "Open image"
+msgstr "திறந்த படத்தை"
+
+#: data/ui/extracted_page.blp:328
+msgid "Paste from clipboard"
+msgstr "கிளிப்போர்டிலிருந்து ஒட்டவும்"
+
+#: data/ui/history_page.blp:12 data/ui/preferences_general.blp:64
+#: data/ui/welcome_page.blp:171
+msgid "History"
+msgstr ""
+
+#: data/ui/history_page.blp:20 data/ui/history_page.blp:22
+msgid "Clear all history"
+msgstr ""
+
+#: data/ui/history_page.blp:50
+msgid "No History"
+msgstr ""
+
+#: data/ui/history_page.blp:51
+msgid ""
+"Extracted texts will appear here once you enable history in Preferences and "
+"extract some text."
+msgstr ""
+
+#: data/ui/history_page.blp:58
+msgid "History Disabled"
+msgstr ""
+
+#: data/ui/history_page.blp:59
+msgid ""
+"Enable \"Save Extraction History\" in Preferences to start recording "
+"extracted texts."
+msgstr ""
+
+#: data/ui/language_popover.blp:27 data/ui/preferences_languages.blp:34
 #, fuzzy
 msgid "Search Languages"
 msgstr "மொழிகளைத் தேடுங்கள்…"
 
-#: ../data/ui/preferences_languages.blp:38 ../data/ui/language_popover.blp:30
+#: data/ui/language_popover.blp:30 data/ui/preferences_languages.blp:38
 msgid "Search Languages…"
 msgstr "மொழிகளைத் தேடுங்கள்…"
 
-#: ../data/ui/preferences_languages.blp:45
-msgid "Retry"
-msgstr "மீண்டும் முயற்சிக்கவும்"
-
-#: ../data/ui/preferences_languages.blp:61
-msgid "Installed Languages"
-msgstr "நிறுவப்பட்ட மொழிகள்"
-
-#: ../data/ui/preferences_languages.blp:70
-msgid "Add language"
-msgstr "மொழியைச் சேர்க்கவும்"
-
-#: ../data/ui/preferences_languages.blp:122 ../data/ui/language_popover.blp:79
+#: data/ui/language_popover.blp:84 data/ui/preferences_languages.blp:125
 msgid "No Results Found"
 msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
 
-#: ../data/ui/language_row.blp:29
+#: data/ui/language_popover.blp:89 data/ui/preferences_languages.blp:126
+#: data/ui/shortcuts_overlay.blp:65
+msgid "Try a different search term"
+msgstr ""
+
+#: data/ui/language_popover.blp:104
+#, fuzzy
+msgid "_Manage Languages…"
+msgstr "மொழிகளைத் தேடுங்கள்…"
+
+#: data/ui/language_popover.blp:106
+msgid "Open preferences to download more languages (Ctrl+,)"
+msgstr ""
+
+#: data/ui/language_row.blp:29 data/ui/language_row.blp:31
 msgctxt "Preferences Language Row"
 msgid "Install language"
 msgstr ""
 
-#: ../data/ui/language_row.blp:38
+#: data/ui/language_row.blp:41 data/ui/language_row.blp:43
 msgctxt "Preferences Language Row"
 msgid "Remove language"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:13
+#: data/ui/preferences_general.blp:13
 msgid "_General"
 msgstr "_ பொது"
 
-#: ../data/ui/preferences_general.blp:18
+#: data/ui/preferences_general.blp:18
 msgid "Appearance"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:21
+#: data/ui/preferences_general.blp:21
 msgid "Color Scheme"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:22
+#: data/ui/preferences_general.blp:22
 msgid "The preferred color scheme for the application."
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:27
+#: data/ui/preferences_general.blp:27
 msgid "Text Extraction"
 msgstr "உரை பிரித்தெடுக்கும்"
 
-#: ../data/ui/preferences_general.blp:30
+#: data/ui/preferences_general.blp:30
 msgid "_Secondary Language"
 msgstr "_ நொடி மொழி"
 
-#: ../data/ui/preferences_general.blp:32
+#: data/ui/preferences_general.blp:32
 msgid "Additional language used in text recognition"
 msgstr "உரை அங்கீகாரத்தில் பயன்படுத்தப்படும் கூடுதல் மொழி"
 
-#: ../data/ui/preferences_general.blp:36
+#: data/ui/preferences_general.blp:36
 msgid "Smart Text Parsing"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:37
+#: data/ui/preferences_general.blp:37
 msgid "Automatically reformat URLs, emails and paragraphs"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:42
+#: data/ui/preferences_general.blp:42
 msgid "Behavior"
 msgstr "நடத்தை"
 
-#: ../data/ui/preferences_general.blp:45
+#: data/ui/preferences_general.blp:45
 msgid "_Copy to Clipboard"
 msgstr "இடைநிலைப்பலகைக்கு நகலெடுக்கவும்"
 
-#: ../data/ui/preferences_general.blp:47
+#: data/ui/preferences_general.blp:47
 msgid "Automatically copy the extracted text after detection"
 msgstr "பிரித்தெடுக்கப்பட்ட உரையை இடைநிலைப்பலகைக்கு தானாக நகலெடுக்கவும்"
 
-#: ../data/ui/preferences_general.blp:51
+#: data/ui/preferences_general.blp:51
 msgid "_Open QR-code Links"
 msgstr "_OPEN QR-CODE இணைப்புகள்"
 
-#: ../data/ui/preferences_general.blp:53
+#: data/ui/preferences_general.blp:53
 msgid ""
 "Open QR code URLs directly in browser. Otherwise, a clickable notification "
 "is shown."
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:64
-msgid "Text-to-Speech"
+#: data/ui/preferences_general.blp:67
+#, fuzzy
+msgid "Save Extraction History"
+msgstr "உரை பிரித்தெடுக்கும்"
+
+#: data/ui/preferences_general.blp:68
+msgid "Keep a local list of recently extracted texts"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:67
+#: data/ui/preferences_general.blp:72
+msgid "History Size"
+msgstr ""
+
+#: data/ui/preferences_general.blp:73
+msgid "Maximum number of entries kept in history"
+msgstr ""
+
+#: data/ui/preferences_general.blp:86
+msgid "Show Line Numbers"
+msgstr ""
+
+#: data/ui/preferences_general.blp:87
+msgid "Display line numbers along the edge of the editor"
+msgstr ""
+
+#: data/ui/preferences_general.blp:91
+msgid "Highlight Current Line"
+msgstr ""
+
+#: data/ui/preferences_general.blp:92
+msgid "Highlight the active line containing cursor"
+msgstr ""
+
+#: data/ui/preferences_general.blp:96
+msgid "Word Wrap Mode"
+msgstr ""
+
+#: data/ui/preferences_general.blp:97
+msgid "Policy for wrapping long lines of text"
+msgstr ""
+
+#: data/ui/preferences_general.blp:105
 msgid "Volume"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:68
+#: data/ui/preferences_general.blp:106
 msgid "TTS playback volume level (0-100%)"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:77
+#: data/ui/preferences_general.blp:115
 msgid "TTS Language"
 msgstr ""
 
-#: ../data/ui/preferences_general.blp:78
+#: data/ui/preferences_general.blp:116
 msgid "Language for speech synthesis. Uses OCR language if not set."
 msgstr ""
 
-#: ../data/ui/language_popover.blp:86
-msgid "Add Language"
-msgstr "மொழியைச் சேர்க்கவும்"
+#: data/ui/preferences_languages.blp:14
+msgid "_Languages"
+msgstr "_ மொழிகள்"
 
-#: ../data/ui/language_popover.blp:87
-msgid "Open preferences to download more languages"
+#: data/ui/preferences_languages.blp:20
+msgid "Model Quality"
 msgstr ""
 
-#: ../data/ui/preferences_dialog.blp:13 ../data/ui/extracted_page.blp:193
-#: ../data/ui/welcome_page.blp:160
-msgid "Preferences"
-msgstr "விருப்பத்தேர்வுகள்"
+#: data/ui/preferences_languages.blp:21
+msgid "Higher quality is slower but more accurate"
+msgstr ""
 
-#: ../data/ui/shortcuts_overlay.blp:13 ../data/ui/shortcuts_overlay.blp:25
-#: ../data/ui/extracted_page.blp:201 ../data/ui/welcome_page.blp:167
-msgid "Keyboard Shortcuts"
-msgstr "விசைப்பலகை குறுக்குவழிகள்"
+#: data/ui/preferences_languages.blp:45
+msgid "Retry"
+msgstr "மீண்டும் முயற்சிக்கவும்"
 
-#: ../data/ui/shortcuts_overlay.blp:38
+#: data/ui/preferences_languages.blp:61
+msgid "Installed Languages"
+msgstr "நிறுவப்பட்ட மொழிகள்"
+
+#: data/ui/preferences_languages.blp:70 data/ui/preferences_languages.blp:72
+msgid "Add language"
+msgstr "மொழியைச் சேர்க்கவும்"
+
+#: data/ui/shortcuts_overlay.blp:38
 msgid "Search shortcuts..."
 msgstr ""
 
-#: ../data/ui/shortcuts_overlay.blp:40
+#: data/ui/shortcuts_overlay.blp:40
 msgid "Search shortcuts"
 msgstr ""
 
-#: ../data/ui/shortcuts_overlay.blp:64
+#: data/ui/shortcuts_overlay.blp:64
 #, fuzzy
 msgid "No results found"
 msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
 
-#: ../data/ui/shortcuts_overlay.blp:65
-msgid "Try a different search term"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:13
-msgid "Extracted"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:24
-#, fuzzy
-msgid "Take a Screenshot (Ctrl+G)"
-msgstr "_ ஒரு திரை காட்சி எடுக்கவும்"
-
-#: ../data/ui/extracted_page.blp:26
-msgid "Take a screenshot"
-msgstr "திரை காட்சி எடுத்துக் கொள்ளுங்கள்"
-
-#: ../data/ui/extracted_page.blp:37
-msgctxt "Extracted screen"
-msgid "Copy extracted text to clipboard"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:53
-msgctxt "Extracted screen"
-msgid "Listen to text"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:64 ../data/ui/extracted_page.blp:98
-msgctxt "Extracted screen"
-msgid "Stop listening (Ctrl+Shift+L)"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:66 ../data/ui/extracted_page.blp:100
-msgctxt "Extracted screen"
-msgid "Stop listening"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:88
-msgctxt "Extracted screen"
-msgid "Pause/Resume listening (Ctrl+Alt+L)"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:90
-msgctxt "Extracted screen"
-msgid "Pause or resume listening"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:112 ../data/ui/extracted_page.blp:114
-msgctxt "Extracted screen"
-msgid "Open menu"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:124
-msgctxt "Extracted screen"
-msgid "Share text to other applications"
-msgstr ""
-
-#: ../data/ui/extracted_page.blp:207 ../data/ui/welcome_page.blp:172
-msgid "About Anura"
-msgstr "தவளை பற்றி"
-
-#: ../data/ui/extracted_page.blp:222
-msgid "Open image"
-msgstr "திறந்த படத்தை"
-
-#: ../data/ui/extracted_page.blp:223
-msgid "Paste from clipboard"
-msgstr "கிளிப்போர்டிலிருந்து ஒட்டவும்"
-
-#: ../data/ui/window.blp:27
-msgid ""
-"Screenshot portal unavailable. Install xdg-desktop-portal-gtk (or the "
-"backend matching your desktop) and re-login."
-msgstr ""
-
-#: ../data/ui/window.blp:28
-msgid "Dismiss"
-msgstr ""
-
-#: ../data/ui/welcome_page.blp:13
+#: data/ui/welcome_page.blp:13
 msgid "Welcome"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:22 ../data/ui/welcome_page.blp:49
+#: data/ui/welcome_page.blp:22 data/ui/welcome_page.blp:53
+#: data/io.github.d3msudo.anura.desktop.in:3
 msgid "Anura"
 msgstr "தவளை"
 
-#: ../data/ui/welcome_page.blp:27
-msgid "Language"
-msgstr "மொழி"
+#: data/ui/welcome_page.blp:27
+#, fuzzy
+msgid "_Language"
+msgstr "_ மொழிகள்"
 
-#: ../data/ui/welcome_page.blp:28
+#: data/ui/welcome_page.blp:29
 msgid "Select language to extract"
 msgstr "பிரித்தெடுக்க மொழியைத் தேர்ந்தெடுக்கவும்"
 
-#: ../data/ui/welcome_page.blp:41 ../data/ui/welcome_page.blp:43
+#: data/ui/welcome_page.blp:37
+#, fuzzy
+msgid "Extracting text"
+msgstr "பிரித்தெடுக்கப்பட்ட உரை"
+
+#: data/ui/welcome_page.blp:45 data/ui/welcome_page.blp:47
 msgid "Open menu"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:61
+#: data/ui/welcome_page.blp:65
 #, fuzzy
 msgctxt "Welcome screen"
 msgid "Take a Screenshot (Ctrl+G)"
 msgstr "_ ஒரு திரை காட்சி எடுக்கவும்"
 
-#: ../data/ui/welcome_page.blp:63
+#: data/ui/welcome_page.blp:67
 msgctxt "Welcome screen"
 msgid "Take a Screenshot"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:72
+#: data/ui/welcome_page.blp:76
 msgid "_Take a Screenshot"
 msgstr "_ ஒரு திரை காட்சி எடுக்கவும்"
 
-#: ../data/ui/welcome_page.blp:80
+#: data/ui/welcome_page.blp:84
 #, fuzzy
 msgctxt "Welcome screen"
 msgid "Open Image (Ctrl+O)"
 msgstr "_ ஓபன் படம்"
 
-#: ../data/ui/welcome_page.blp:82
+#: data/ui/welcome_page.blp:86
 msgctxt "Welcome screen"
 msgid "Open Image"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:91
+#: data/ui/welcome_page.blp:95
 msgid "_Open Image"
 msgstr "_ ஓபன் படம்"
 
-#: ../data/ui/welcome_page.blp:99
+#: data/ui/welcome_page.blp:103
 #, fuzzy
 msgctxt "Welcome screen"
 msgid "Paste Image from Clipboard (Ctrl+V)"
 msgstr "கிளிப்போர்டிலிருந்து ஒட்டவும்"
 
-#: ../data/ui/welcome_page.blp:101
+#: data/ui/welcome_page.blp:105
 msgctxt "Welcome screen"
 msgid "Paste Image"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:110
+#: data/ui/welcome_page.blp:114
 #, fuzzy
 msgid "_Paste Image"
 msgstr "படத்தை ஒட்டவும்"
 
-#: ../data/ui/welcome_page.blp:117 ../data/ui/welcome_page.blp:119
+#: data/ui/welcome_page.blp:121 data/ui/welcome_page.blp:123
 msgctxt "Welcome screen"
 msgid "Drop image here"
 msgstr ""
 
-#: ../data/ui/welcome_page.blp:128
+#: data/ui/welcome_page.blp:132
 #, fuzzy
 msgid "_Drop Image"
 msgstr "_ ஓபன் படம்"
 
-#: ../data/ui/welcome_page.blp:179
+#: data/ui/welcome_page.blp:205
 msgid "⭐ Star on GitHub"
 msgstr "⭐ கிட்அப்பில் விண்மீன்"
 
-#: ../data/io.github.d3msudo.anura.desktop.in:4
+#: data/ui/window.blp:27
+msgid ""
+"Screenshot portal unavailable. Install xdg-desktop-portal-gtk (or the "
+"backend matching your desktop) and re-login."
+msgstr ""
+
+#: data/ui/window.blp:28
+msgid "Dismiss"
+msgstr ""
+
+#: data/io.github.d3msudo.anura.desktop.in:4
 msgid "OCR Tool"
 msgstr ""
 
-#: ../data/io.github.d3msudo.anura.desktop.in:5
+#: data/io.github.d3msudo.anura.desktop.in:5
 msgid "Extract text from any image, video, or web page"
 msgstr ""
 
-#: ../data/io.github.d3msudo.anura.desktop.in:11
+#: data/io.github.d3msudo.anura.desktop.in:11
 msgid "OCR;Text;Extraction;Reader;QR;Scanner;"
 msgstr ""
 
-#: ../data/io.github.d3msudo.anura.desktop.in:17
+#: data/io.github.d3msudo.anura.desktop.in:17
 msgid "Extract Text to Clipboard"
 msgstr ""
-
-#~ msgid "Math / Equation Detection"
-#~ msgstr "கணிதம் / சமன்பாடு கண்டறிதல் தொகுதி"
-
-#~ msgid "Open"
-#~ msgstr "திற"
-
-#~ msgid "Automatically open links extracted from QR codes"
-#~ msgstr "QR- குறியீடுகளிலிருந்து தானாகவே இணைப்புகளைத் திறக்கவும்"
