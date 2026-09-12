@@ -134,7 +134,7 @@ class WelcomePage(Adw.NavigationPage, SignalManagerMixin):
         except Exception as e:
             logger.exception(f"Anura: Failed to handle drop button click: {e}")
 
-    def _on_dnd_enter(self, target: Gtk.DropTargetAsync, drop: Gdk.Drop, x: float, y: float) -> Gdk.DragAction:
+    def _on_dnd_enter(self, _target: Gtk.DropTargetAsync, _drop: Gdk.Drop, _x: float, _y: float) -> Gdk.DragAction:
         """Visual feedback when drag enters the drop area."""
         try:
             self.drop_revealer.set_reveal_child(True)
@@ -144,7 +144,7 @@ class WelcomePage(Adw.NavigationPage, SignalManagerMixin):
             logger.exception(f"Anura: Failed to handle DnD enter: {e}")
         return Gdk.DragAction.COPY
 
-    def _on_dnd_leave(self, target: Gtk.DropTargetAsync, drop: Gdk.Drop) -> None:
+    def _on_dnd_leave(self, _target: Gtk.DropTargetAsync, _drop: Gdk.Drop) -> None:
         """Remove visual feedback when drag leaves the drop area."""
         try:
             self.drop_area.remove_css_class("drag-hover")
@@ -155,7 +155,7 @@ class WelcomePage(Adw.NavigationPage, SignalManagerMixin):
         except (AttributeError, RuntimeError) as e:
             logger.exception(f"Anura: Failed to handle DnD leave: {e}")
 
-    def _on_dnd_drop(self, target: Gtk.DropTargetAsync, drop: Gdk.Drop, x: float, y: float) -> bool:
+    def _on_dnd_drop(self, _target: Gtk.DropTargetAsync, drop: Gdk.Drop, _x: float, _y: float) -> bool:
         """Handle drop signal. Initiates a fully async stream read of text/uri-list.
 
         We always read text/uri-list (never Gdk.FileList) to bypass the
