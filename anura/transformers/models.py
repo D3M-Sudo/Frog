@@ -28,11 +28,6 @@ class OcrResult:
     transformer_scores: dict[TransformerType, float] = field(default_factory=dict)
     parsed: list[str] = field(default_factory=list)
 
-    def _get_val(self, obj: Any, attr: str) -> Any:
-        if isinstance(obj, dict):
-            return obj.get(attr)
-        return getattr(obj, attr, None)
-
     @cached_property
     def _layout_stats(self) -> dict[str, int]:
         """
