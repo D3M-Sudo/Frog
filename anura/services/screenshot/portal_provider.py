@@ -80,12 +80,12 @@ class PortalProvider(ScreenshotProvider):
                         f"(domain={e.domain}, code={e.code}): {e.message}",
                     )
 
-                    is_generic = (
+                    is_known_backend_missing = (
                         e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.FAILED)
                         and (e.message or "").strip().lower() == "screenshot failed"
                     )
 
-                    if is_generic:
+                    if is_known_backend_missing:
                         logger.warning(
                             "PortalProvider: xdg-desktop-portal screenshot backend failed (code=0). "
                             "This is often caused by missing portal backends or an unavailable "
