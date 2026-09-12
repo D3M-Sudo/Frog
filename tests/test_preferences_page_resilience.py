@@ -14,7 +14,7 @@ The __init__ must therefore isolate the TTS-dependent setup so that the
 history settings binding always executes.
 """
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 
 class FakeSettings:
