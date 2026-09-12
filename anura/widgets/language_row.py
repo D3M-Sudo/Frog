@@ -156,7 +156,7 @@ class LanguageRow(Gtk.Overlay, SignalManagerMixin):
             get_language_manager().remove_language(self._item.code)
             self.update_ui()
 
-    def on_downloaded(self, sender: GObject.GObject, code: str) -> None:
+    def on_downloaded(self, _sender: GObject.GObject, code: str) -> None:
         """
         Signal handler for completed downloads.
         """
