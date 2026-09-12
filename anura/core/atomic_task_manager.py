@@ -33,6 +33,12 @@ def _isolated_process_worker(command: "Callable", args: tuple, task_id: str, sha
     the enclosing scope via ``self``) cannot be pickled by the 'spawn'
     multiprocessing context required for safe GTK/GObject interaction.
 
+    Child-process logging note: with the 'spawn' context, loguru is freshly
+    imported inside the worker and re-installs its default DEBUG stderr sink,
+    flooding the terminal during every OCR run (e.g. after drag & drop).
+    Silence it here: the parent process already owns stderr + rotary file
+    logging, and results/errors are reported back via the Future/shared_map.
+
     Note: cross-process status callbacks via ``GLib.idle_add`` are not
     supported here because ``idle_add`` in a child process targets the
     child's (non-existent) GLib main loop, not the parent's.  Status
@@ -40,6 +46,7 @@ def _isolated_process_worker(command: "Callable", args: tuple, task_id: str, sha
     cancellation map or a dedicated IPC channel.
     """
     mgr = get_atomic_manager()
+    logger.remove()  # Silence child's re-imported default DEBUG stderr sink.
     mgr.set_isolated_cancellation_map(shared_map)
     return command(*args, task_id=task_id, status_callback=None)
 
