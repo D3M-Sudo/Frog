@@ -234,12 +234,3 @@ class LanguageValidator:
             if lang_name == name:
                 return code
         return "eng"
-
-    @classmethod
-    def get_all_languages(cls) -> dict[str, str]:
-        """Get the complete language mapping.
-
-        Returns:
-            Dictionary mapping codes to human-readable names
-        """
-        return cls._languages.copy()
