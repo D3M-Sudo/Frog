@@ -16,8 +16,9 @@ gi.require_version("Adw", "1")
 gi.require_version("GLib", "2.0")
 gi.require_version("GObject", "2.0")
 gi.require_version("Gtk", "4.0")
+gi.require_version("GtkSource", "5")
 
-from gi.repository import Adw, GLib, GObject, Gtk  # noqa: E402
+from gi.repository import Adw, Gio, GLib, GObject, Gtk, GtkSource  # noqa: E402
 from loguru import logger  # noqa: E402
 
 from anura.config import RESOURCE_PREFIX  # noqa: E402
@@ -47,8 +48,15 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
     listen_pause_btn: Gtk.Button = Gtk.Template.Child()
     listen_spinner: Gtk.Spinner = Gtk.Template.Child()
     share_button: Gtk.MenuButton = Gtk.Template.Child()
-    text_view: Gtk.TextView = Gtk.Template.Child()
-    buffer: Gtk.TextBuffer = Gtk.Template.Child()
+    text_view: GtkSource.View = Gtk.Template.Child()
+    buffer: GtkSource.Buffer = Gtk.Template.Child()
+    search_button: Gtk.ToggleButton = Gtk.Template.Child()
+    search_bar: Gtk.SearchBar = Gtk.Template.Child()
+    search_entry: Gtk.SearchEntry = Gtk.Template.Child()
+    search_count_label: Gtk.Label = Gtk.Template.Child()
+    search_case_btn: Gtk.ToggleButton = Gtk.Template.Child()
+    search_prev_btn: Gtk.Button = Gtk.Template.Child()
+    search_next_btn: Gtk.Button = Gtk.Template.Child()
 
     def __init__(self, **kwargs: object) -> None:
         # Pre-initialize attributes to avoid AttributeError during failed template init
@@ -57,6 +65,30 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
 
         super().__init__(**kwargs)
         SignalManagerMixin.__init__(self)
+
+        self.search_settings = GtkSource.SearchSettings.new()
+        self.search_context = GtkSource.SearchContext.new(self.buffer, self.search_settings)
+
+        if self.search_bar and self.search_entry:
+            self.search_bar.connect_entry(self.search_entry)
+            self.search_bar.set_key_capture_widget(self.text_view)
+            if self.search_button:
+                self.search_bar.bind_property(
+                    "search-mode-enabled",
+                    self.search_button,
+                    "active",
+                    GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.SYNC_CREATE,
+                )
+
+            self.connect_tracked(self.search_entry, "search-changed", self._on_search_text_changed)
+            self.connect_tracked(self.search_entry, "activate", self._on_search_next)
+            self.connect_tracked(self.search_case_btn, "notify::active", self._on_case_sensitivity_changed)
+            self.connect_tracked(self.search_prev_btn, "clicked", self._on_search_prev)
+            self.connect_tracked(self.search_next_btn, "clicked", self._on_search_next)
+            if self.search_context:
+                self.connect_tracked(
+                    self.search_context, "notify::occurrences-count", self._on_search_occurrences_changed
+                )
 
         # Defensive check: ensure critical template components are loaded
         if not self.share_list_box:
@@ -71,6 +103,19 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
         self.connect_tracked(self.buffer, "changed", self._on_buffer_changed)
         self.connect_tracked(self.buffer, "mark-set", self._on_mark_set)
 
+        if self.text_view:
+            self.settings.bind(
+                "editor-show-line-numbers", self.text_view, "show-line-numbers", Gio.SettingsBindFlags.DEFAULT
+            )
+            self.settings.bind(
+                "editor-highlight-current-line",
+                self.text_view,
+                "highlight-current-line",
+                Gio.SettingsBindFlags.DEFAULT,
+            )
+            self._apply_wrap_mode()
+            self.connect_tracked(self.settings, "changed::editor-wrap-mode", self._on_wrap_mode_setting_changed)
+
         # Accessibility: set tooltip for the stats label
         self.stats_label.set_tooltip_text(
             _("Shows character and word count. If text is selected, shows selection stats.")
@@ -78,7 +123,21 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
 
         self.buffer.set_enable_undo(True)
 
-    def _on_buffer_changed(self, buffer: Gtk.TextBuffer) -> None:
+    def _apply_wrap_mode(self) -> None:
+        mode_str = self.settings.get_string("editor-wrap-mode")
+        mapping = {
+            "word": Gtk.WrapMode.WORD,
+            "char": Gtk.WrapMode.CHAR,
+            "none": Gtk.WrapMode.NONE,
+        }
+        wrap_enum = mapping.get(mode_str, Gtk.WrapMode.WORD)
+        if self.text_view:
+            self.text_view.set_wrap_mode(wrap_enum)
+
+    def _on_wrap_mode_setting_changed(self, _settings: object, _key: str) -> None:
+        self._apply_wrap_mode()
+
+    def _on_buffer_changed(self, buffer: GtkSource.Buffer) -> None:
         """Update action sensitivities when buffer changes."""
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
         has_text = bool(text.strip()) if text else False
@@ -222,6 +281,80 @@ class ExtractedPage(Adw.NavigationPage, SignalManagerMixin):
         except (GLib.Error, ValueError) as e:
             logger.error(f"Error setting extracted text: {e}")
         return GLib.SOURCE_REMOVE
+
+    def toggle_search(self) -> None:
+        """Toggle search bar visibility and focus entry."""
+        if not self.search_bar:
+            return
+        is_active = not self.search_bar.get_search_mode()
+        self.search_bar.set_search_mode(is_active)
+        if is_active:
+            selection = self.buffer.get_selection_bounds()
+            if selection:
+                start, end = selection
+                text = self.buffer.get_text(start, end, False)
+                if text and "\n" not in text:
+                    self.search_entry.set_text(text)
+            self.search_entry.grab_focus()
+
+    def _on_search_text_changed(self, entry: Gtk.SearchEntry) -> None:
+        text = entry.get_text()
+        if text:
+            self.search_settings.set_search_text(text)
+            self.search_context.set_highlight(True)
+            self._navigate_search(forward=True, wrap=True)
+        else:
+            self.search_settings.set_search_text(None)
+            self.search_context.set_highlight(False)
+            if self.search_count_label:
+                self.search_count_label.set_text("")
+
+    def _on_case_sensitivity_changed(self, btn: Gtk.ToggleButton, _param: object) -> None:
+        self.search_settings.set_case_sensitive(btn.get_active())
+
+    def _on_search_occurrences_changed(self, search_context: GtkSource.SearchContext, _param: object) -> None:
+        if not self.search_count_label or not self.search_settings.get_search_text():
+            return
+        count = search_context.get_occurrences_count()
+        if count == -1:
+            self.search_count_label.set_text(_("Searching…"))
+        elif count == 0:
+            self.search_count_label.set_text(_("No matches"))
+        else:
+            self.search_count_label.set_text(ngettext("{n} match", "{n} matches", count).format(n=count))
+
+    def _on_search_next(self, *_args: object) -> None:
+        self._navigate_search(forward=True, wrap=True)
+
+    def _on_search_prev(self, *_args: object) -> None:
+        self._navigate_search(forward=False, wrap=True)
+
+    def _navigate_search(self, forward: bool = True, wrap: bool = True) -> None:
+        if not self.search_settings.get_search_text() or not self.search_context:
+            return
+
+        selection = self.buffer.get_selection_bounds()
+        if selection:
+            start_iter = selection[1] if forward else selection[0]
+        else:
+            start_iter = self.buffer.get_iter_at_mark(self.buffer.get_insert())
+
+        found = False
+        match_start = None
+        match_end = None
+
+        if hasattr(self.search_context, "forward2") and forward:
+            res = self.search_context.forward2(start_iter)
+            if res and res[0]:
+                found, match_start, match_end = res[0], res[1], res[2]
+        elif hasattr(self.search_context, "backward2") and not forward:
+            res = self.search_context.backward2(start_iter)
+            if res and res[0]:
+                found, match_start, match_end = res[0], res[1], res[2]
+
+        if found and match_start and match_end:
+            self.buffer.select_range(match_start, match_end)
+            self.text_view.scroll_to_iter(match_start, 0.1, False, 0.0, 0.0)
 
     def get_active_text(self) -> str:
         """Get selected text if available, otherwise the full text."""

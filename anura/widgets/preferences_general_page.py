@@ -30,6 +30,9 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
     tts_language_combo: Adw.ComboRow = Gtk.Template.Child()
     history_switch: Adw.SwitchRow = Gtk.Template.Child()
     history_limit_row: Adw.SpinRow = Gtk.Template.Child()
+    editor_line_numbers_switch: Adw.SwitchRow = Gtk.Template.Child()
+    editor_highlight_line_switch: Adw.SwitchRow = Gtk.Template.Child()
+    editor_wrap_mode_combo: Adw.ComboRow = Gtk.Template.Child()
 
     def __init__(self, **kwargs: object) -> None:
         super().__init__(**kwargs)
@@ -42,8 +45,18 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
         self.settings.bind(
             "magic-processor-enabled", self.magic_processor_switch, "active", Gio.SettingsBindFlags.DEFAULT
         )
+        self.settings.bind(
+            "editor-show-line-numbers", self.editor_line_numbers_switch, "active", Gio.SettingsBindFlags.DEFAULT
+        )
+        self.settings.bind(
+            "editor-highlight-current-line",
+            self.editor_highlight_line_switch,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
 
         self._setup_color_scheme()
+        self._setup_editor_wrap_mode()
         self._setup_extra_languages()
 
         self.connect_tracked(get_language_manager(), "downloaded", self._on_language_changed)
@@ -66,6 +79,27 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
         value = int(spin_row.get_value())
         self.settings.set_int("history-limit", value)
         logger.debug(f"Anura: History size limit set to {value}")
+
+    def _setup_editor_wrap_mode(self) -> None:
+        from gettext import pgettext
+
+        modes = [
+            pgettext("wrap-mode", "Words"),
+            pgettext("wrap-mode", "Characters"),
+            pgettext("wrap-mode", "Disabled"),
+        ]
+        self.editor_wrap_mode_combo.set_model(Gtk.StringList.new(modes))
+        mode = self.settings.get_string("editor-wrap-mode")
+        mapping = {"word": 0, "char": 1, "none": 2}
+        idx = mapping.get(mode, 0)
+        self.editor_wrap_mode_combo.set_selected(idx)
+        self.connect_tracked(self.editor_wrap_mode_combo, "notify::selected", self._on_editor_wrap_mode_changed)
+
+    def _on_editor_wrap_mode_changed(self, combo: Adw.ComboRow, _param: object) -> None:
+        idx = combo.get_selected()
+        mapping = {0: "word", 1: "char", 2: "none"}
+        mode = mapping.get(idx, "word")
+        self.settings.set_string("editor-wrap-mode", mode)
 
     def _setup_color_scheme(self) -> None:
         """Initialize color scheme selector from settings."""
