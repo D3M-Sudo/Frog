@@ -40,12 +40,23 @@ def test_extracted_page_ui_reflow_properties() -> None:
     with tempfile.TemporaryDirectory() as tmpdir:
         ui_file = Path(tmpdir) / "extracted_page.ui"
 
-        subprocess.run(
-            ["blueprint-compiler", "compile", str(blp_file), "--output", str(ui_file)],
-            check=True,
-            capture_output=True,
-            text=True
-        )
+        try:
+            subprocess.run(
+                ["blueprint-compiler", "compile", str(blp_file), "--output", str(ui_file)],
+                check=True,
+                capture_output=True,
+                text=True
+            )
+        except subprocess.CalledProcessError as e:
+            # A missing GIR namespace (e.g. GtkSource-5 typelib not installed)
+            # indicates an incomplete development environment, not a bug in
+            # the .blp file: skip clearly instead of failing. Any other
+            # compilation error is a real regression and must still fail.
+            stderr = e.stderr or ""
+            if "could not be found" in stderr:
+                first_line = stderr.strip().splitlines()[0] if stderr.strip() else "unknown namespace error"
+                pytest.skip(f"missing GIR typelib, skipping .ui compilation test: {first_line}")
+            raise
 
         assert ui_file.exists(), "extracted_page.ui must be generated from blueprint-compiler"
 

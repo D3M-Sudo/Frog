@@ -63,7 +63,11 @@ class PreferencesGeneralPage(Adw.PreferencesPage, SignalManagerMixin):
         self.connect_tracked(get_language_manager(), "removed", self._on_language_changed)
 
         self._setup_tts_volume()
-        self._setup_tts_language()
+        # TTS language setup depends on the (possibly network-backed) TTS
+        # service; a failure there must not abort __init__ or any later
+        # settings binding (e.g. history-enabled would never be bound).
+        with contextlib.suppress(Exception):
+            self._setup_tts_language()
         self._setup_history()
 
     def _setup_history(self) -> None:
